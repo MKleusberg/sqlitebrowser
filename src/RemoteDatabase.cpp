@@ -571,6 +571,10 @@ void RemoteDatabase::localAdd(QString filename, QString identity, const QUrl& ur
 
 QString RemoteDatabase::localExists(const QUrl& url, QString identity)
 {
+    QFile debug(Settings::getValue("remote", "clonedirectory").toString() + "/debug.log");
+    debug.open(QFile::Append);
+    debug.write(QString("localExists(\"%1\", \"%2\")\r\n").arg(url.toString()).arg(identity).toUtf8());
+
     // This function checks if there already is a clone for the given combination of url and identity. It returns the filename
     // of this clone if there is or a null string if there isn't a clone yet. The identity needs to be part of this check because
     // with the url alone there could be corner cases where different versions or whatever may not be accessible for all users.
@@ -580,28 +584,36 @@ QString RemoteDatabase::localExists(const QUrl& url, QString identity)
     // Extract commit id from url and remove query part afterwards
     QString url_commit_id = QUrlQuery(url).queryItemValue("commit");
 
+    debug.write(QString("url_commit_id = %1\r\n").arg(url_commit_id).toUtf8());
+
     // Query commit id and filename for the given combination of url and identity
     QString sql = QString("SELECT id, commit_id, file FROM local WHERE url=? AND identity=?");
     sqlite3_stmt* stmt;
     if(sqlite3_prepare_v2(m_dbLocal, sql.toUtf8(), -1, &stmt, 0) != SQLITE_OK)
         return QString();
 
+    debug.write(QString("url = %1\r\n").arg(url.toString(QUrl::PrettyDecoded | QUrl::RemoveQuery)).toUtf8());
     if(sqlite3_bind_text(stmt, 1, url.toString(QUrl::PrettyDecoded | QUrl::RemoveQuery).toUtf8(), url.toString(QUrl::PrettyDecoded | QUrl::RemoveQuery).toUtf8().length(), SQLITE_TRANSIENT))
     {
+        debug.write(QString("bind 1 failed\r\n").toUtf8());
         sqlite3_finalize(stmt);
         return QString();
     }
 
     QFileInfo f(identity);                  // Remove the path
     identity = f.fileName();
+    debug.write(QString("identity = %1\r\n").arg(identity).toUtf8());
     if(sqlite3_bind_text(stmt, 2, identity.toUtf8(), identity.toUtf8().length(), SQLITE_TRANSIENT))
     {
+        debug.write(QString("bind 2 failed\r\n").toUtf8());
         sqlite3_finalize(stmt);
         return QString();
     }
 
     if(sqlite3_step(stmt) != SQLITE_ROW)
     {
+        debug.write(QString("step failed\r\n").toUtf8());
+
         // If there was either an error or no record was found for this combination of url and
         // identity, stop here.
         sqlite3_finalize(stmt);
@@ -615,18 +627,27 @@ QString RemoteDatabase::localExists(const QUrl& url, QString identity)
     QString local_file = QString::fromUtf8(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
     sqlite3_finalize(stmt);
 
+    debug.write(QString("local_commit_id = %1\r\n").arg(local_commit_id).toUtf8());
+    debug.write(QString("local_file = %1\r\n").arg(local_file).toUtf8());
+
     // There are three possibilities now: either the requested commit id is the same as the local commit id, or the requested commit id
     // is newer, or the local commit id is newer.
     if(local_commit_id == url_commit_id)
     {
+        debug.write(QString("match\r\n").toUtf8());
+
         // Both commit ids are the same. That's the perfect match, so we can build the full path to where the file should be
         QString full_path = Settings::getValue("remote", "clonedirectory").toString() + "/" + local_file;
 
         // Check if the database still exists. If so return its path, if not return an empty string to redownload it
         if(QFile::exists(full_path))
         {
+            debug.write(QString("file exists\r\n").toUtf8());
+
             return full_path;
         } else {
+            debug.write(QString("file doesn't exist\r\n").toUtf8());
+
             // Remove the apparently invalid entry from the local clones database to avoid future lookups and confusions. The file column
             // should be unique for the entire table because the files are all in the same directory and their names need to be unique because
             // of this.
@@ -646,6 +667,8 @@ QString RemoteDatabase::localExists(const QUrl& url, QString identity)
             return QString();
         }
     } else {
+        debug.write(QString("no match\r\n").toUtf8());
+
         // In all the other cases just treat the remote database as a completely new database for now.
 
         // TODO Add some way to update the local clone here. Maybe ask the user what to do because I don't really know what the
