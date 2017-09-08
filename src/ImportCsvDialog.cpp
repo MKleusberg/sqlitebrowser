@@ -20,7 +20,7 @@
 
 // Enable this line to show basic performance stats after each imported CSV file. Please keep in mind that while these
 // numbers might help to estimate the performance of the algorithm, this is not a proper benchmark.
-//#define CSV_BENCHMARK
+#define CSV_BENCHMARK
 
 #ifdef CSV_BENCHMARK
 #include <QElapsedTimer>
@@ -470,11 +470,17 @@ void ImportCsvDialog::importCsv(const QString& fileName, const QString &name)
     }
 
     // Prepare the INSERT statement. The prepared statement can then be reused for each row to insert
-    QString sQuery = QString("INSERT INTO %1 VALUES(").arg(sqlb::escapeIdentifier(tableName));
-    for(size_t i=1;i<=csv.columns();i++)
-        sQuery.append(QString("?%1,").arg(i));
-    sQuery.chop(1); // Remove last comma
-    sQuery.append(")");
+    QString sQuery = QString("INSERT INTO %1 VALUES").arg(sqlb::escapeIdentifier(tableName));
+    for(int j=0;j<3;j++)
+    {
+        sQuery.append("(");
+        for(size_t i=1;i<=csv.columns();i++)
+            sQuery.append(QString("?%1,").arg(j*csv.columns()+i));
+        sQuery.chop(1);   // Remove last comma
+        sQuery.append("),");
+    }
+    sQuery.chop(1);   // Remove last comma
+    qWarning() << sQuery;
     sqlite3_stmt* stmt;
     sqlite3_prepare_v2(pdb->_db, sQuery.toUtf8(), sQuery.toUtf8().length(), &stmt, nullptr);
 
@@ -501,6 +507,38 @@ void ImportCsvDialog::importCsv(const QString& fileName, const QString &name)
             } else {
                 // This is a non-empty value. Just add it to the statement
                 sqlite3_bind_text(stmt, i+1, static_cast<const char*>(it->at(i).toUtf8()), it->at(i).toUtf8().size(), SQLITE_TRANSIENT);
+            }
+        }
+        it++;
+        for(int i=0;i<it->size();i++,bound_fields++)
+        {
+            // Empty values need special treatment, but only when importing into an existing table where we could find out something about
+            // its table definition
+            if(importToExistingTable && it->at(i).isEmpty() && nullValues.size() > i)
+            {
+                // This is an empty value. We'll need to look up how to handle it depending on the field to be inserted into.
+                QString val = nullValues.at(i);
+                if(!val.isNull())       // No need to bind NULL values here as that is the default bound value in SQLite
+                    sqlite3_bind_text(stmt, csv.columns()+i+1, val.toUtf8(), val.toUtf8().size(), SQLITE_TRANSIENT);
+            } else {
+                // This is a non-empty value. Just add it to the statement
+                sqlite3_bind_text(stmt, csv.columns()+i+1, static_cast<const char*>(it->at(i).toUtf8()), it->at(i).toUtf8().size(), SQLITE_TRANSIENT);
+            }
+        }
+        it++;
+        for(int i=0;i<it->size();i++,bound_fields++)
+        {
+            // Empty values need special treatment, but only when importing into an existing table where we could find out something about
+            // its table definition
+            if(importToExistingTable && it->at(i).isEmpty() && nullValues.size() > i)
+            {
+                // This is an empty value. We'll need to look up how to handle it depending on the field to be inserted into.
+                QString val = nullValues.at(i);
+                if(!val.isNull())       // No need to bind NULL values here as that is the default bound value in SQLite
+                    sqlite3_bind_text(stmt, 2*csv.columns()+i+1, val.toUtf8(), val.toUtf8().size(), SQLITE_TRANSIENT);
+            } else {
+                // This is a non-empty value. Just add it to the statement
+                sqlite3_bind_text(stmt, 2*csv.columns()+i+1, static_cast<const char*>(it->at(i).toUtf8()), it->at(i).toUtf8().size(), SQLITE_TRANSIENT);
             }
         }
 
