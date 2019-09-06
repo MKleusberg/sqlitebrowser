@@ -385,6 +385,9 @@ namespace  sqlb { namespace parser  {
       // indexed_column_list
       char dummy4[sizeof (sqlb::IndexedColumnVector)];
 
+      // createvirtualtable_stmt
+      char dummy5[sizeof (sqlb::TablePtr)];
+
       // "ABORT"
       // "ACTION"
       // "AND"
@@ -495,7 +498,8 @@ namespace  sqlb { namespace parser  {
       // optional_sort_order
       // optional_where
       // tableid_with_uninteresting_schema
-      char dummy5[sizeof (std::string)];
+      // optional_exprlist_with_paren
+      char dummy6[sizeof (std::string)];
     };
 
     /// The size of the largest semantic type.
@@ -760,6 +764,19 @@ namespace  sqlb { namespace parser  {
       {}
 #endif
 #if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, sqlb::TablePtr&& v, location_type&& l)
+        : Base (t)
+        , value (std::move (v))
+        , location (std::move (l))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const sqlb::TablePtr& v, const location_type& l)
+        : Base (t)
+        , value (v)
+        , location (l)
+      {}
+#endif
+#if 201103L <= YY_CPLUSPLUS
       basic_symbol (typename Base::kind_type t, std::string&& v, location_type&& l)
         : Base (t)
         , value (std::move (v))
@@ -810,6 +827,10 @@ switch (yytype)
 
       case 143: // indexed_column_list
         value.template destroy< sqlb::IndexedColumnVector > ();
+        break;
+
+      case 146: // createvirtualtable_stmt
+        value.template destroy< sqlb::TablePtr > ();
         break;
 
       case 27: // "ABORT"
@@ -922,6 +943,7 @@ switch (yytype)
       case 138: // optional_sort_order
       case 140: // optional_where
       case 141: // tableid_with_uninteresting_schema
+      case 145: // optional_exprlist_with_paren
         value.template destroy< std::string > ();
         break;
 
@@ -3034,9 +3056,9 @@ switch (yytype)
     enum
     {
       yyeof_ = 0,
-      yylast_ = 2380,     ///< Last index in yytable_.
-      yynnts_ = 32,  ///< Number of nonterminal symbols.
-      yyfinal_ = 7, ///< Termination state number.
+      yylast_ = 2461,     ///< Last index in yytable_.
+      yynnts_ = 34,  ///< Number of nonterminal symbols.
+      yyfinal_ = 9, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
       yyntokens_ = 113  ///< Number of tokens.
@@ -3134,6 +3156,10 @@ switch (yytype)
         value.move< sqlb::IndexedColumnVector > (std::move (that.value));
         break;
 
+      case 146: // createvirtualtable_stmt
+        value.move< sqlb::TablePtr > (std::move (that.value));
+        break;
+
       case 27: // "ABORT"
       case 28: // "ACTION"
       case 29: // "AND"
@@ -3244,6 +3270,7 @@ switch (yytype)
       case 138: // optional_sort_order
       case 140: // optional_where
       case 141: // tableid_with_uninteresting_schema
+      case 145: // optional_exprlist_with_paren
         value.move< std::string > (std::move (that.value));
         break;
 
@@ -3279,6 +3306,10 @@ switch (yytype)
         value.copy< sqlb::IndexedColumnVector > (YY_MOVE (that.value));
         break;
 
+      case 146: // createvirtualtable_stmt
+        value.copy< sqlb::TablePtr > (YY_MOVE (that.value));
+        break;
+
       case 27: // "ABORT"
       case 28: // "ACTION"
       case 29: // "AND"
@@ -3389,6 +3420,7 @@ switch (yytype)
       case 138: // optional_sort_order
       case 140: // optional_where
       case 141: // tableid_with_uninteresting_schema
+      case 145: // optional_exprlist_with_paren
         value.copy< std::string > (YY_MOVE (that.value));
         break;
 
@@ -3431,6 +3463,10 @@ switch (yytype)
         value.move< sqlb::IndexedColumnVector > (YY_MOVE (s.value));
         break;
 
+      case 146: // createvirtualtable_stmt
+        value.move< sqlb::TablePtr > (YY_MOVE (s.value));
+        break;
+
       case 27: // "ABORT"
       case 28: // "ACTION"
       case 29: // "AND"
@@ -3541,6 +3577,7 @@ switch (yytype)
       case 138: // optional_sort_order
       case 140: // optional_where
       case 141: // tableid_with_uninteresting_schema
+      case 145: // optional_exprlist_with_paren
         value.move< std::string > (YY_MOVE (s.value));
         break;
 
@@ -3626,7 +3663,7 @@ switch (yytype)
 
 #line 10 "sqlite3_parser.yy"
 } } //  sqlb::parser 
-#line 3630 "sqlite3_parser.hpp"
+#line 3667 "sqlite3_parser.hpp"
 
 
 
