@@ -41,7 +41,7 @@
 
 
 // Unqualified %code blocks.
-#line 29 "sqlite3_parser.yy"
+#line 85 "sqlite3_parser.yy"
 
 	#include "ParserDriver.h"
 	
@@ -268,24 +268,53 @@ namespace  sqlb { namespace parser  {
   {
     switch (that.type_get ())
     {
-      case 137: // optional_if_not_exists
-      case 139: // optional_unique
+      case 152: // columnconstraint
+        value.YY_MOVE_OR_COPY< ColumnConstraintInfo > (YY_MOVE (that.value));
+        break;
+
+      case 153: // columnconstraint_list
+        value.YY_MOVE_OR_COPY< ColumnConstraintInfoVector > (YY_MOVE (that.value));
+        break;
+
+      case 154: // columndef
+        value.YY_MOVE_OR_COPY< ColumndefData > (YY_MOVE (that.value));
+        break;
+
+      case 138: // optional_if_not_exists
+      case 140: // optional_unique
+      case 148: // optional_temporary
+      case 149: // optional_withoutrowid
         value.YY_MOVE_OR_COPY< bool > (YY_MOVE (that.value));
         break;
 
-      case 144: // createindex_stmt
+      case 162: // tableconstraint
+        value.YY_MOVE_OR_COPY< sqlb::ConstraintPtr > (YY_MOVE (that.value));
+        break;
+
+      case 163: // tableconstraint_list
+      case 164: // optional_tableconstraint_list
+        value.YY_MOVE_OR_COPY< sqlb::ConstraintSet > (YY_MOVE (that.value));
+        break;
+
+      case 145: // createindex_stmt
         value.YY_MOVE_OR_COPY< sqlb::IndexPtr > (YY_MOVE (that.value));
         break;
 
-      case 142: // indexed_column
+      case 143: // indexed_column
         value.YY_MOVE_OR_COPY< sqlb::IndexedColumn > (YY_MOVE (that.value));
         break;
 
-      case 143: // indexed_column_list
+      case 144: // indexed_column_list
         value.YY_MOVE_OR_COPY< sqlb::IndexedColumnVector > (YY_MOVE (that.value));
         break;
 
-      case 146: // createvirtualtable_stmt
+      case 157: // columnid_list
+      case 158: // optional_columnid_with_paren_list
+        value.YY_MOVE_OR_COPY< sqlb::StringVector > (YY_MOVE (that.value));
+        break;
+
+      case 147: // createvirtualtable_stmt
+      case 165: // createtable_stmt
         value.YY_MOVE_OR_COPY< sqlb::TablePtr > (YY_MOVE (that.value));
         break;
 
@@ -379,28 +408,39 @@ namespace  sqlb { namespace parser  {
       case 117: // id
       case 118: // allowed_keywords_as_identifier
       case 119: // tableid
-      case 120: // signednumber
-      case 121: // signednumber_or_numeric
-      case 122: // typename_namelist
-      case 123: // type_name
-      case 124: // unary_expr
-      case 125: // binary_expr
-      case 126: // like_expr
-      case 127: // exprlist_expr
-      case 128: // function_expr
-      case 129: // isnull_expr
-      case 130: // between_expr
-      case 131: // in_expr
-      case 132: // whenthenlist_expr
-      case 133: // case_expr
-      case 134: // raise_expr
-      case 135: // expr
-      case 136: // select_stmt
-      case 138: // optional_sort_order
-      case 140: // optional_where
-      case 141: // tableid_with_uninteresting_schema
-      case 145: // optional_exprlist_with_paren
+      case 120: // columnid
+      case 121: // signednumber
+      case 122: // signednumber_or_numeric
+      case 123: // typename_namelist
+      case 124: // type_name
+      case 125: // unary_expr
+      case 126: // binary_expr
+      case 127: // like_expr
+      case 128: // exprlist_expr
+      case 129: // function_expr
+      case 130: // isnull_expr
+      case 131: // between_expr
+      case 132: // in_expr
+      case 133: // whenthenlist_expr
+      case 134: // case_expr
+      case 135: // raise_expr
+      case 136: // expr
+      case 137: // select_stmt
+      case 139: // optional_sort_order
+      case 141: // optional_where
+      case 142: // tableid_with_uninteresting_schema
+      case 146: // optional_exprlist_with_paren
+      case 150: // optional_conflictclause
+      case 151: // optional_typename
+      case 156: // optional_constraintname
+      case 159: // fk_clause_part
+      case 160: // fk_clause_part_list
+      case 161: // optional_fk_clause
         value.YY_MOVE_OR_COPY< std::string > (YY_MOVE (that.value));
+        break;
+
+      case 155: // columndef_list
+        value.YY_MOVE_OR_COPY< std::vector<ColumndefData> > (YY_MOVE (that.value));
         break;
 
       default:
@@ -418,24 +458,53 @@ namespace  sqlb { namespace parser  {
   {
     switch (that.type_get ())
     {
-      case 137: // optional_if_not_exists
-      case 139: // optional_unique
+      case 152: // columnconstraint
+        value.move< ColumnConstraintInfo > (YY_MOVE (that.value));
+        break;
+
+      case 153: // columnconstraint_list
+        value.move< ColumnConstraintInfoVector > (YY_MOVE (that.value));
+        break;
+
+      case 154: // columndef
+        value.move< ColumndefData > (YY_MOVE (that.value));
+        break;
+
+      case 138: // optional_if_not_exists
+      case 140: // optional_unique
+      case 148: // optional_temporary
+      case 149: // optional_withoutrowid
         value.move< bool > (YY_MOVE (that.value));
         break;
 
-      case 144: // createindex_stmt
+      case 162: // tableconstraint
+        value.move< sqlb::ConstraintPtr > (YY_MOVE (that.value));
+        break;
+
+      case 163: // tableconstraint_list
+      case 164: // optional_tableconstraint_list
+        value.move< sqlb::ConstraintSet > (YY_MOVE (that.value));
+        break;
+
+      case 145: // createindex_stmt
         value.move< sqlb::IndexPtr > (YY_MOVE (that.value));
         break;
 
-      case 142: // indexed_column
+      case 143: // indexed_column
         value.move< sqlb::IndexedColumn > (YY_MOVE (that.value));
         break;
 
-      case 143: // indexed_column_list
+      case 144: // indexed_column_list
         value.move< sqlb::IndexedColumnVector > (YY_MOVE (that.value));
         break;
 
-      case 146: // createvirtualtable_stmt
+      case 157: // columnid_list
+      case 158: // optional_columnid_with_paren_list
+        value.move< sqlb::StringVector > (YY_MOVE (that.value));
+        break;
+
+      case 147: // createvirtualtable_stmt
+      case 165: // createtable_stmt
         value.move< sqlb::TablePtr > (YY_MOVE (that.value));
         break;
 
@@ -529,28 +598,39 @@ namespace  sqlb { namespace parser  {
       case 117: // id
       case 118: // allowed_keywords_as_identifier
       case 119: // tableid
-      case 120: // signednumber
-      case 121: // signednumber_or_numeric
-      case 122: // typename_namelist
-      case 123: // type_name
-      case 124: // unary_expr
-      case 125: // binary_expr
-      case 126: // like_expr
-      case 127: // exprlist_expr
-      case 128: // function_expr
-      case 129: // isnull_expr
-      case 130: // between_expr
-      case 131: // in_expr
-      case 132: // whenthenlist_expr
-      case 133: // case_expr
-      case 134: // raise_expr
-      case 135: // expr
-      case 136: // select_stmt
-      case 138: // optional_sort_order
-      case 140: // optional_where
-      case 141: // tableid_with_uninteresting_schema
-      case 145: // optional_exprlist_with_paren
+      case 120: // columnid
+      case 121: // signednumber
+      case 122: // signednumber_or_numeric
+      case 123: // typename_namelist
+      case 124: // type_name
+      case 125: // unary_expr
+      case 126: // binary_expr
+      case 127: // like_expr
+      case 128: // exprlist_expr
+      case 129: // function_expr
+      case 130: // isnull_expr
+      case 131: // between_expr
+      case 132: // in_expr
+      case 133: // whenthenlist_expr
+      case 134: // case_expr
+      case 135: // raise_expr
+      case 136: // expr
+      case 137: // select_stmt
+      case 139: // optional_sort_order
+      case 141: // optional_where
+      case 142: // tableid_with_uninteresting_schema
+      case 146: // optional_exprlist_with_paren
+      case 150: // optional_conflictclause
+      case 151: // optional_typename
+      case 156: // optional_constraintname
+      case 159: // fk_clause_part
+      case 160: // fk_clause_part_list
+      case 161: // optional_fk_clause
         value.move< std::string > (YY_MOVE (that.value));
+        break;
+
+      case 155: // columndef_list
+        value.move< std::vector<ColumndefData> > (YY_MOVE (that.value));
         break;
 
       default:
@@ -568,24 +648,53 @@ namespace  sqlb { namespace parser  {
     state = that.state;
     switch (that.type_get ())
     {
-      case 137: // optional_if_not_exists
-      case 139: // optional_unique
+      case 152: // columnconstraint
+        value.move< ColumnConstraintInfo > (that.value);
+        break;
+
+      case 153: // columnconstraint_list
+        value.move< ColumnConstraintInfoVector > (that.value);
+        break;
+
+      case 154: // columndef
+        value.move< ColumndefData > (that.value);
+        break;
+
+      case 138: // optional_if_not_exists
+      case 140: // optional_unique
+      case 148: // optional_temporary
+      case 149: // optional_withoutrowid
         value.move< bool > (that.value);
         break;
 
-      case 144: // createindex_stmt
+      case 162: // tableconstraint
+        value.move< sqlb::ConstraintPtr > (that.value);
+        break;
+
+      case 163: // tableconstraint_list
+      case 164: // optional_tableconstraint_list
+        value.move< sqlb::ConstraintSet > (that.value);
+        break;
+
+      case 145: // createindex_stmt
         value.move< sqlb::IndexPtr > (that.value);
         break;
 
-      case 142: // indexed_column
+      case 143: // indexed_column
         value.move< sqlb::IndexedColumn > (that.value);
         break;
 
-      case 143: // indexed_column_list
+      case 144: // indexed_column_list
         value.move< sqlb::IndexedColumnVector > (that.value);
         break;
 
-      case 146: // createvirtualtable_stmt
+      case 157: // columnid_list
+      case 158: // optional_columnid_with_paren_list
+        value.move< sqlb::StringVector > (that.value);
+        break;
+
+      case 147: // createvirtualtable_stmt
+      case 165: // createtable_stmt
         value.move< sqlb::TablePtr > (that.value);
         break;
 
@@ -679,28 +788,39 @@ namespace  sqlb { namespace parser  {
       case 117: // id
       case 118: // allowed_keywords_as_identifier
       case 119: // tableid
-      case 120: // signednumber
-      case 121: // signednumber_or_numeric
-      case 122: // typename_namelist
-      case 123: // type_name
-      case 124: // unary_expr
-      case 125: // binary_expr
-      case 126: // like_expr
-      case 127: // exprlist_expr
-      case 128: // function_expr
-      case 129: // isnull_expr
-      case 130: // between_expr
-      case 131: // in_expr
-      case 132: // whenthenlist_expr
-      case 133: // case_expr
-      case 134: // raise_expr
-      case 135: // expr
-      case 136: // select_stmt
-      case 138: // optional_sort_order
-      case 140: // optional_where
-      case 141: // tableid_with_uninteresting_schema
-      case 145: // optional_exprlist_with_paren
+      case 120: // columnid
+      case 121: // signednumber
+      case 122: // signednumber_or_numeric
+      case 123: // typename_namelist
+      case 124: // type_name
+      case 125: // unary_expr
+      case 126: // binary_expr
+      case 127: // like_expr
+      case 128: // exprlist_expr
+      case 129: // function_expr
+      case 130: // isnull_expr
+      case 131: // between_expr
+      case 132: // in_expr
+      case 133: // whenthenlist_expr
+      case 134: // case_expr
+      case 135: // raise_expr
+      case 136: // expr
+      case 137: // select_stmt
+      case 139: // optional_sort_order
+      case 141: // optional_where
+      case 142: // tableid_with_uninteresting_schema
+      case 146: // optional_exprlist_with_paren
+      case 150: // optional_conflictclause
+      case 151: // optional_typename
+      case 156: // optional_constraintname
+      case 159: // fk_clause_part
+      case 160: // fk_clause_part_list
+      case 161: // optional_fk_clause
         value.move< std::string > (that.value);
+        break;
+
+      case 155: // columndef_list
+        value.move< std::vector<ColumndefData> > (that.value);
         break;
 
       default:
@@ -952,24 +1072,53 @@ namespace  sqlb { namespace parser  {
          when using variants.  */
       switch (yyr1_[yyn])
     {
-      case 137: // optional_if_not_exists
-      case 139: // optional_unique
+      case 152: // columnconstraint
+        yylhs.value.emplace< ColumnConstraintInfo > ();
+        break;
+
+      case 153: // columnconstraint_list
+        yylhs.value.emplace< ColumnConstraintInfoVector > ();
+        break;
+
+      case 154: // columndef
+        yylhs.value.emplace< ColumndefData > ();
+        break;
+
+      case 138: // optional_if_not_exists
+      case 140: // optional_unique
+      case 148: // optional_temporary
+      case 149: // optional_withoutrowid
         yylhs.value.emplace< bool > ();
         break;
 
-      case 144: // createindex_stmt
+      case 162: // tableconstraint
+        yylhs.value.emplace< sqlb::ConstraintPtr > ();
+        break;
+
+      case 163: // tableconstraint_list
+      case 164: // optional_tableconstraint_list
+        yylhs.value.emplace< sqlb::ConstraintSet > ();
+        break;
+
+      case 145: // createindex_stmt
         yylhs.value.emplace< sqlb::IndexPtr > ();
         break;
 
-      case 142: // indexed_column
+      case 143: // indexed_column
         yylhs.value.emplace< sqlb::IndexedColumn > ();
         break;
 
-      case 143: // indexed_column_list
+      case 144: // indexed_column_list
         yylhs.value.emplace< sqlb::IndexedColumnVector > ();
         break;
 
-      case 146: // createvirtualtable_stmt
+      case 157: // columnid_list
+      case 158: // optional_columnid_with_paren_list
+        yylhs.value.emplace< sqlb::StringVector > ();
+        break;
+
+      case 147: // createvirtualtable_stmt
+      case 165: // createtable_stmt
         yylhs.value.emplace< sqlb::TablePtr > ();
         break;
 
@@ -1063,28 +1212,39 @@ namespace  sqlb { namespace parser  {
       case 117: // id
       case 118: // allowed_keywords_as_identifier
       case 119: // tableid
-      case 120: // signednumber
-      case 121: // signednumber_or_numeric
-      case 122: // typename_namelist
-      case 123: // type_name
-      case 124: // unary_expr
-      case 125: // binary_expr
-      case 126: // like_expr
-      case 127: // exprlist_expr
-      case 128: // function_expr
-      case 129: // isnull_expr
-      case 130: // between_expr
-      case 131: // in_expr
-      case 132: // whenthenlist_expr
-      case 133: // case_expr
-      case 134: // raise_expr
-      case 135: // expr
-      case 136: // select_stmt
-      case 138: // optional_sort_order
-      case 140: // optional_where
-      case 141: // tableid_with_uninteresting_schema
-      case 145: // optional_exprlist_with_paren
+      case 120: // columnid
+      case 121: // signednumber
+      case 122: // signednumber_or_numeric
+      case 123: // typename_namelist
+      case 124: // type_name
+      case 125: // unary_expr
+      case 126: // binary_expr
+      case 127: // like_expr
+      case 128: // exprlist_expr
+      case 129: // function_expr
+      case 130: // isnull_expr
+      case 131: // between_expr
+      case 132: // in_expr
+      case 133: // whenthenlist_expr
+      case 134: // case_expr
+      case 135: // raise_expr
+      case 136: // expr
+      case 137: // select_stmt
+      case 139: // optional_sort_order
+      case 141: // optional_where
+      case 142: // tableid_with_uninteresting_schema
+      case 146: // optional_exprlist_with_paren
+      case 150: // optional_conflictclause
+      case 151: // optional_typename
+      case 156: // optional_constraintname
+      case 159: // fk_clause_part
+      case 160: // fk_clause_part_list
+      case 161: // optional_fk_clause
         yylhs.value.emplace< std::string > ();
+        break;
+
+      case 155: // columndef_list
+        yylhs.value.emplace< std::vector<ColumndefData> > ();
         break;
 
       default:
@@ -1108,1045 +1268,1093 @@ namespace  sqlb { namespace parser  {
           switch (yyn)
             {
   case 4:
-#line 229 "sqlite3_parser.yy"
+#line 305 "sqlite3_parser.yy"
     { drv.result = yystack_[0].value.as < sqlb::IndexPtr > (); }
-#line 1114 "sqlite3_parser.cpp"
+#line 1274 "sqlite3_parser.cpp"
     break;
 
   case 5:
-#line 230 "sqlite3_parser.yy"
+#line 306 "sqlite3_parser.yy"
     { drv.result = yystack_[0].value.as < sqlb::TablePtr > (); }
-#line 1120 "sqlite3_parser.cpp"
+#line 1280 "sqlite3_parser.cpp"
     break;
 
   case 6:
-#line 238 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1126 "sqlite3_parser.cpp"
+#line 307 "sqlite3_parser.yy"
+    { drv.result = yystack_[0].value.as < sqlb::TablePtr > (); }
+#line 1286 "sqlite3_parser.cpp"
     break;
 
   case 7:
-#line 239 "sqlite3_parser.yy"
+#line 315 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1132 "sqlite3_parser.cpp"
+#line 1292 "sqlite3_parser.cpp"
     break;
 
   case 8:
-#line 240 "sqlite3_parser.yy"
+#line 316 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1138 "sqlite3_parser.cpp"
+#line 1298 "sqlite3_parser.cpp"
     break;
 
   case 9:
-#line 241 "sqlite3_parser.yy"
+#line 317 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1144 "sqlite3_parser.cpp"
+#line 1304 "sqlite3_parser.cpp"
     break;
 
   case 10:
-#line 242 "sqlite3_parser.yy"
+#line 318 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1150 "sqlite3_parser.cpp"
+#line 1310 "sqlite3_parser.cpp"
     break;
 
   case 11:
-#line 243 "sqlite3_parser.yy"
+#line 319 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1156 "sqlite3_parser.cpp"
+#line 1316 "sqlite3_parser.cpp"
     break;
 
   case 12:
-#line 244 "sqlite3_parser.yy"
+#line 320 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1162 "sqlite3_parser.cpp"
+#line 1322 "sqlite3_parser.cpp"
     break;
 
   case 13:
-#line 245 "sqlite3_parser.yy"
+#line 321 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1168 "sqlite3_parser.cpp"
+#line 1328 "sqlite3_parser.cpp"
     break;
 
   case 14:
-#line 246 "sqlite3_parser.yy"
+#line 322 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1174 "sqlite3_parser.cpp"
+#line 1334 "sqlite3_parser.cpp"
     break;
 
   case 15:
-#line 250 "sqlite3_parser.yy"
+#line 323 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1180 "sqlite3_parser.cpp"
+#line 1340 "sqlite3_parser.cpp"
     break;
 
   case 16:
-#line 251 "sqlite3_parser.yy"
+#line 327 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1186 "sqlite3_parser.cpp"
+#line 1346 "sqlite3_parser.cpp"
     break;
 
   case 17:
-#line 256 "sqlite3_parser.yy"
+#line 328 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1192 "sqlite3_parser.cpp"
+#line 1352 "sqlite3_parser.cpp"
     break;
 
   case 18:
-#line 257 "sqlite3_parser.yy"
+#line 333 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1198 "sqlite3_parser.cpp"
+#line 1358 "sqlite3_parser.cpp"
     break;
 
   case 19:
-#line 258 "sqlite3_parser.yy"
+#line 334 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1204 "sqlite3_parser.cpp"
+#line 1364 "sqlite3_parser.cpp"
     break;
 
   case 20:
-#line 259 "sqlite3_parser.yy"
+#line 335 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1210 "sqlite3_parser.cpp"
+#line 1370 "sqlite3_parser.cpp"
     break;
 
   case 21:
-#line 260 "sqlite3_parser.yy"
+#line 336 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1216 "sqlite3_parser.cpp"
+#line 1376 "sqlite3_parser.cpp"
     break;
 
   case 22:
-#line 261 "sqlite3_parser.yy"
+#line 337 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1222 "sqlite3_parser.cpp"
+#line 1382 "sqlite3_parser.cpp"
     break;
 
   case 23:
-#line 262 "sqlite3_parser.yy"
+#line 338 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1228 "sqlite3_parser.cpp"
+#line 1388 "sqlite3_parser.cpp"
     break;
 
   case 24:
-#line 263 "sqlite3_parser.yy"
+#line 339 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1234 "sqlite3_parser.cpp"
+#line 1394 "sqlite3_parser.cpp"
     break;
 
   case 25:
-#line 264 "sqlite3_parser.yy"
+#line 340 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1240 "sqlite3_parser.cpp"
+#line 1400 "sqlite3_parser.cpp"
     break;
 
   case 26:
-#line 265 "sqlite3_parser.yy"
+#line 341 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1246 "sqlite3_parser.cpp"
+#line 1406 "sqlite3_parser.cpp"
     break;
 
   case 27:
-#line 266 "sqlite3_parser.yy"
+#line 342 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1252 "sqlite3_parser.cpp"
+#line 1412 "sqlite3_parser.cpp"
     break;
 
   case 28:
-#line 267 "sqlite3_parser.yy"
+#line 343 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1258 "sqlite3_parser.cpp"
+#line 1418 "sqlite3_parser.cpp"
     break;
 
   case 29:
-#line 268 "sqlite3_parser.yy"
+#line 344 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1264 "sqlite3_parser.cpp"
+#line 1424 "sqlite3_parser.cpp"
     break;
 
   case 30:
-#line 269 "sqlite3_parser.yy"
+#line 345 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1270 "sqlite3_parser.cpp"
+#line 1430 "sqlite3_parser.cpp"
     break;
 
   case 31:
-#line 270 "sqlite3_parser.yy"
+#line 346 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1276 "sqlite3_parser.cpp"
+#line 1436 "sqlite3_parser.cpp"
     break;
 
   case 32:
-#line 271 "sqlite3_parser.yy"
+#line 347 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1282 "sqlite3_parser.cpp"
+#line 1442 "sqlite3_parser.cpp"
     break;
 
   case 33:
-#line 272 "sqlite3_parser.yy"
+#line 348 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1288 "sqlite3_parser.cpp"
+#line 1448 "sqlite3_parser.cpp"
     break;
 
   case 34:
-#line 273 "sqlite3_parser.yy"
+#line 349 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1294 "sqlite3_parser.cpp"
+#line 1454 "sqlite3_parser.cpp"
     break;
 
   case 35:
-#line 274 "sqlite3_parser.yy"
+#line 350 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1300 "sqlite3_parser.cpp"
+#line 1460 "sqlite3_parser.cpp"
     break;
 
   case 36:
-#line 275 "sqlite3_parser.yy"
+#line 351 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1306 "sqlite3_parser.cpp"
+#line 1466 "sqlite3_parser.cpp"
     break;
 
   case 37:
-#line 276 "sqlite3_parser.yy"
+#line 352 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1312 "sqlite3_parser.cpp"
+#line 1472 "sqlite3_parser.cpp"
     break;
 
   case 38:
-#line 277 "sqlite3_parser.yy"
+#line 353 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1318 "sqlite3_parser.cpp"
+#line 1478 "sqlite3_parser.cpp"
     break;
 
   case 39:
-#line 278 "sqlite3_parser.yy"
+#line 354 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1324 "sqlite3_parser.cpp"
+#line 1484 "sqlite3_parser.cpp"
     break;
 
   case 40:
-#line 279 "sqlite3_parser.yy"
+#line 355 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1330 "sqlite3_parser.cpp"
+#line 1490 "sqlite3_parser.cpp"
     break;
 
   case 41:
-#line 280 "sqlite3_parser.yy"
+#line 356 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1336 "sqlite3_parser.cpp"
+#line 1496 "sqlite3_parser.cpp"
     break;
 
   case 42:
-#line 281 "sqlite3_parser.yy"
+#line 357 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1342 "sqlite3_parser.cpp"
+#line 1502 "sqlite3_parser.cpp"
     break;
 
   case 43:
-#line 282 "sqlite3_parser.yy"
+#line 358 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1348 "sqlite3_parser.cpp"
+#line 1508 "sqlite3_parser.cpp"
     break;
 
   case 44:
-#line 283 "sqlite3_parser.yy"
+#line 359 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1354 "sqlite3_parser.cpp"
+#line 1514 "sqlite3_parser.cpp"
     break;
 
   case 45:
-#line 284 "sqlite3_parser.yy"
+#line 360 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1360 "sqlite3_parser.cpp"
+#line 1520 "sqlite3_parser.cpp"
     break;
 
   case 46:
-#line 285 "sqlite3_parser.yy"
+#line 361 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1366 "sqlite3_parser.cpp"
+#line 1526 "sqlite3_parser.cpp"
     break;
 
   case 47:
-#line 286 "sqlite3_parser.yy"
+#line 362 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1372 "sqlite3_parser.cpp"
+#line 1532 "sqlite3_parser.cpp"
     break;
 
   case 48:
-#line 287 "sqlite3_parser.yy"
+#line 363 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1378 "sqlite3_parser.cpp"
+#line 1538 "sqlite3_parser.cpp"
     break;
 
   case 49:
-#line 288 "sqlite3_parser.yy"
+#line 364 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1384 "sqlite3_parser.cpp"
+#line 1544 "sqlite3_parser.cpp"
     break;
 
   case 50:
-#line 289 "sqlite3_parser.yy"
+#line 365 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1390 "sqlite3_parser.cpp"
+#line 1550 "sqlite3_parser.cpp"
     break;
 
   case 51:
-#line 290 "sqlite3_parser.yy"
+#line 366 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1396 "sqlite3_parser.cpp"
+#line 1556 "sqlite3_parser.cpp"
     break;
 
   case 52:
-#line 291 "sqlite3_parser.yy"
+#line 367 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1402 "sqlite3_parser.cpp"
+#line 1562 "sqlite3_parser.cpp"
     break;
 
   case 53:
-#line 295 "sqlite3_parser.yy"
+#line 368 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1408 "sqlite3_parser.cpp"
+#line 1568 "sqlite3_parser.cpp"
     break;
 
   case 54:
-#line 296 "sqlite3_parser.yy"
+#line 372 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1414 "sqlite3_parser.cpp"
+#line 1574 "sqlite3_parser.cpp"
     break;
 
   case 55:
-#line 297 "sqlite3_parser.yy"
+#line 373 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1420 "sqlite3_parser.cpp"
+#line 1580 "sqlite3_parser.cpp"
     break;
 
   case 56:
-#line 298 "sqlite3_parser.yy"
+#line 374 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1426 "sqlite3_parser.cpp"
+#line 1586 "sqlite3_parser.cpp"
     break;
 
   case 57:
-#line 299 "sqlite3_parser.yy"
+#line 375 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1432 "sqlite3_parser.cpp"
+#line 1592 "sqlite3_parser.cpp"
     break;
 
   case 58:
-#line 300 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = unquote_text(yystack_[0].value.as < std::string > (), '\''); }
-#line 1438 "sqlite3_parser.cpp"
+#line 376 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1598 "sqlite3_parser.cpp"
     break;
 
   case 59:
-#line 314 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "+" + yystack_[0].value.as < std::string > (); }
-#line 1444 "sqlite3_parser.cpp"
+#line 377 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = unquote_text(yystack_[0].value.as < std::string > (), '\''); }
+#line 1604 "sqlite3_parser.cpp"
     break;
 
   case 60:
-#line 315 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "-" + yystack_[0].value.as < std::string > (); }
-#line 1450 "sqlite3_parser.cpp"
+#line 381 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1610 "sqlite3_parser.cpp"
     break;
 
   case 61:
-#line 319 "sqlite3_parser.yy"
+#line 382 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1456 "sqlite3_parser.cpp"
+#line 1616 "sqlite3_parser.cpp"
     break;
 
   case 62:
-#line 320 "sqlite3_parser.yy"
+#line 383 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1462 "sqlite3_parser.cpp"
+#line 1622 "sqlite3_parser.cpp"
     break;
 
   case 63:
-#line 324 "sqlite3_parser.yy"
+#line 384 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1468 "sqlite3_parser.cpp"
+#line 1628 "sqlite3_parser.cpp"
     break;
 
   case 64:
-#line 325 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
-#line 1474 "sqlite3_parser.cpp"
+#line 385 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1634 "sqlite3_parser.cpp"
     break;
 
   case 65:
-#line 329 "sqlite3_parser.yy"
+#line 386 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1480 "sqlite3_parser.cpp"
+#line 1640 "sqlite3_parser.cpp"
     break;
 
   case 66:
-#line 330 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
-#line 1486 "sqlite3_parser.cpp"
+#line 387 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = unquote_text(yystack_[0].value.as < std::string > (), '\''); }
+#line 1646 "sqlite3_parser.cpp"
     break;
 
   case 67:
-#line 331 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + "(" + yystack_[3].value.as < std::string > () + ", " + yystack_[1].value.as < std::string > () + ")"; }
-#line 1492 "sqlite3_parser.cpp"
+#line 391 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "+" + yystack_[0].value.as < std::string > (); }
+#line 1652 "sqlite3_parser.cpp"
     break;
 
   case 68:
-#line 335 "sqlite3_parser.yy"
+#line 392 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = "-" + yystack_[0].value.as < std::string > (); }
-#line 1498 "sqlite3_parser.cpp"
+#line 1658 "sqlite3_parser.cpp"
     break;
 
   case 69:
-#line 336 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "+" + yystack_[0].value.as < std::string > (); }
-#line 1504 "sqlite3_parser.cpp"
+#line 396 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1664 "sqlite3_parser.cpp"
     break;
 
   case 70:
-#line 337 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "~" + yystack_[0].value.as < std::string > (); }
-#line 1510 "sqlite3_parser.cpp"
+#line 397 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1670 "sqlite3_parser.cpp"
     break;
 
   case 71:
-#line 338 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "NOT " + yystack_[0].value.as < std::string > (); }
-#line 1516 "sqlite3_parser.cpp"
+#line 401 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1676 "sqlite3_parser.cpp"
     break;
 
   case 72:
-#line 342 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " || " + yystack_[0].value.as < std::string > (); }
-#line 1522 "sqlite3_parser.cpp"
+#line 402 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 1682 "sqlite3_parser.cpp"
     break;
 
   case 73:
-#line 343 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " * " + yystack_[0].value.as < std::string > (); }
-#line 1528 "sqlite3_parser.cpp"
+#line 406 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1688 "sqlite3_parser.cpp"
     break;
 
   case 74:
-#line 344 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " / " + yystack_[0].value.as < std::string > (); }
-#line 1534 "sqlite3_parser.cpp"
+#line 407 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
+#line 1694 "sqlite3_parser.cpp"
     break;
 
   case 75:
-#line 345 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " % " + yystack_[0].value.as < std::string > (); }
-#line 1540 "sqlite3_parser.cpp"
+#line 408 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + "(" + yystack_[3].value.as < std::string > () + ", " + yystack_[1].value.as < std::string > () + ")"; }
+#line 1700 "sqlite3_parser.cpp"
     break;
 
   case 76:
-#line 346 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " + " + yystack_[0].value.as < std::string > (); }
-#line 1546 "sqlite3_parser.cpp"
+#line 412 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "-" + yystack_[0].value.as < std::string > (); }
+#line 1706 "sqlite3_parser.cpp"
     break;
 
   case 77:
-#line 347 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " - " + yystack_[0].value.as < std::string > (); }
-#line 1552 "sqlite3_parser.cpp"
+#line 413 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "+" + yystack_[0].value.as < std::string > (); }
+#line 1712 "sqlite3_parser.cpp"
     break;
 
   case 78:
-#line 348 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " << " + yystack_[0].value.as < std::string > (); }
-#line 1558 "sqlite3_parser.cpp"
+#line 414 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "~" + yystack_[0].value.as < std::string > (); }
+#line 1718 "sqlite3_parser.cpp"
     break;
 
   case 79:
-#line 349 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " >> " + yystack_[0].value.as < std::string > (); }
-#line 1564 "sqlite3_parser.cpp"
+#line 415 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "NOT " + yystack_[0].value.as < std::string > (); }
+#line 1724 "sqlite3_parser.cpp"
     break;
 
   case 80:
-#line 350 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " & " + yystack_[0].value.as < std::string > (); }
-#line 1570 "sqlite3_parser.cpp"
+#line 419 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " || " + yystack_[0].value.as < std::string > (); }
+#line 1730 "sqlite3_parser.cpp"
     break;
 
   case 81:
-#line 351 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " | " + yystack_[0].value.as < std::string > (); }
-#line 1576 "sqlite3_parser.cpp"
+#line 420 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " * " + yystack_[0].value.as < std::string > (); }
+#line 1736 "sqlite3_parser.cpp"
     break;
 
   case 82:
-#line 352 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " < " + yystack_[0].value.as < std::string > (); }
-#line 1582 "sqlite3_parser.cpp"
+#line 421 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " / " + yystack_[0].value.as < std::string > (); }
+#line 1742 "sqlite3_parser.cpp"
     break;
 
   case 83:
-#line 353 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " <= " + yystack_[0].value.as < std::string > (); }
-#line 1588 "sqlite3_parser.cpp"
+#line 422 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " % " + yystack_[0].value.as < std::string > (); }
+#line 1748 "sqlite3_parser.cpp"
     break;
 
   case 84:
-#line 354 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " > " + yystack_[0].value.as < std::string > (); }
-#line 1594 "sqlite3_parser.cpp"
+#line 423 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " + " + yystack_[0].value.as < std::string > (); }
+#line 1754 "sqlite3_parser.cpp"
     break;
 
   case 85:
-#line 355 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " >= " + yystack_[0].value.as < std::string > (); }
-#line 1600 "sqlite3_parser.cpp"
+#line 424 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " - " + yystack_[0].value.as < std::string > (); }
+#line 1760 "sqlite3_parser.cpp"
     break;
 
   case 86:
-#line 356 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " = " + yystack_[0].value.as < std::string > (); }
-#line 1606 "sqlite3_parser.cpp"
+#line 425 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " << " + yystack_[0].value.as < std::string > (); }
+#line 1766 "sqlite3_parser.cpp"
     break;
 
   case 87:
-#line 357 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " == " + yystack_[0].value.as < std::string > (); }
-#line 1612 "sqlite3_parser.cpp"
+#line 426 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " >> " + yystack_[0].value.as < std::string > (); }
+#line 1772 "sqlite3_parser.cpp"
     break;
 
   case 88:
-#line 358 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " != " + yystack_[0].value.as < std::string > (); }
-#line 1618 "sqlite3_parser.cpp"
+#line 427 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " & " + yystack_[0].value.as < std::string > (); }
+#line 1778 "sqlite3_parser.cpp"
     break;
 
   case 89:
-#line 359 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " <> " + yystack_[0].value.as < std::string > (); }
-#line 1624 "sqlite3_parser.cpp"
+#line 428 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " | " + yystack_[0].value.as < std::string > (); }
+#line 1784 "sqlite3_parser.cpp"
     break;
 
   case 90:
-#line 360 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " IS " + yystack_[0].value.as < std::string > (); }
-#line 1630 "sqlite3_parser.cpp"
+#line 429 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " < " + yystack_[0].value.as < std::string > (); }
+#line 1790 "sqlite3_parser.cpp"
     break;
 
   case 91:
-#line 361 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " AND " + yystack_[0].value.as < std::string > (); }
-#line 1636 "sqlite3_parser.cpp"
+#line 430 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " <= " + yystack_[0].value.as < std::string > (); }
+#line 1796 "sqlite3_parser.cpp"
     break;
 
   case 92:
-#line 362 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " OR " + yystack_[0].value.as < std::string > (); }
-#line 1642 "sqlite3_parser.cpp"
+#line 431 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " > " + yystack_[0].value.as < std::string > (); }
+#line 1802 "sqlite3_parser.cpp"
     break;
 
   case 93:
-#line 366 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " LIKE " + yystack_[0].value.as < std::string > (); }
-#line 1648 "sqlite3_parser.cpp"
+#line 432 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " >= " + yystack_[0].value.as < std::string > (); }
+#line 1808 "sqlite3_parser.cpp"
     break;
 
   case 94:
-#line 367 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " GLOB " + yystack_[0].value.as < std::string > (); }
-#line 1654 "sqlite3_parser.cpp"
+#line 433 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " = " + yystack_[0].value.as < std::string > (); }
+#line 1814 "sqlite3_parser.cpp"
     break;
 
   case 95:
-#line 368 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " MATCH " + yystack_[0].value.as < std::string > (); }
-#line 1660 "sqlite3_parser.cpp"
+#line 434 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " == " + yystack_[0].value.as < std::string > (); }
+#line 1820 "sqlite3_parser.cpp"
     break;
 
   case 96:
-#line 369 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " REGEXP " + yystack_[0].value.as < std::string > (); }
-#line 1666 "sqlite3_parser.cpp"
+#line 435 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " != " + yystack_[0].value.as < std::string > (); }
+#line 1826 "sqlite3_parser.cpp"
     break;
 
   case 97:
-#line 370 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " NOT LIKE " + yystack_[1].value.as < std::string > (); }
-#line 1672 "sqlite3_parser.cpp"
+#line 436 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " <> " + yystack_[0].value.as < std::string > (); }
+#line 1832 "sqlite3_parser.cpp"
     break;
 
   case 98:
-#line 371 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " NOT GLOB " + yystack_[1].value.as < std::string > (); }
-#line 1678 "sqlite3_parser.cpp"
+#line 437 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " IS " + yystack_[0].value.as < std::string > (); }
+#line 1838 "sqlite3_parser.cpp"
     break;
 
   case 99:
-#line 372 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " NOT MATCH " + yystack_[1].value.as < std::string > (); }
-#line 1684 "sqlite3_parser.cpp"
+#line 438 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " AND " + yystack_[0].value.as < std::string > (); }
+#line 1844 "sqlite3_parser.cpp"
     break;
 
   case 100:
-#line 373 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " NOT REGEXP " + yystack_[1].value.as < std::string > (); }
-#line 1690 "sqlite3_parser.cpp"
+#line 439 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " OR " + yystack_[0].value.as < std::string > (); }
+#line 1850 "sqlite3_parser.cpp"
     break;
 
   case 101:
-#line 374 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " LIKE " + yystack_[2].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
-#line 1696 "sqlite3_parser.cpp"
+#line 443 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " LIKE " + yystack_[0].value.as < std::string > (); }
+#line 1856 "sqlite3_parser.cpp"
     break;
 
   case 102:
-#line 375 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " GLOB " + yystack_[2].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
-#line 1702 "sqlite3_parser.cpp"
+#line 444 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " GLOB " + yystack_[0].value.as < std::string > (); }
+#line 1862 "sqlite3_parser.cpp"
     break;
 
   case 103:
-#line 376 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " MATCH " + yystack_[2].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
-#line 1708 "sqlite3_parser.cpp"
+#line 445 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " MATCH " + yystack_[0].value.as < std::string > (); }
+#line 1868 "sqlite3_parser.cpp"
     break;
 
   case 104:
-#line 377 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " REGEXP " + yystack_[2].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
-#line 1714 "sqlite3_parser.cpp"
+#line 446 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " REGEXP " + yystack_[0].value.as < std::string > (); }
+#line 1874 "sqlite3_parser.cpp"
     break;
 
   case 105:
-#line 378 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT LIKE " + yystack_[3].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
-#line 1720 "sqlite3_parser.cpp"
+#line 447 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " NOT LIKE " + yystack_[1].value.as < std::string > (); }
+#line 1880 "sqlite3_parser.cpp"
     break;
 
   case 106:
-#line 379 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT GLOB " + yystack_[3].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
-#line 1726 "sqlite3_parser.cpp"
+#line 448 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " NOT GLOB " + yystack_[1].value.as < std::string > (); }
+#line 1886 "sqlite3_parser.cpp"
     break;
 
   case 107:
-#line 380 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT MATCH " + yystack_[3].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
-#line 1732 "sqlite3_parser.cpp"
+#line 449 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " NOT MATCH " + yystack_[1].value.as < std::string > (); }
+#line 1892 "sqlite3_parser.cpp"
     break;
 
   case 108:
-#line 381 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT REGEXP " + yystack_[3].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
-#line 1738 "sqlite3_parser.cpp"
+#line 450 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " NOT REGEXP " + yystack_[1].value.as < std::string > (); }
+#line 1898 "sqlite3_parser.cpp"
     break;
 
   case 109:
-#line 385 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1744 "sqlite3_parser.cpp"
+#line 451 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " LIKE " + yystack_[2].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
+#line 1904 "sqlite3_parser.cpp"
     break;
 
   case 110:
-#line 386 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + ", " + yystack_[0].value.as < std::string > (); }
-#line 1750 "sqlite3_parser.cpp"
+#line 452 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " GLOB " + yystack_[2].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
+#line 1910 "sqlite3_parser.cpp"
     break;
 
   case 111:
-#line 390 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
-#line 1756 "sqlite3_parser.cpp"
+#line 453 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " MATCH " + yystack_[2].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
+#line 1916 "sqlite3_parser.cpp"
     break;
 
   case 112:
-#line 391 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + "(DISTINCT " + yystack_[1].value.as < std::string > () + ")"; }
-#line 1762 "sqlite3_parser.cpp"
+#line 454 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " REGEXP " + yystack_[2].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
+#line 1922 "sqlite3_parser.cpp"
     break;
 
   case 113:
-#line 392 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + "()"; }
-#line 1768 "sqlite3_parser.cpp"
+#line 455 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT LIKE " + yystack_[3].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
+#line 1928 "sqlite3_parser.cpp"
     break;
 
   case 114:
-#line 393 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + "(*)"; }
-#line 1774 "sqlite3_parser.cpp"
+#line 456 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT GLOB " + yystack_[3].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
+#line 1934 "sqlite3_parser.cpp"
     break;
 
   case 115:
-#line 397 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > () + " ISNULL"; }
-#line 1780 "sqlite3_parser.cpp"
+#line 457 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT MATCH " + yystack_[3].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
+#line 1940 "sqlite3_parser.cpp"
     break;
 
   case 116:
-#line 398 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > () + " NOTNULL"; }
-#line 1786 "sqlite3_parser.cpp"
+#line 458 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT REGEXP " + yystack_[3].value.as < std::string > () + " ESCAPE " + yystack_[0].value.as < std::string > (); }
+#line 1946 "sqlite3_parser.cpp"
     break;
 
   case 117:
-#line 399 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " NOT NULL"; }
-#line 1792 "sqlite3_parser.cpp"
+#line 462 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 1952 "sqlite3_parser.cpp"
     break;
 
   case 118:
-#line 403 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " BETWEEN " + yystack_[2].value.as < std::string > () + " AND " + yystack_[0].value.as < std::string > (); }
-#line 1798 "sqlite3_parser.cpp"
+#line 463 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + ", " + yystack_[0].value.as < std::string > (); }
+#line 1958 "sqlite3_parser.cpp"
     break;
 
   case 119:
-#line 404 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT BETWEEN " + yystack_[2].value.as < std::string > () + " AND " + yystack_[0].value.as < std::string > (); }
-#line 1804 "sqlite3_parser.cpp"
+#line 467 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
+#line 1964 "sqlite3_parser.cpp"
     break;
 
   case 120:
-#line 408 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " IN ()"; }
-#line 1810 "sqlite3_parser.cpp"
+#line 468 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + "(DISTINCT " + yystack_[1].value.as < std::string > () + ")"; }
+#line 1970 "sqlite3_parser.cpp"
     break;
 
   case 121:
-#line 409 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " IN (" + yystack_[1].value.as < std::string > () + ")"; }
-#line 1816 "sqlite3_parser.cpp"
+#line 469 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + "()"; }
+#line 1976 "sqlite3_parser.cpp"
     break;
 
   case 122:
-#line 410 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " IN (" + yystack_[1].value.as < std::string > () + ")"; }
-#line 1822 "sqlite3_parser.cpp"
+#line 470 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + "(*)"; }
+#line 1982 "sqlite3_parser.cpp"
     break;
 
   case 123:
-#line 411 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " IN " + sqlb::escapeIdentifier(yystack_[2].value.as < std::string > ()) + "." + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
-#line 1828 "sqlite3_parser.cpp"
+#line 474 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > () + " ISNULL"; }
+#line 1988 "sqlite3_parser.cpp"
     break;
 
   case 124:
-#line 412 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " IN " + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
-#line 1834 "sqlite3_parser.cpp"
+#line 475 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > () + " NOTNULL"; }
+#line 1994 "sqlite3_parser.cpp"
     break;
 
   case 125:
-#line 413 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[6].value.as < std::string > () + " IN " + sqlb::escapeIdentifier(yystack_[4].value.as < std::string > ()) + "." + yystack_[2].value.as < std::string > () + "()"; }
-#line 1840 "sqlite3_parser.cpp"
+#line 476 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " NOT NULL"; }
+#line 2000 "sqlite3_parser.cpp"
     break;
 
   case 126:
-#line 414 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[7].value.as < std::string > () + " IN " + sqlb::escapeIdentifier(yystack_[5].value.as < std::string > ()) + "." + yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
-#line 1846 "sqlite3_parser.cpp"
+#line 480 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " BETWEEN " + yystack_[2].value.as < std::string > () + " AND " + yystack_[0].value.as < std::string > (); }
+#line 2006 "sqlite3_parser.cpp"
     break;
 
   case 127:
-#line 415 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " IN " + yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
-#line 1852 "sqlite3_parser.cpp"
+#line 481 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT BETWEEN " + yystack_[2].value.as < std::string > () + " AND " + yystack_[0].value.as < std::string > (); }
+#line 2012 "sqlite3_parser.cpp"
     break;
 
   case 128:
-#line 416 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " NOT IN ()"; }
-#line 1858 "sqlite3_parser.cpp"
+#line 485 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " IN ()"; }
+#line 2018 "sqlite3_parser.cpp"
     break;
 
   case 129:
-#line 417 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT IN (" + yystack_[1].value.as < std::string > () + ")"; }
-#line 1864 "sqlite3_parser.cpp"
+#line 486 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " IN (" + yystack_[1].value.as < std::string > () + ")"; }
+#line 2024 "sqlite3_parser.cpp"
     break;
 
   case 130:
-#line 418 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT IN (" + yystack_[1].value.as < std::string > () + ")"; }
-#line 1870 "sqlite3_parser.cpp"
+#line 487 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " IN (" + yystack_[1].value.as < std::string > () + ")"; }
+#line 2030 "sqlite3_parser.cpp"
     break;
 
   case 131:
-#line 419 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT IN " + sqlb::escapeIdentifier(yystack_[2].value.as < std::string > ()) + "." + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
-#line 1876 "sqlite3_parser.cpp"
+#line 488 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " IN " + sqlb::escapeIdentifier(yystack_[2].value.as < std::string > ()) + "." + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
+#line 2036 "sqlite3_parser.cpp"
     break;
 
   case 132:
-#line 420 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " NOT IN " + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
-#line 1882 "sqlite3_parser.cpp"
+#line 489 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " IN " + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
+#line 2042 "sqlite3_parser.cpp"
     break;
 
   case 133:
-#line 421 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[7].value.as < std::string > () + " NOT IN " + sqlb::escapeIdentifier(yystack_[4].value.as < std::string > ()) + "." + yystack_[2].value.as < std::string > () + "()"; }
-#line 1888 "sqlite3_parser.cpp"
+#line 490 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[6].value.as < std::string > () + " IN " + sqlb::escapeIdentifier(yystack_[4].value.as < std::string > ()) + "." + yystack_[2].value.as < std::string > () + "()"; }
+#line 2048 "sqlite3_parser.cpp"
     break;
 
   case 134:
-#line 422 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[8].value.as < std::string > () + " NOT IN " + sqlb::escapeIdentifier(yystack_[5].value.as < std::string > ()) + "." + yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
-#line 1894 "sqlite3_parser.cpp"
+#line 491 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[7].value.as < std::string > () + " IN " + sqlb::escapeIdentifier(yystack_[5].value.as < std::string > ()) + "." + yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
+#line 2054 "sqlite3_parser.cpp"
     break;
 
   case 135:
-#line 423 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[6].value.as < std::string > () + " NOT IN " + yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
-#line 1900 "sqlite3_parser.cpp"
+#line 492 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " IN " + yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
+#line 2060 "sqlite3_parser.cpp"
     break;
 
   case 136:
-#line 427 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "WHEN " + yystack_[2].value.as < std::string > () + " THEN " + yystack_[0].value.as < std::string > (); }
-#line 1906 "sqlite3_parser.cpp"
+#line 493 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " NOT IN ()"; }
+#line 2066 "sqlite3_parser.cpp"
     break;
 
   case 137:
-#line 428 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " WHEN" + yystack_[2].value.as < std::string > () + " THEN " + yystack_[0].value.as < std::string > (); }
-#line 1912 "sqlite3_parser.cpp"
+#line 494 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT IN (" + yystack_[1].value.as < std::string > () + ")"; }
+#line 2072 "sqlite3_parser.cpp"
     break;
 
   case 138:
-#line 432 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "CASE " + yystack_[4].value.as < std::string > () + " " + yystack_[3].value.as < std::string > () + " ELSE " + yystack_[1].value.as < std::string > () + " END"; }
-#line 1918 "sqlite3_parser.cpp"
+#line 495 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT IN (" + yystack_[1].value.as < std::string > () + ")"; }
+#line 2078 "sqlite3_parser.cpp"
     break;
 
   case 139:
-#line 433 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "CASE " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " END"; }
-#line 1924 "sqlite3_parser.cpp"
+#line 496 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[5].value.as < std::string > () + " NOT IN " + sqlb::escapeIdentifier(yystack_[2].value.as < std::string > ()) + "." + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
+#line 2084 "sqlite3_parser.cpp"
     break;
 
   case 140:
-#line 434 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "CASE " + yystack_[3].value.as < std::string > () + " ELSE " + yystack_[1].value.as < std::string > () + " END"; }
-#line 1930 "sqlite3_parser.cpp"
+#line 497 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " NOT IN " + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
+#line 2090 "sqlite3_parser.cpp"
     break;
 
   case 141:
-#line 435 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "CASE " + yystack_[1].value.as < std::string > () + " END"; }
-#line 1936 "sqlite3_parser.cpp"
+#line 498 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[7].value.as < std::string > () + " NOT IN " + sqlb::escapeIdentifier(yystack_[4].value.as < std::string > ()) + "." + yystack_[2].value.as < std::string > () + "()"; }
+#line 2096 "sqlite3_parser.cpp"
     break;
 
   case 142:
-#line 439 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "RAISE(IGNORE)"; }
-#line 1942 "sqlite3_parser.cpp"
+#line 499 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[8].value.as < std::string > () + " NOT IN " + sqlb::escapeIdentifier(yystack_[5].value.as < std::string > ()) + "." + yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
+#line 2102 "sqlite3_parser.cpp"
     break;
 
   case 143:
-#line 440 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "RAISE(ROLLBACK, " + yystack_[1].value.as < std::string > () + ")"; }
-#line 1948 "sqlite3_parser.cpp"
+#line 500 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[6].value.as < std::string > () + " NOT IN " + yystack_[3].value.as < std::string > () + "(" + yystack_[1].value.as < std::string > () + ")"; }
+#line 2108 "sqlite3_parser.cpp"
     break;
 
   case 144:
-#line 441 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "RAISE(ABORT, " + yystack_[1].value.as < std::string > () + ")"; }
-#line 1954 "sqlite3_parser.cpp"
+#line 504 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "WHEN " + yystack_[2].value.as < std::string > () + " THEN " + yystack_[0].value.as < std::string > (); }
+#line 2114 "sqlite3_parser.cpp"
     break;
 
   case 145:
-#line 442 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "RAISE(FAIL, " + yystack_[1].value.as < std::string > () + ")"; }
-#line 1960 "sqlite3_parser.cpp"
+#line 505 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " WHEN" + yystack_[2].value.as < std::string > () + " THEN " + yystack_[0].value.as < std::string > (); }
+#line 2120 "sqlite3_parser.cpp"
     break;
 
   case 146:
-#line 446 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1966 "sqlite3_parser.cpp"
+#line 509 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "CASE " + yystack_[4].value.as < std::string > () + " " + yystack_[3].value.as < std::string > () + " ELSE " + yystack_[1].value.as < std::string > () + " END"; }
+#line 2126 "sqlite3_parser.cpp"
     break;
 
   case 147:
-#line 447 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
-#line 1972 "sqlite3_parser.cpp"
+#line 510 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "CASE " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " END"; }
+#line 2132 "sqlite3_parser.cpp"
     break;
 
   case 148:
-#line 448 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 1978 "sqlite3_parser.cpp"
+#line 511 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "CASE " + yystack_[3].value.as < std::string > () + " ELSE " + yystack_[1].value.as < std::string > () + " END"; }
+#line 2138 "sqlite3_parser.cpp"
     break;
 
   case 149:
-#line 449 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = sqlb::escapeIdentifier(yystack_[4].value.as < std::string > ()) + "." + sqlb::escapeIdentifier(yystack_[2].value.as < std::string > ()) + "." + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
-#line 1984 "sqlite3_parser.cpp"
+#line 512 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "CASE " + yystack_[1].value.as < std::string > () + " END"; }
+#line 2144 "sqlite3_parser.cpp"
     break;
 
   case 150:
-#line 450 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = sqlb::escapeIdentifier(yystack_[2].value.as < std::string > ()) + "." + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
-#line 1990 "sqlite3_parser.cpp"
+#line 516 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "RAISE(IGNORE)"; }
+#line 2150 "sqlite3_parser.cpp"
     break;
 
   case 151:
-#line 451 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
-#line 1996 "sqlite3_parser.cpp"
+#line 517 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "RAISE(ROLLBACK, " + yystack_[1].value.as < std::string > () + ")"; }
+#line 2156 "sqlite3_parser.cpp"
     break;
 
   case 152:
-#line 452 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2002 "sqlite3_parser.cpp"
+#line 518 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "RAISE(ABORT, " + yystack_[1].value.as < std::string > () + ")"; }
+#line 2162 "sqlite3_parser.cpp"
     break;
 
   case 153:
-#line 453 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2008 "sqlite3_parser.cpp"
+#line 519 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "RAISE(FAIL, " + yystack_[1].value.as < std::string > () + ")"; }
+#line 2168 "sqlite3_parser.cpp"
     break;
 
   case 154:
-#line 454 "sqlite3_parser.yy"
+#line 523 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2014 "sqlite3_parser.cpp"
+#line 2174 "sqlite3_parser.cpp"
     break;
 
   case 155:
-#line 455 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "(" + yystack_[1].value.as < std::string > () + ")"; }
-#line 2020 "sqlite3_parser.cpp"
+#line 524 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
+#line 2180 "sqlite3_parser.cpp"
     break;
 
   case 156:
-#line 456 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "CAST(" + yystack_[3].value.as < std::string > () + " AS " + yystack_[1].value.as < std::string > () + ")"; }
-#line 2026 "sqlite3_parser.cpp"
+#line 525 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2186 "sqlite3_parser.cpp"
     break;
 
   case 157:
-#line 457 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " COLLATE " + yystack_[0].value.as < std::string > (); }
-#line 2032 "sqlite3_parser.cpp"
+#line 526 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = sqlb::escapeIdentifier(yystack_[4].value.as < std::string > ()) + "." + sqlb::escapeIdentifier(yystack_[2].value.as < std::string > ()) + "." + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
+#line 2192 "sqlite3_parser.cpp"
     break;
 
   case 158:
-#line 458 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2038 "sqlite3_parser.cpp"
+#line 527 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = sqlb::escapeIdentifier(yystack_[2].value.as < std::string > ()) + "." + sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
+#line 2198 "sqlite3_parser.cpp"
     break;
 
   case 159:
-#line 459 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2044 "sqlite3_parser.cpp"
+#line 528 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = sqlb::escapeIdentifier(yystack_[0].value.as < std::string > ()); }
+#line 2204 "sqlite3_parser.cpp"
     break;
 
   case 160:
-#line 460 "sqlite3_parser.yy"
+#line 529 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2050 "sqlite3_parser.cpp"
+#line 2210 "sqlite3_parser.cpp"
     break;
 
   case 161:
-#line 461 "sqlite3_parser.yy"
+#line 530 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2056 "sqlite3_parser.cpp"
+#line 2216 "sqlite3_parser.cpp"
     break;
 
   case 162:
-#line 462 "sqlite3_parser.yy"
+#line 531 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2062 "sqlite3_parser.cpp"
+#line 2222 "sqlite3_parser.cpp"
     break;
 
   case 163:
-#line 463 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2068 "sqlite3_parser.cpp"
+#line 532 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "(" + yystack_[1].value.as < std::string > () + ")"; }
+#line 2228 "sqlite3_parser.cpp"
     break;
 
   case 164:
-#line 472 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "SELECT"; }
-#line 2074 "sqlite3_parser.cpp"
+#line 533 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "CAST(" + yystack_[3].value.as < std::string > () + " AS " + yystack_[1].value.as < std::string > () + ")"; }
+#line 2234 "sqlite3_parser.cpp"
     break;
 
   case 165:
-#line 480 "sqlite3_parser.yy"
-    { yylhs.value.as < bool > () = false; }
-#line 2080 "sqlite3_parser.cpp"
+#line 534 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " COLLATE " + yystack_[0].value.as < std::string > (); }
+#line 2240 "sqlite3_parser.cpp"
     break;
 
   case 166:
-#line 481 "sqlite3_parser.yy"
-    { yylhs.value.as < bool > () = true; }
-#line 2086 "sqlite3_parser.cpp"
+#line 535 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2246 "sqlite3_parser.cpp"
     break;
 
   case 167:
-#line 485 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = ""; }
-#line 2092 "sqlite3_parser.cpp"
+#line 536 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2252 "sqlite3_parser.cpp"
     break;
 
   case 168:
-#line 486 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "ASC"; }
-#line 2098 "sqlite3_parser.cpp"
+#line 537 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2258 "sqlite3_parser.cpp"
     break;
 
   case 169:
-#line 487 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = "DESC"; }
-#line 2104 "sqlite3_parser.cpp"
+#line 538 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2264 "sqlite3_parser.cpp"
     break;
 
   case 170:
-#line 495 "sqlite3_parser.yy"
-    { yylhs.value.as < bool > () = false; }
-#line 2110 "sqlite3_parser.cpp"
+#line 539 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2270 "sqlite3_parser.cpp"
     break;
 
   case 171:
-#line 496 "sqlite3_parser.yy"
-    { yylhs.value.as < bool > () = true; }
-#line 2116 "sqlite3_parser.cpp"
+#line 540 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2276 "sqlite3_parser.cpp"
     break;
 
   case 172:
-#line 500 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = ""; }
-#line 2122 "sqlite3_parser.cpp"
+#line 549 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "SELECT"; }
+#line 2282 "sqlite3_parser.cpp"
     break;
 
   case 173:
-#line 501 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2128 "sqlite3_parser.cpp"
+#line 557 "sqlite3_parser.yy"
+    { yylhs.value.as < bool > () = false; }
+#line 2288 "sqlite3_parser.cpp"
     break;
 
   case 174:
-#line 505 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2134 "sqlite3_parser.cpp"
+#line 558 "sqlite3_parser.yy"
+    { yylhs.value.as < bool > () = true; }
+#line 2294 "sqlite3_parser.cpp"
     break;
 
   case 175:
-#line 506 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2140 "sqlite3_parser.cpp"
+#line 562 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = ""; }
+#line 2300 "sqlite3_parser.cpp"
     break;
 
   case 176:
-#line 507 "sqlite3_parser.yy"
-    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
-#line 2146 "sqlite3_parser.cpp"
+#line 563 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "ASC"; }
+#line 2306 "sqlite3_parser.cpp"
     break;
 
   case 177:
-#line 511 "sqlite3_parser.yy"
+#line 564 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = "DESC"; }
+#line 2312 "sqlite3_parser.cpp"
+    break;
+
+  case 178:
+#line 572 "sqlite3_parser.yy"
+    { yylhs.value.as < bool > () = false; }
+#line 2318 "sqlite3_parser.cpp"
+    break;
+
+  case 179:
+#line 573 "sqlite3_parser.yy"
+    { yylhs.value.as < bool > () = true; }
+#line 2324 "sqlite3_parser.cpp"
+    break;
+
+  case 180:
+#line 577 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = ""; }
+#line 2330 "sqlite3_parser.cpp"
+    break;
+
+  case 181:
+#line 578 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2336 "sqlite3_parser.cpp"
+    break;
+
+  case 182:
+#line 582 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2342 "sqlite3_parser.cpp"
+    break;
+
+  case 183:
+#line 583 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2348 "sqlite3_parser.cpp"
+    break;
+
+  case 184:
+#line 584 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2354 "sqlite3_parser.cpp"
+    break;
+
+  case 185:
+#line 588 "sqlite3_parser.yy"
     {
 							// If the expression is only one column name and nothing else, treat it as a column name; otherwise as an expression.
 							char quote = getIdentifierQuoteChar();
@@ -2158,23 +2366,23 @@ namespace  sqlb { namespace parser  {
 								yylhs.value.as < sqlb::IndexedColumn > () = sqlb::IndexedColumn(yystack_[1].value.as < std::string > (), true, yystack_[0].value.as < std::string > ());
 							}
 						}
-#line 2162 "sqlite3_parser.cpp"
+#line 2370 "sqlite3_parser.cpp"
     break;
 
-  case 178:
-#line 525 "sqlite3_parser.yy"
+  case 186:
+#line 602 "sqlite3_parser.yy"
     { yylhs.value.as < sqlb::IndexedColumnVector > () = sqlb::IndexedColumnVector(1, yystack_[0].value.as < sqlb::IndexedColumn > ()); }
-#line 2168 "sqlite3_parser.cpp"
+#line 2376 "sqlite3_parser.cpp"
     break;
 
-  case 179:
-#line 526 "sqlite3_parser.yy"
+  case 187:
+#line 603 "sqlite3_parser.yy"
     { yylhs.value.as < sqlb::IndexedColumnVector > () = yystack_[2].value.as < sqlb::IndexedColumnVector > (); yylhs.value.as < sqlb::IndexedColumnVector > ().push_back(yystack_[0].value.as < sqlb::IndexedColumn > ()); }
-#line 2174 "sqlite3_parser.cpp"
+#line 2382 "sqlite3_parser.cpp"
     break;
 
-  case 180:
-#line 530 "sqlite3_parser.yy"
+  case 188:
+#line 607 "sqlite3_parser.yy"
     {
 													yylhs.value.as < sqlb::IndexPtr > () = sqlb::IndexPtr(new sqlb::Index(yystack_[6].value.as < std::string > ()));
 													yylhs.value.as < sqlb::IndexPtr > ()->setTable(yystack_[4].value.as < std::string > ());
@@ -2183,39 +2391,699 @@ namespace  sqlb { namespace parser  {
 													yylhs.value.as < sqlb::IndexPtr > ()->fields = yystack_[2].value.as < sqlb::IndexedColumnVector > ();
 													yylhs.value.as < sqlb::IndexPtr > ()->setFullyParsed(true);
 												}
-#line 2187 "sqlite3_parser.cpp"
+#line 2395 "sqlite3_parser.cpp"
     break;
 
-  case 181:
-#line 541 "sqlite3_parser.yy"
+  case 189:
+#line 622 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = {}; }
-#line 2193 "sqlite3_parser.cpp"
+#line 2401 "sqlite3_parser.cpp"
     break;
 
-  case 182:
-#line 542 "sqlite3_parser.yy"
+  case 190:
+#line 623 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = {}; }
-#line 2199 "sqlite3_parser.cpp"
+#line 2407 "sqlite3_parser.cpp"
     break;
 
-  case 183:
-#line 543 "sqlite3_parser.yy"
+  case 191:
+#line 624 "sqlite3_parser.yy"
     { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > (); }
-#line 2205 "sqlite3_parser.cpp"
+#line 2413 "sqlite3_parser.cpp"
     break;
 
-  case 184:
-#line 547 "sqlite3_parser.yy"
+  case 192:
+#line 628 "sqlite3_parser.yy"
     {
 													yylhs.value.as < sqlb::TablePtr > () = sqlb::TablePtr(new sqlb::Table(yystack_[3].value.as < std::string > ()));
 													yylhs.value.as < sqlb::TablePtr > ()->setVirtualUsing(yystack_[1].value.as < std::string > ());
 													yylhs.value.as < sqlb::TablePtr > ()->setFullyParsed(false);
 												}
-#line 2215 "sqlite3_parser.cpp"
+#line 2423 "sqlite3_parser.cpp"
+    break;
+
+  case 193:
+#line 640 "sqlite3_parser.yy"
+    { yylhs.value.as < bool > () = false; }
+#line 2429 "sqlite3_parser.cpp"
+    break;
+
+  case 194:
+#line 641 "sqlite3_parser.yy"
+    { yylhs.value.as < bool > () = true; }
+#line 2435 "sqlite3_parser.cpp"
+    break;
+
+  case 195:
+#line 642 "sqlite3_parser.yy"
+    { yylhs.value.as < bool > () = true; }
+#line 2441 "sqlite3_parser.cpp"
+    break;
+
+  case 196:
+#line 646 "sqlite3_parser.yy"
+    { yylhs.value.as < bool > () = false; }
+#line 2447 "sqlite3_parser.cpp"
+    break;
+
+  case 197:
+#line 647 "sqlite3_parser.yy"
+    { yylhs.value.as < bool > () = true; }
+#line 2453 "sqlite3_parser.cpp"
+    break;
+
+  case 198:
+#line 651 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = ""; }
+#line 2459 "sqlite3_parser.cpp"
+    break;
+
+  case 199:
+#line 652 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2465 "sqlite3_parser.cpp"
+    break;
+
+  case 200:
+#line 653 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2471 "sqlite3_parser.cpp"
+    break;
+
+  case 201:
+#line 654 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2477 "sqlite3_parser.cpp"
+    break;
+
+  case 202:
+#line 655 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2483 "sqlite3_parser.cpp"
+    break;
+
+  case 203:
+#line 656 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2489 "sqlite3_parser.cpp"
+    break;
+
+  case 204:
+#line 660 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = ""; }
+#line 2495 "sqlite3_parser.cpp"
+    break;
+
+  case 205:
+#line 661 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2501 "sqlite3_parser.cpp"
+    break;
+
+  case 206:
+#line 665 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::PrimaryKey;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = true;
+												sqlb::PrimaryKeyConstraint* pk = new sqlb::PrimaryKeyConstraint({sqlb::IndexedColumn("", false, yystack_[1].value.as < std::string > ())});
+												pk->setName(yystack_[4].value.as < std::string > ());
+												pk->setConflictAction(yystack_[0].value.as < std::string > ());
+												yylhs.value.as < ColumnConstraintInfo > ().table_constraint = sqlb::ConstraintPtr(pk);
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = true;
+											}
+#line 2515 "sqlite3_parser.cpp"
+    break;
+
+  case 207:
+#line 674 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::PrimaryKey;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = true;
+												sqlb::PrimaryKeyConstraint* pk = new sqlb::PrimaryKeyConstraint({sqlb::IndexedColumn("", false, yystack_[2].value.as < std::string > ())});
+												pk->setName(yystack_[5].value.as < std::string > ());
+												pk->setConflictAction(yystack_[1].value.as < std::string > ());
+												pk->setAutoIncrement(true);
+												yylhs.value.as < ColumnConstraintInfo > ().table_constraint = sqlb::ConstraintPtr(pk);
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = true;
+											}
+#line 2530 "sqlite3_parser.cpp"
+    break;
+
+  case 208:
+#line 684 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::NotNull;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = (yystack_[3].value.as < std::string > () == "" && yystack_[0].value.as < std::string > () == "");
+											}
+#line 2540 "sqlite3_parser.cpp"
+    break;
+
+  case 209:
+#line 689 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::None;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = true;
+											}
+#line 2550 "sqlite3_parser.cpp"
+    break;
+
+  case 210:
+#line 694 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::Unique;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = (yystack_[2].value.as < std::string > () == "" && yystack_[0].value.as < std::string > () == "");
+											}
+#line 2560 "sqlite3_parser.cpp"
+    break;
+
+  case 211:
+#line 699 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::Check;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().text = yystack_[1].value.as < std::string > ();
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = (yystack_[4].value.as < std::string > () == "");
+											}
+#line 2571 "sqlite3_parser.cpp"
+    break;
+
+  case 212:
+#line 705 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::Default;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().text = yystack_[0].value.as < std::string > ();
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = (yystack_[2].value.as < std::string > () == "");
+											}
+#line 2582 "sqlite3_parser.cpp"
+    break;
+
+  case 213:
+#line 711 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::Default;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().text = yystack_[0].value.as < std::string > ();
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = (yystack_[2].value.as < std::string > () == "");
+											}
+#line 2593 "sqlite3_parser.cpp"
+    break;
+
+  case 214:
+#line 717 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::Default;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().text = yystack_[0].value.as < std::string > ();
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = (yystack_[2].value.as < std::string > () == "");
+											}
+#line 2604 "sqlite3_parser.cpp"
+    break;
+
+  case 215:
+#line 723 "sqlite3_parser.yy"
+    {	// We must allow the same keywords as unquoted default values as in the columnid context.
+												// But we do not use columnid here in order to avoid reduce/reduce conflicts.
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::Default;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().text = yystack_[0].value.as < std::string > ();
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = (yystack_[2].value.as < std::string > () == "");
+											}
+#line 2616 "sqlite3_parser.cpp"
+    break;
+
+  case 216:
+#line 730 "sqlite3_parser.yy"
+    {	// Same as above.
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::Default;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().text = yystack_[0].value.as < std::string > ();
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = (yystack_[2].value.as < std::string > () == "");
+											}
+#line 2627 "sqlite3_parser.cpp"
+    break;
+
+  case 217:
+#line 736 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::Default;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().text = "(" + yystack_[1].value.as < std::string > () + ")";
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = (yystack_[4].value.as < std::string > () == "");
+											}
+#line 2638 "sqlite3_parser.cpp"
+    break;
+
+  case 218:
+#line 742 "sqlite3_parser.yy"
+    {
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::Collate;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = false;
+												yylhs.value.as < ColumnConstraintInfo > ().text = yystack_[0].value.as < std::string > ();
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = (yystack_[2].value.as < std::string > () == "");
+											}
+#line 2649 "sqlite3_parser.cpp"
+    break;
+
+  case 219:
+#line 748 "sqlite3_parser.yy"
+    {	// TODO Solve shift/reduce conflict. It is not super important though as shifting seems to be right here.
+												yylhs.value.as < ColumnConstraintInfo > ().type = ColumnConstraintInfo::ForeignKey;
+												yylhs.value.as < ColumnConstraintInfo > ().is_table_constraint = true;
+												sqlb::ForeignKeyClause* fk = new sqlb::ForeignKeyClause();
+												fk->setName(yystack_[4].value.as < std::string > ());
+												fk->setTable(yystack_[2].value.as < std::string > ());
+												fk->setColumns(yystack_[1].value.as < sqlb::StringVector > ());
+												fk->setConstraint(yystack_[0].value.as < std::string > ());
+												yylhs.value.as < ColumnConstraintInfo > ().table_constraint = sqlb::ConstraintPtr(fk);
+												yylhs.value.as < ColumnConstraintInfo > ().fully_parsed = true;
+											}
+#line 2665 "sqlite3_parser.cpp"
+    break;
+
+  case 220:
+#line 762 "sqlite3_parser.yy"
+    { yylhs.value.as < ColumnConstraintInfoVector > () = { yystack_[0].value.as < ColumnConstraintInfo > () }; }
+#line 2671 "sqlite3_parser.cpp"
+    break;
+
+  case 221:
+#line 763 "sqlite3_parser.yy"
+    { yylhs.value.as < ColumnConstraintInfoVector > () = yystack_[1].value.as < ColumnConstraintInfoVector > (); yylhs.value.as < ColumnConstraintInfoVector > ().push_back(yystack_[0].value.as < ColumnConstraintInfo > ()); }
+#line 2677 "sqlite3_parser.cpp"
+    break;
+
+  case 222:
+#line 767 "sqlite3_parser.yy"
+    {
+								sqlb::Field f(yystack_[2].value.as < std::string > (), yystack_[1].value.as < std::string > ());
+								bool fully_parsed = true;
+								sqlb::ConstraintSet table_constraints{};
+								for(auto c : yystack_[0].value.as < ColumnConstraintInfoVector > ())
+								{
+									if(c.fully_parsed == false)
+										fully_parsed = false;
+
+									if(c.type == ColumnConstraintInfo::None)
+										continue;
+
+									if(c.is_table_constraint)
+									{
+										if(c.table_constraint->columnList().empty())
+											c.table_constraint->setColumnList({yystack_[2].value.as < std::string > ()});
+										else
+											c.table_constraint->replaceInColumnList("", yystack_[2].value.as < std::string > ());
+										table_constraints.insert(c.table_constraint);
+									} else {
+										if(c.type == ColumnConstraintInfo::NotNull) {
+											f.setNotNull(true);
+										} else if(c.type == ColumnConstraintInfo::Unique) {
+											f.setUnique(true);
+										} else if(c.type == ColumnConstraintInfo::Check) {
+											f.setCheck(c.text);
+										} else if(c.type == ColumnConstraintInfo::Default) {
+											f.setDefaultValue(c.text);
+										} else if(c.type == ColumnConstraintInfo::Collate) {
+											f.setCollation(c.text);
+										} else {
+											fully_parsed = false;
+										}
+									}
+								}
+
+								yylhs.value.as < ColumndefData > () = std::make_tuple(f, table_constraints, fully_parsed);
+							}
+#line 2720 "sqlite3_parser.cpp"
+    break;
+
+  case 223:
+#line 805 "sqlite3_parser.yy"
+    { yylhs.value.as < ColumndefData > () = std::make_tuple(sqlb::Field(yystack_[1].value.as < std::string > (), yystack_[0].value.as < std::string > ()), sqlb::ConstraintSet{}, true); }
+#line 2726 "sqlite3_parser.cpp"
+    break;
+
+  case 224:
+#line 809 "sqlite3_parser.yy"
+    { yylhs.value.as < std::vector<ColumndefData> > () = {yystack_[0].value.as < ColumndefData > ()}; }
+#line 2732 "sqlite3_parser.cpp"
+    break;
+
+  case 225:
+#line 810 "sqlite3_parser.yy"
+    { yylhs.value.as < std::vector<ColumndefData> > () = yystack_[2].value.as < std::vector<ColumndefData> > (); yylhs.value.as < std::vector<ColumndefData> > ().push_back(yystack_[0].value.as < ColumndefData > ()); }
+#line 2738 "sqlite3_parser.cpp"
+    break;
+
+  case 226:
+#line 814 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = ""; }
+#line 2744 "sqlite3_parser.cpp"
+    break;
+
+  case 227:
+#line 815 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2750 "sqlite3_parser.cpp"
+    break;
+
+  case 228:
+#line 819 "sqlite3_parser.yy"
+    { yylhs.value.as < sqlb::StringVector > () = sqlb::StringVector(1, yystack_[0].value.as < std::string > ()); }
+#line 2756 "sqlite3_parser.cpp"
+    break;
+
+  case 229:
+#line 820 "sqlite3_parser.yy"
+    { yylhs.value.as < sqlb::StringVector > () = yystack_[2].value.as < sqlb::StringVector > (); yylhs.value.as < sqlb::StringVector > ().push_back(yystack_[0].value.as < std::string > ()); }
+#line 2762 "sqlite3_parser.cpp"
+    break;
+
+  case 230:
+#line 824 "sqlite3_parser.yy"
+    { yylhs.value.as < sqlb::StringVector > () = sqlb::StringVector(); }
+#line 2768 "sqlite3_parser.cpp"
+    break;
+
+  case 231:
+#line 825 "sqlite3_parser.yy"
+    { yylhs.value.as < sqlb::StringVector > () = yystack_[1].value.as < sqlb::StringVector > (); }
+#line 2774 "sqlite3_parser.cpp"
+    break;
+
+  case 232:
+#line 829 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2780 "sqlite3_parser.cpp"
+    break;
+
+  case 233:
+#line 830 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2786 "sqlite3_parser.cpp"
+    break;
+
+  case 234:
+#line 831 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2792 "sqlite3_parser.cpp"
+    break;
+
+  case 235:
+#line 832 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2798 "sqlite3_parser.cpp"
+    break;
+
+  case 236:
+#line 833 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2804 "sqlite3_parser.cpp"
+    break;
+
+  case 237:
+#line 834 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2810 "sqlite3_parser.cpp"
+    break;
+
+  case 238:
+#line 835 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2816 "sqlite3_parser.cpp"
+    break;
+
+  case 239:
+#line 836 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2822 "sqlite3_parser.cpp"
+    break;
+
+  case 240:
+#line 837 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2828 "sqlite3_parser.cpp"
+    break;
+
+  case 241:
+#line 838 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2834 "sqlite3_parser.cpp"
+    break;
+
+  case 242:
+#line 839 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2840 "sqlite3_parser.cpp"
+    break;
+
+  case 243:
+#line 840 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2846 "sqlite3_parser.cpp"
+    break;
+
+  case 244:
+#line 841 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2852 "sqlite3_parser.cpp"
+    break;
+
+  case 245:
+#line 842 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2858 "sqlite3_parser.cpp"
+    break;
+
+  case 246:
+#line 843 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2864 "sqlite3_parser.cpp"
+    break;
+
+  case 247:
+#line 844 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2870 "sqlite3_parser.cpp"
+    break;
+
+  case 248:
+#line 848 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2876 "sqlite3_parser.cpp"
+    break;
+
+  case 249:
+#line 849 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2882 "sqlite3_parser.cpp"
+    break;
+
+  case 250:
+#line 853 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = ""; }
+#line 2888 "sqlite3_parser.cpp"
+    break;
+
+  case 251:
+#line 854 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2894 "sqlite3_parser.cpp"
+    break;
+
+  case 252:
+#line 855 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2900 "sqlite3_parser.cpp"
+    break;
+
+  case 253:
+#line 856 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2906 "sqlite3_parser.cpp"
+    break;
+
+  case 254:
+#line 857 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2912 "sqlite3_parser.cpp"
+    break;
+
+  case 255:
+#line 858 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " " + yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2918 "sqlite3_parser.cpp"
+    break;
+
+  case 256:
+#line 859 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[4].value.as < std::string > () + " " + yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2924 "sqlite3_parser.cpp"
+    break;
+
+  case 257:
+#line 860 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2930 "sqlite3_parser.cpp"
+    break;
+
+  case 258:
+#line 861 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2936 "sqlite3_parser.cpp"
+    break;
+
+  case 259:
+#line 862 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2942 "sqlite3_parser.cpp"
+    break;
+
+  case 260:
+#line 863 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[0].value.as < std::string > (); }
+#line 2948 "sqlite3_parser.cpp"
+    break;
+
+  case 261:
+#line 864 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2954 "sqlite3_parser.cpp"
+    break;
+
+  case 262:
+#line 865 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[3].value.as < std::string > () + " " + yystack_[2].value.as < std::string > () + " " + yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2960 "sqlite3_parser.cpp"
+    break;
+
+  case 263:
+#line 866 "sqlite3_parser.yy"
+    { yylhs.value.as < std::string > () = yystack_[1].value.as < std::string > () + " " + yystack_[0].value.as < std::string > (); }
+#line 2966 "sqlite3_parser.cpp"
+    break;
+
+  case 264:
+#line 870 "sqlite3_parser.yy"
+    {
+														sqlb::PrimaryKeyConstraint* pk = new sqlb::PrimaryKeyConstraint(yystack_[2].value.as < sqlb::IndexedColumnVector > ());
+														pk->setName(yystack_[6].value.as < std::string > ());
+														pk->setConflictAction(yystack_[0].value.as < std::string > ());
+														yylhs.value.as < sqlb::ConstraintPtr > () = sqlb::ConstraintPtr(pk);
+													}
+#line 2977 "sqlite3_parser.cpp"
+    break;
+
+  case 265:
+#line 876 "sqlite3_parser.yy"
+    {
+														sqlb::PrimaryKeyConstraint* pk = new sqlb::PrimaryKeyConstraint(yystack_[3].value.as < sqlb::IndexedColumnVector > ());
+														pk->setName(yystack_[7].value.as < std::string > ());
+														pk->setConflictAction(yystack_[0].value.as < std::string > ());
+														pk->setAutoIncrement(true);
+														yylhs.value.as < sqlb::ConstraintPtr > () = sqlb::ConstraintPtr(pk);
+													}
+#line 2989 "sqlite3_parser.cpp"
+    break;
+
+  case 266:
+#line 883 "sqlite3_parser.yy"
+    {
+														sqlb::UniqueConstraint* u = new sqlb::UniqueConstraint(yystack_[2].value.as < sqlb::IndexedColumnVector > ());
+														u->setName(yystack_[5].value.as < std::string > ());
+														u->setConflictAction(yystack_[0].value.as < std::string > ());
+														yylhs.value.as < sqlb::ConstraintPtr > () = sqlb::ConstraintPtr(u);
+													}
+#line 3000 "sqlite3_parser.cpp"
+    break;
+
+  case 267:
+#line 889 "sqlite3_parser.yy"
+    {
+														yylhs.value.as < sqlb::ConstraintPtr > () = sqlb::ConstraintPtr(new sqlb::CheckConstraint(yystack_[1].value.as < std::string > ()));
+														yylhs.value.as < sqlb::ConstraintPtr > ()->setName(yystack_[4].value.as < std::string > ());
+													}
+#line 3009 "sqlite3_parser.cpp"
+    break;
+
+  case 268:
+#line 893 "sqlite3_parser.yy"
+    {
+														yylhs.value.as < sqlb::ConstraintPtr > () = sqlb::ConstraintPtr(new sqlb::ForeignKeyClause(yystack_[2].value.as < std::string > (), yystack_[1].value.as < sqlb::StringVector > (), yystack_[0].value.as < std::string > ()));
+														yylhs.value.as < sqlb::ConstraintPtr > ()->setColumnList(yystack_[5].value.as < sqlb::StringVector > ());
+														yylhs.value.as < sqlb::ConstraintPtr > ()->setName(yystack_[9].value.as < std::string > ());
+													}
+#line 3019 "sqlite3_parser.cpp"
+    break;
+
+  case 269:
+#line 901 "sqlite3_parser.yy"
+    { yylhs.value.as < sqlb::ConstraintSet > () = {yystack_[0].value.as < sqlb::ConstraintPtr > ()}; }
+#line 3025 "sqlite3_parser.cpp"
+    break;
+
+  case 270:
+#line 902 "sqlite3_parser.yy"
+    { yylhs.value.as < sqlb::ConstraintSet > () = yystack_[2].value.as < sqlb::ConstraintSet > (); yylhs.value.as < sqlb::ConstraintSet > ().insert(yystack_[0].value.as < sqlb::ConstraintPtr > ()); }
+#line 3031 "sqlite3_parser.cpp"
+    break;
+
+  case 271:
+#line 903 "sqlite3_parser.yy"
+    { yylhs.value.as < sqlb::ConstraintSet > () = yystack_[1].value.as < sqlb::ConstraintSet > (); yylhs.value.as < sqlb::ConstraintSet > ().insert(yystack_[0].value.as < sqlb::ConstraintPtr > ()); }
+#line 3037 "sqlite3_parser.cpp"
+    break;
+
+  case 272:
+#line 907 "sqlite3_parser.yy"
+    { yylhs.value.as < sqlb::ConstraintSet > () = {}; }
+#line 3043 "sqlite3_parser.cpp"
+    break;
+
+  case 273:
+#line 908 "sqlite3_parser.yy"
+    { yylhs.value.as < sqlb::ConstraintSet > () = yystack_[0].value.as < sqlb::ConstraintSet > (); }
+#line 3049 "sqlite3_parser.cpp"
+    break;
+
+  case 274:
+#line 912 "sqlite3_parser.yy"
+    {
+										yylhs.value.as < sqlb::TablePtr > () = sqlb::TablePtr(new sqlb::Table(yystack_[2].value.as < std::string > ()));
+										yylhs.value.as < sqlb::TablePtr > ()->setFullyParsed(false);
+									}
+#line 3058 "sqlite3_parser.cpp"
+    break;
+
+  case 275:
+#line 916 "sqlite3_parser.yy"
+    {
+										yylhs.value.as < sqlb::TablePtr > () = sqlb::TablePtr(new sqlb::Table(yystack_[5].value.as < std::string > ()));
+										yylhs.value.as < sqlb::TablePtr > ()->setWithoutRowidTable(yystack_[0].value.as < bool > ());
+										yylhs.value.as < sqlb::TablePtr > ()->setConstraints(yystack_[2].value.as < sqlb::ConstraintSet > ());
+										yylhs.value.as < sqlb::TablePtr > ()->setFullyParsed(true);
+
+										for(const auto& column : yystack_[3].value.as < std::vector<ColumndefData> > ())
+										{
+											sqlb::Field f;
+											sqlb::ConstraintSet c;
+											bool fully_parsed;
+											std::tie(f, c, fully_parsed) = column;
+
+											if(fully_parsed == false)
+												yylhs.value.as < sqlb::TablePtr > ()->setFullyParsed(false);
+											yylhs.value.as < sqlb::TablePtr > ()->fields.push_back(f);
+											for(const auto& i : c)
+												yylhs.value.as < sqlb::TablePtr > ()->addConstraint(i);
+										}
+									}
+#line 3083 "sqlite3_parser.cpp"
     break;
 
 
-#line 2219 "sqlite3_parser.cpp"
+#line 3087 "sqlite3_parser.cpp"
 
             default:
               break;
@@ -2486,528 +3354,660 @@ namespace  sqlb { namespace parser  {
   }
 
 
-  const signed char parser::yypact_ninf_ = -124;
+  const short parser::yypact_ninf_ = -333;
 
-  const signed char parser::yytable_ninf_ = -92;
+  const short parser::yytable_ninf_ = -274;
 
   const short
   parser::yypact_[] =
   {
-     -39,   -89,     6,    32,  -124,  -124,  -124,   -48,   -15,  -124,
-    -124,     1,     1,    -9,  1633,  1633,    22,  -124,  -124,  -124,
-    -124,  -124,  -124,  -124,  -124,  -124,  -124,  -124,  -124,  -124,
-    -124,  -124,  -124,  -124,  -124,  -124,  -124,  -124,  -124,  -124,
-    -124,  -124,  -124,  -124,  -124,  -124,  -124,  -124,  -124,  -124,
-    -124,    77,  -124,  -124,  -124,  -124,  -124,  -124,  -124,    80,
-    -124,  -124,   -16,    13,  -124,  1710,  1710,   -62,  1710,  -124,
-    -124,  -124,  -124,    88,    98,   742,  -124,  1182,  1182,  -124,
-    1182,  1182,  1182,   852,   116,  -124,  -124,  -124,  -124,  1182,
-    -124,   122,  -124,  -124,  -124,  -124,  -124,  -124,    54,  -124,
-    -124,  -124,  -124,    66,  -124,  -124,  -124,  -124,  -124,  -124,
-    2067,  1813,  -124,    90,   100,  -124,  -124,  -124,  1182,   -36,
-       9,  1182,  2279,   -18,   412,   -62,  -124,  1182,  1182,  1182,
-    1182,  1182,  1182,  1182,  1182,  1182,  1182,  1182,  1182,  1182,
-    1182,  1182,  1182,  1182,  1182,  1182,  1182,  1182,   -62,  1182,
-    1271,  1182,  -124,  1182,  1182,     3,  -124,  1182,  1182,  -124,
-    -124,  -124,    21,  1182,  -124,  1552,  1182,  -124,  1182,   -11,
-    1887,   132,   136,   137,   141,  -124,   148,  1182,   103,   154,
-    2067,    50,    50,     5,     5,    89,     5,    89,   120,  1845,
-    1845,   529,   529,   529,   529,  1845,  1845,    89,    89,  2279,
-    2099,  -124,   166,   522,   105,  -124,  1845,   314,   334,  1182,
-    1182,  1360,  1182,  1182,  -124,  1182,  2205,  2311,  1182,  -124,
-    -124,  1182,  1919,  1584,  1182,  -124,  1710,    53,    56,  -124,
-      58,  -124,   110,  -124,   -62,  1182,  1182,  -124,  -124,   111,
-     159,  1182,  1710,  1182,  1182,  2173,  2347,   632,   115,  -124,
-    2367,  2388,  2408,  1182,  2067,  2067,  -124,  1182,  1993,  -124,
-    1449,   165,   167,   174,   179,  -124,  -124,   135,  1845,  -124,
-    -124,   117,   186,  -124,  1845,  1845,  1182,  1182,  -124,   118,
-     189,  1182,  1710,  1182,  1182,  1182,  1845,  2067,  -124,     4,
-    -124,  -124,  -124,  -124,  -124,  -124,   962,   135,  1845,  -124,
-    -124,   125,   187,  -124,  1845,  1845,  1845,    62,    86,  -124,
-    -124,   126,  -124,   129,  -124,  1072,  -124,  -124,  -124,     4,
-    -124,  -124,   133,   191,  -124,  -124
+      -3,   170,    27,    39,  -333,  -333,  -333,  -333,  -333,  -333,
+     -28,    90,    69,  -333,  -333,   112,   112,   112,   121,  2043,
+    2043,  2043,   144,  -333,  -333,  -333,  -333,  -333,  -333,  -333,
+    -333,  -333,  -333,  -333,  -333,  -333,  -333,  -333,  -333,  -333,
+    -333,  -333,  -333,  -333,  -333,  -333,  -333,  -333,  -333,  -333,
+    -333,  -333,  -333,  -333,  -333,  -333,  -333,   202,  -333,  -333,
+    -333,  -333,  -333,  -333,  -333,   211,  -333,  -333,    98,   134,
+     128,  -333,  2120,  2120,   -16,  2120,  1966,   135,  -333,  -333,
+    -333,  -333,   233,   245,  -333,  -333,  -333,  -333,  -333,  -333,
+    -333,  2120,  -333,   228,  -333,  -333,   888,  -333,  1328,  -333,
+    1527,  -333,    36,  1889,   250,  1328,  -333,  1328,  1328,  1328,
+     998,   257,  -333,  -333,  -333,  -333,  1328,  -333,   260,  -333,
+    -333,  -333,  -333,  -333,  -333,   163,  -333,  -333,  -333,  -333,
+     195,  -333,  -333,  -333,  -333,  -333,  -333,  2621,  2367,  -333,
+     227,     5,  -333,   -16,  -333,    43,    30,  -333,    14,  -333,
+      81,   165,   231,  -333,  -333,  -333,  1328,    -7,   435,  1328,
+    2833,    37,   558,   -16,  -333,  1328,  1328,  1328,  1328,  1328,
+    1328,  1328,  1328,  1328,  1328,  1328,  1328,  1328,  1328,  1328,
+    1328,  1328,  1328,  1328,  1328,  1328,   -16,  1328,  1616,  1328,
+    -333,  1328,  1328,    74,  -333,  1328,  1328,  -333,  -333,  -333,
+     176,  1328,   167,   181,  -333,  -333,   255,  -333,  -333,   291,
+     -16,  1438,   221,  -333,   232,   -16,   241,   302,   239,   253,
+     322,   287,  -333,   236,  -333,  -333,  1808,  1328,  -333,  1328,
+      67,  2441,   324,   325,   328,   329,  -333,   330,  1328,   263,
+     331,  2621,   137,   137,   104,   104,   194,   104,   194,   301,
+     332,   332,   402,   402,   402,   402,   332,   332,   194,   194,
+    2833,  2653,  -333,   168,   668,   271,  -333,   332,   204,   230,
+    1328,  1328,  1705,  1328,  1328,  -333,  1328,  2759,  2865,  1328,
+    -333,  -333,  -333,  -333,  -333,     5,  1328,  -333,  1328,  -333,
+    -333,  -333,  -333,  -333,   241,   108,   335,   305,  -333,  1328,
+     346,   347,  1328,  -333,  -333,  1328,  2473,  1840,  1328,  -333,
+    2120,   246,   251,  -333,   254,  -333,   273,  -333,   -16,  1328,
+    1328,  -333,   274,   355,  1328,  2120,  1328,  1328,  2727,  2901,
+     778,   279,  -333,  2921,  2942,  2962,  1328,  2621,   360,  2224,
+    2256,  -333,   241,  1966,    63,    16,  2335,  1966,  1328,   281,
+    2621,  -333,  1328,  2547,   362,   363,   365,   388,  -333,  -333,
+      10,   332,  -333,  -333,   282,   391,  -333,   332,   332,  1328,
+    1328,  -333,   286,   392,  1328,  2120,  1328,  1328,  1328,   332,
+    -333,  -333,  -333,   367,  -333,   289,   334,   -16,   358,    26,
+    -333,    87,  -333,  -333,  -333,  -333,  -333,  -333,  -333,   294,
+     148,   241,  2621,  -333,  -333,  -333,  -333,  -333,  -333,  1108,
+      10,   332,  -333,  -333,   297,   403,  -333,   332,   332,   332,
+    -333,  -333,  1966,   -30,  -333,   339,     7,    29,    35,   343,
+     368,  -333,   336,   241,   415,  -333,  -333,   304,  -333,  1218,
+    -333,  -333,  -333,   -13,  -333,   394,  -333,    53,  -333,   395,
+    -333,    56,  -333,   396,  -333,    65,   102,   354,   -16,  -333,
+     241,  -333,  -333,   313,  -333,  -333,  -333,  -333,  -333,  -333,
+    -333,  -333,  -333,  -333,  -333,  -333,  -333,   109,   335,  -333,
+    -333,  -333,  -333,    63,  -333
   };
 
-  const unsigned char
+  const unsigned short
   parser::yydefact_[] =
   {
-       0,   170,     0,     2,     4,     5,   171,     0,     0,     1,
-       3,   165,   165,     0,     0,     0,     0,    17,    18,    19,
-      20,    21,    22,    55,    54,    56,    23,    24,    25,    26,
-      27,    28,    29,    32,    34,    33,    30,    31,    35,    36,
-      37,    38,    39,    40,    41,    42,    43,    44,    45,    46,
-      47,    49,    48,    50,    51,    52,    15,    58,    16,    57,
-      53,   176,     0,     0,   166,     0,     0,     0,     0,    49,
-      57,   175,   174,   181,     0,     0,   184,     0,     0,   182,
-       0,     0,     0,     0,    21,    13,    12,    14,    11,     0,
-       9,    40,    10,     6,     7,     8,   148,   146,   151,   147,
-     152,   153,   158,     0,   154,   159,   160,   161,   162,   163,
-     109,   167,   178,     0,     0,    69,    68,    70,     0,     0,
-       0,     0,    71,     0,     0,     0,   183,     0,     0,     0,
+       0,   178,     0,     2,     4,     5,     6,   194,   195,   179,
+       0,     0,     0,     1,     3,   173,   173,   173,     0,     0,
+       0,     0,     0,    18,    19,    20,    21,    22,    23,    56,
+      55,    57,    24,    25,    26,    27,    28,    29,    30,    33,
+      35,    34,    31,    32,    36,    37,    38,    39,    40,    41,
+      42,    43,    44,    45,    46,    47,    48,    50,    49,    51,
+      52,    53,    16,    59,    17,    58,    54,   184,     0,     0,
+       0,   174,     0,     0,     0,     0,     0,     0,    50,    58,
+     183,   182,   189,     0,    62,    61,    63,    64,    66,    65,
+      60,   204,   224,   272,   172,   274,     0,   192,     0,    71,
+      73,   205,   226,   226,     0,     0,   190,     0,     0,     0,
+       0,    22,    14,    13,    15,    12,     0,    10,    41,    11,
+       7,     8,     9,   156,   154,   159,   155,   160,   161,   166,
+       0,   162,   167,   168,   169,   170,   171,   117,   175,   186,
+       0,     0,    72,     0,   220,   226,     0,   225,     0,   269,
+     226,   196,     0,    77,    76,    78,     0,     0,     0,     0,
+      79,     0,     0,     0,   191,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,   115,     0,     0,     0,   116,     0,     0,   168,
-     169,   177,   172,     0,   155,     0,     0,   141,     0,     0,
-       0,     0,     0,     0,     0,   113,     0,     0,     0,   150,
-     110,    76,    77,    73,    74,    80,    75,    81,    72,    86,
-      87,    84,    85,    82,    83,    88,    89,    78,    79,    91,
-       0,   157,    94,     0,    57,   124,    90,    93,    95,     0,
-       0,     0,     0,     0,   117,     0,    92,    96,     0,   180,
-     179,     0,     0,     0,     0,   139,     0,     0,     0,   142,
-       0,   114,     0,   111,     0,     0,     0,   120,   164,     0,
-       0,     0,     0,     0,     0,     0,    98,     0,    57,   132,
-      97,    99,   100,     0,   173,   136,   140,     0,     0,    63,
-      65,     0,     0,     0,     0,   112,   149,   118,   102,   122,
-     121,     0,    57,   123,   101,   103,     0,     0,   128,     0,
-       0,     0,     0,     0,     0,     0,   104,   137,   138,     0,
-      64,   156,   144,   145,   143,   127,     0,   119,   106,   130,
-     129,     0,    57,   131,   105,   107,   108,     0,     0,    62,
-      61,     0,   125,     0,   135,     0,    59,    60,    66,     0,
-     126,   133,     0,     0,   134,    67
+     123,     0,     0,     0,   124,     0,     0,   176,   177,   185,
+     180,     0,     0,     0,    70,    69,     0,   227,   221,     0,
+       0,     0,     0,   209,     0,     0,   198,     0,     0,     0,
+       0,   226,   271,     0,   275,   163,     0,     0,   149,     0,
+       0,     0,     0,     0,     0,     0,   121,     0,     0,     0,
+     158,   118,    84,    85,    81,    82,    88,    83,    89,    80,
+      94,    95,    92,    93,    90,    91,    96,    97,    86,    87,
+      99,     0,   165,   102,     0,    58,   132,    98,   101,   103,
+       0,     0,     0,     0,     0,   125,     0,   100,   104,     0,
+     188,   187,    67,    68,    74,     0,     0,   218,     0,   216,
+     213,   214,   215,   212,   198,   175,   230,     0,   210,     0,
+       0,     0,     0,   270,   197,     0,     0,     0,     0,   147,
+       0,     0,     0,   150,     0,   122,     0,   119,     0,     0,
+       0,   128,     0,     0,     0,     0,     0,     0,     0,   106,
+       0,    58,   140,   105,   107,   108,     0,   181,     0,     0,
+       0,   208,   198,     0,   250,     0,     0,     0,     0,     0,
+     144,   148,     0,     0,     0,     0,     0,     0,   120,   157,
+     126,   110,   130,   129,     0,    58,   131,   109,   111,     0,
+       0,   136,     0,     0,     0,     0,     0,     0,     0,   112,
+      75,   211,   217,   206,   228,     0,   260,     0,     0,     0,
+     248,   251,   219,   200,   201,   202,   203,   199,   267,     0,
+       0,   198,   145,   146,   164,   152,   153,   151,   135,     0,
+     127,   114,   138,   137,     0,    58,   139,   113,   115,   116,
+     207,   231,     0,     0,   247,   263,     0,     0,     0,   254,
+       0,   249,     0,   198,     0,   266,   133,     0,   143,     0,
+     229,   258,   259,     0,   234,     0,   235,     0,   244,     0,
+     245,     0,   239,     0,   240,     0,     0,   257,     0,   264,
+     198,   134,   141,     0,   261,   262,   236,   233,   232,   246,
+     243,   242,   241,   238,   237,   252,   253,     0,   230,   265,
+     142,   255,   256,   250,   268
   };
 
   const short
   parser::yypgoto_[] =
   {
-    -124,  -124,  -124,  -124,   -14,   -10,   -58,  -124,  -123,  -124,
-    -124,  -124,  -124,  -124,   -75,  -124,  -124,  -124,  -124,    78,
-    -124,  -124,   153,   -47,   193,  -124,  -124,  -124,   184,    40,
-    -124,  -124,  -124,  -124
+    -333,  -333,  -333,   214,   -19,   -14,   -63,  -332,   215,   145,
+    -333,   119,  -333,  -333,  -333,  -102,  -333,  -333,  -333,  -333,
+     276,  -333,  -333,   206,  -248,   169,   136,  -333,  -333,   300,
+     235,  -232,  -333,  -333,  -333,  -333,  -333,  -290,  -333,   292,
+    -333,   338,  -333,   -80,    85,   -40,    51,  -333,   -36,  -142,
+    -333,  -333,  -333
   };
 
   const short
   parser::yydefgoto_[] =
   {
-      -1,     2,     3,    97,    98,    99,    61,   310,   311,   260,
-     261,   100,   101,   102,   103,   104,   105,   106,   107,   119,
-     108,   109,   110,   240,    14,   161,     8,   219,    62,   112,
-     113,     4,    76,     5
+      -1,     2,     3,   124,   125,   126,    67,    91,   205,   206,
+     100,   101,   127,   128,   129,   130,   131,   132,   133,   134,
+     157,   135,   136,   137,    95,    19,   199,    11,   280,    68,
+     139,   140,     4,    97,     5,    12,   224,   298,   102,   144,
+     145,    92,    93,   148,   385,   344,   390,   391,   392,   149,
+     150,   104,     6
   };
 
   const short
   parser::yytable_[] =
   {
-      59,    59,     1,   114,    60,    60,     9,    71,    72,   171,
-      74,     6,   307,   308,     7,   166,   167,   128,   129,   130,
-     131,   135,   132,   133,   134,   135,   136,   137,   138,   139,
-     140,   141,   142,   143,   144,   145,   209,   172,   146,    10,
-     224,   225,   147,   148,   173,    56,    11,   148,    58,   178,
-      12,    70,    70,    73,    70,    60,    60,   124,    60,   125,
-     130,   131,    13,   210,   133,    16,   135,   211,   168,   149,
-     126,   174,   127,   150,   212,   213,    64,   151,   152,   214,
-     153,   154,    65,   155,   156,    66,    67,   157,   148,   215,
-      68,    75,   205,   168,   162,   158,   163,   128,   129,   130,
-     131,    77,   232,   133,   164,   135,   127,   233,   241,   127,
-     242,   179,   309,   118,   265,   269,   127,   127,   281,   121,
-     282,   295,   299,   127,   127,   123,   218,   148,   239,   314,
-     318,   127,   319,   320,   201,   127,   204,   324,   227,   127,
-      60,   229,   228,   128,   129,   130,   131,   230,   132,   133,
-     134,   135,   231,   249,   138,   139,   140,   141,   148,   234,
-     144,   145,   262,   270,   -91,   263,   271,   264,   259,   291,
-     316,   292,   279,   148,   128,   129,   130,   131,   293,   132,
-     133,   134,   135,   294,   273,   138,   139,   140,   141,   296,
-     315,   144,   145,   300,   317,   325,   323,   248,   169,    63,
-     280,    60,   290,   220,   148,    15,   301,     0,     0,     0,
-       0,     0,    70,   -91,     0,     0,    60,     0,     0,   236,
-     266,   313,     0,     0,   303,     0,     0,     0,   272,     0,
-     111,     0,    60,   115,   116,   117,   120,     0,     0,     0,
-     322,     0,   122,     0,     0,     0,    70,     0,     0,     0,
-      60,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,   302,     0,
-       0,   165,    60,     0,   170,     0,     0,     0,     0,     0,
-     180,   181,   182,   183,   184,   185,   186,   187,   188,   189,
-     190,   191,   192,   193,   194,   195,   196,   197,   198,   199,
-     200,     0,   202,     0,   206,     0,   207,   208,     0,     0,
-     216,   217,     0,     0,     0,     0,   111,     0,     0,   222,
-       0,   223,   128,   129,   130,   131,     0,   132,   133,   134,
-     135,     0,     0,   138,   139,   140,   141,     0,     0,   144,
-     145,     0,   128,   129,   130,   131,     0,   132,   133,   134,
-     135,     0,   148,   138,   139,   140,   141,     0,     0,   144,
-     145,     0,   245,   246,     0,   250,   251,   243,   252,     0,
-       0,   254,   148,     0,   255,     0,     0,   258,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,   244,   267,   268,
-       0,     0,     0,     0,     0,     0,   274,   275,     0,     0,
-       0,     0,     0,     0,     0,     0,   286,     0,     0,     0,
-     287,     0,     0,     0,     0,    78,   175,     0,     0,     0,
-      80,    81,   176,     0,    82,     0,     0,     0,     0,   297,
-     298,     0,     0,     0,     0,     0,   304,   305,   306,    17,
-      18,     0,     0,    19,     0,     0,    20,    83,    84,     0,
-       0,    22,     0,     0,    85,    86,    87,     0,     0,    26,
-       0,    27,   177,     0,    28,     0,     0,    29,    88,    30,
-      31,     0,    32,     0,    33,    34,     0,     0,    35,     0,
-       0,     0,    36,    37,    38,    39,    89,     0,    90,     0,
-       0,    40,    41,    42,     0,    91,    44,     0,    45,    46,
-      47,    48,    49,    50,     0,     0,     0,    69,    52,     0,
-      92,    53,     0,     0,     0,    54,     0,     0,    55,    56,
-      93,    94,    58,    95,    96,    78,   237,     0,     0,     0,
-      80,    81,     0,     0,    82,     0,     0,   128,   129,   130,
-     131,     0,   132,   133,   134,   135,     0,     0,     0,    17,
-      18,     0,     0,    19,   144,   145,    20,    83,    84,     0,
-       0,    22,     0,     0,    85,    86,    87,   148,     0,    26,
-       0,    27,     0,     0,    28,     0,     0,    29,    88,    30,
-      31,     0,    32,     0,    33,    34,     0,     0,    35,     0,
-       0,     0,    36,    37,    38,    39,    89,     0,    90,     0,
-       0,    40,    41,    42,     0,    91,    44,     0,    45,    46,
-      47,    48,    49,    50,   238,     0,     0,    69,    52,     0,
-      92,    53,     0,     0,     0,    54,     0,     0,    55,    56,
-      93,    94,    58,    95,    96,    78,   278,     0,     0,     0,
-      80,    81,     0,     0,    82,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    17,
-      18,     0,     0,    19,     0,     0,    20,    83,    84,     0,
-       0,    22,     0,     0,    85,    86,    87,     0,     0,    26,
-       0,    27,     0,     0,    28,     0,     0,    29,    88,    30,
-      31,     0,    32,     0,    33,    34,     0,     0,    35,     0,
-       0,     0,    36,    37,    38,    39,    89,     0,    90,     0,
-       0,    40,    41,    42,     0,    91,    44,     0,    45,    46,
-      47,    48,    49,    50,   238,     0,     0,    69,    52,     0,
-      92,    53,     0,     0,     0,    54,     0,     0,    55,    56,
-      93,    94,    58,    95,    96,    78,    79,     0,     0,     0,
-      80,    81,     0,     0,    82,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    17,
-      18,     0,     0,    19,     0,     0,    20,    83,    84,     0,
-       0,    22,     0,     0,    85,    86,    87,     0,     0,    26,
-       0,    27,     0,     0,    28,     0,     0,    29,    88,    30,
-      31,     0,    32,     0,    33,    34,     0,     0,    35,     0,
-       0,     0,    36,    37,    38,    39,    89,     0,    90,     0,
-       0,    40,    41,    42,     0,    91,    44,     0,    45,    46,
-      47,    48,    49,    50,     0,     0,     0,    69,    52,     0,
-      92,    53,     0,     0,     0,    54,     0,     0,    55,    56,
-      93,    94,    58,    95,    96,    78,     0,     0,     0,     0,
-      80,    81,     0,     0,    82,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    17,
-      18,     0,     0,    19,     0,     0,    20,    83,    84,     0,
-       0,    22,     0,     0,    85,    86,    87,     0,     0,    26,
-       0,    27,     0,     0,    28,     0,     0,    29,    88,    30,
-      31,     0,    32,     0,    33,    34,     0,     0,    35,     0,
-       0,     0,    36,    37,    38,    39,    89,     0,    90,     0,
-       0,    40,    41,    42,     0,    91,    44,     0,    45,    46,
-      47,    48,    49,    50,     0,     0,     0,    69,    52,     0,
-      92,    53,     0,     0,     0,    54,   118,     0,    55,    56,
-      93,    94,    58,    95,    96,    78,   312,     0,     0,     0,
-      80,    81,     0,     0,    82,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    17,
-      18,     0,     0,    19,     0,     0,    20,    83,    84,     0,
-       0,    22,     0,     0,    85,    86,    87,     0,     0,    26,
-       0,    27,     0,     0,    28,     0,     0,    29,    88,    30,
-      31,     0,    32,     0,    33,    34,     0,     0,    35,     0,
-       0,     0,    36,    37,    38,    39,    89,     0,    90,     0,
-       0,    40,    41,    42,     0,    91,    44,     0,    45,    46,
-      47,    48,    49,    50,     0,     0,     0,    69,    52,     0,
-      92,    53,     0,     0,     0,    54,     0,     0,    55,    56,
-      93,    94,    58,    95,    96,    78,   321,     0,     0,     0,
-      80,    81,     0,     0,    82,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    17,
-      18,     0,     0,    19,     0,     0,    20,    83,    84,     0,
-       0,    22,     0,     0,    85,    86,    87,     0,     0,    26,
-       0,    27,     0,     0,    28,     0,     0,    29,    88,    30,
-      31,     0,    32,     0,    33,    34,     0,     0,    35,     0,
-       0,     0,    36,    37,    38,    39,    89,     0,    90,     0,
-       0,    40,    41,    42,     0,    91,    44,     0,    45,    46,
-      47,    48,    49,    50,     0,     0,     0,    69,    52,     0,
-      92,    53,     0,     0,     0,    54,     0,     0,    55,    56,
-      93,    94,    58,    95,    96,    78,     0,     0,     0,     0,
-      80,    81,     0,     0,    82,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,    17,
-      18,     0,     0,    19,     0,     0,    20,    83,    84,     0,
-       0,    22,     0,     0,    85,    86,    87,     0,     0,    26,
-       0,    27,     0,     0,    28,     0,     0,    29,    88,    30,
-      31,     0,    32,     0,    33,    34,     0,     0,    35,     0,
-       0,     0,    36,    37,    38,    39,    89,     0,    90,     0,
-       0,    40,    41,    42,     0,    91,    44,     0,    45,    46,
-      47,    48,    49,    50,   203,     0,     0,    69,    52,     0,
-      92,    53,     0,     0,     0,    54,     0,     0,    55,    56,
-      93,    94,    58,    95,    96,     0,     0,     0,    17,    18,
-       0,     0,    19,     0,     0,    20,     0,    21,     0,     0,
-      22,     0,     0,    23,    24,    25,     0,     0,    26,     0,
-      27,     0,     0,    28,     0,     0,    29,     0,    30,    31,
-       0,    32,     0,    33,    34,     0,     0,    35,     0,     0,
-       0,    36,    37,    38,    39,     0,     0,     0,     0,     0,
-      40,    41,    42,     0,    43,    44,     0,    45,    46,    47,
-      48,    49,    50,   247,     0,     0,    69,    52,     0,     0,
-      53,     0,     0,     0,    54,     0,     0,    55,    56,     0,
-      57,    58,     0,     0,     0,     0,     0,    17,    18,     0,
-       0,    19,     0,     0,    20,     0,    21,     0,     0,    22,
-       0,     0,    23,    24,    25,     0,     0,    26,     0,    27,
-       0,     0,    28,     0,     0,    29,     0,    30,    31,     0,
-      32,     0,    33,    34,     0,     0,    35,     0,     0,     0,
-      36,    37,    38,    39,     0,     0,     0,     0,     0,    40,
-      41,    42,     0,    43,    44,     0,    45,    46,    47,    48,
-      49,    50,   289,     0,     0,    69,    52,     0,     0,    53,
-       0,     0,     0,    54,     0,     0,    55,    56,     0,    57,
-      58,     0,     0,     0,     0,     0,    17,    18,     0,     0,
-      19,     0,     0,    20,     0,    21,     0,     0,    22,     0,
-       0,    23,    24,    25,     0,     0,    26,     0,    27,     0,
-       0,    28,     0,     0,    29,     0,    30,    31,     0,    32,
-       0,    33,    34,     0,     0,    35,     0,     0,     0,    36,
-      37,    38,    39,     0,     0,     0,     0,     0,    40,    41,
-      42,     0,    43,    44,     0,    45,    46,    47,    48,    49,
-      50,     0,     0,     0,    69,    52,     0,     0,    53,     0,
-       0,     0,    54,     0,     0,    55,    56,     0,    57,    58,
-     128,   129,   130,   131,     0,   132,   133,   134,   135,   136,
-     137,   138,   139,   140,   141,   142,   143,   144,   145,     0,
-       0,   146,     0,     0,     0,   147,     0,     0,     0,     0,
-     148,     0,   128,   129,   130,   131,     0,   132,   133,   134,
-     135,   136,   137,   138,   139,   140,   141,   142,   143,   144,
-     145,     0,   149,   146,     0,     0,   150,   147,     0,     0,
-     151,   152,   148,   153,   154,     0,   155,   156,     0,     0,
-     157,     0,     0,     0,     0,     0,     0,     0,   158,     0,
-       0,     0,     0,     0,   149,     0,     0,     0,   150,   221,
-       0,     0,   151,   152,     0,   153,   154,     0,   155,   156,
-      17,    18,   157,     0,    19,     0,     0,    20,     0,    21,
-     158,     0,    22,     0,     0,    23,    24,    25,     0,     0,
-      26,   257,    27,     0,     0,    28,     0,     0,    29,     0,
-      30,    31,     0,    32,     0,    33,    34,     0,     0,    35,
-       0,     0,     0,    36,    37,    38,    39,     0,     0,     0,
-       0,     0,    40,    41,    42,     0,    43,    44,     0,    45,
-      46,    47,    48,    49,    50,     0,     0,     0,    51,    52,
-       0,     0,    53,     0,     0,     0,    54,    17,    18,    55,
-      56,    19,    57,    58,    20,     0,    21,     0,     0,    22,
-       0,     0,    23,    24,    25,     0,     0,    26,     0,    27,
-       0,     0,    28,     0,     0,    29,     0,    30,    31,     0,
-      32,     0,    33,    34,     0,     0,    35,     0,     0,     0,
-      36,    37,    38,    39,     0,     0,     0,     0,     0,    40,
-      41,    42,     0,    43,    44,     0,    45,    46,    47,    48,
-      49,    50,     0,     0,     0,    69,    52,     0,     0,    53,
-       0,     0,     0,    54,     0,     0,    55,    56,     0,    57,
-      58,   128,   129,   130,   131,     0,   132,   133,   134,   135,
-     136,   137,   138,   139,   140,   141,   142,   143,   144,   145,
-       0,     0,   146,     0,   159,     0,   147,     0,     0,     0,
-       0,   148,     0,   128,   129,   130,   131,     0,   132,   133,
-     134,   135,   160,     0,   138,   139,   140,   141,     0,     0,
-     144,   145,     0,   149,     0,     0,     0,   150,     0,     0,
-       0,   151,   152,   148,   153,   154,     0,   155,   156,     0,
-       0,   157,     0,     0,     0,   128,   129,   130,   131,   158,
-     132,   133,   134,   135,   136,   137,   138,   139,   140,   141,
-     142,   143,   144,   145,     0,     0,   146,   226,     0,     0,
-     147,     0,     0,     0,     0,   148,     0,   128,   129,   130,
-     131,     0,   132,   133,   134,   135,   136,   137,   138,   139,
-     140,   141,   142,   143,   144,   145,     0,   149,   146,     0,
-       0,   150,   147,     0,     0,   151,   152,   148,   153,   154,
-       0,   155,   156,     0,     0,   157,     0,     0,     0,     0,
-       0,   256,     0,   158,     0,     0,     0,     0,     0,   149,
-       0,     0,     0,   150,     0,     0,     0,   151,   152,     0,
-     153,   154,     0,   155,   156,     0,     0,   157,     0,     0,
-       0,   128,   129,   130,   131,   158,   132,   133,   134,   135,
-     136,   137,   138,   139,   140,   141,   142,   143,   144,   145,
-       0,     0,   146,     0,     0,     0,   147,     0,     0,     0,
-       0,   148,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,   288,     0,     0,     0,     0,
-       0,     0,     0,   149,     0,     0,     0,   150,     0,     0,
-       0,   151,   152,     0,   153,   154,     0,   155,   156,     0,
-       0,   157,     0,     0,     0,   128,   129,   130,   131,   158,
-     132,   133,   134,   135,   136,   137,   138,   139,   140,   141,
-     142,   143,   144,   145,     0,     0,   146,     0,     0,     0,
-     147,     0,     0,     0,     0,   148,     0,   128,   129,   130,
-     131,     0,   132,   133,   134,   135,   136,   137,   138,   139,
-     140,   141,   142,   143,   144,   145,     0,   149,   235,     0,
-       0,   150,   147,     0,     0,   151,   152,   148,   153,   154,
-       0,   155,   156,     0,     0,   157,     0,     0,     0,     0,
-       0,     0,     0,   158,     0,     0,     0,     0,     0,   149,
-       0,     0,     0,   150,     0,     0,     0,   151,   152,     0,
-     153,   154,     0,   155,   156,     0,     0,   157,     0,     0,
-       0,   128,   129,   130,   131,   158,   132,   133,   134,   135,
-     136,   137,   138,   139,   140,   141,   142,   143,   144,   145,
-       0,     0,   276,     0,     0,     0,   147,     0,     0,     0,
-       0,   148,     0,   128,   129,   130,   131,     0,   132,   133,
-     134,   135,   136,   137,   138,   139,   140,   141,   142,   143,
-     144,   145,     0,   149,   146,     0,     0,   150,   147,     0,
-       0,   151,   152,   148,   153,   154,     0,   155,   156,     0,
-       0,   157,     0,     0,     0,     0,     0,     0,     0,   158,
-       0,     0,     0,     0,     0,   149,     0,     0,     0,   150,
-       0,     0,     0,   151,   152,     0,   153,   154,     0,   155,
-     156,     0,     0,     0,     0,     0,     0,   128,   129,   130,
-     131,   158,   132,   133,   134,   135,   136,   137,   138,   139,
-     140,   141,   142,   143,   144,   145,     0,     0,     0,     0,
-       0,     0,   147,     0,     0,     0,     0,   148,     0,   128,
-     129,   130,   131,     0,   132,   133,   134,   135,     0,     0,
-     138,   139,   140,   141,     0,     0,   144,   145,     0,   149,
-       0,     0,     0,   150,     0,     0,     0,   151,   152,   148,
-     153,   154,     0,   155,   156,   128,   129,   130,   131,     0,
-     132,   133,   134,   135,   253,   158,   138,   139,   140,   141,
-       0,     0,   144,   145,     0,   128,   129,   130,   131,     0,
-     132,   133,   134,   135,     0,   148,   138,   139,   140,   141,
-       0,     0,   144,   145,     0,     0,   128,   129,   130,   131,
-     277,   132,   133,   134,   135,   148,     0,   138,   139,   140,
-     141,     0,     0,   144,   145,     0,   128,   129,   130,   131,
-     283,   132,   133,   134,   135,     0,   148,   138,   139,   140,
-     141,     0,     0,   144,   145,     0,     0,     0,     0,     0,
-       0,   284,     0,     0,     0,     0,   148,     0,     0,     0,
+      65,    65,    65,   152,   341,    66,    66,    66,   222,    80,
+      81,   384,    83,   202,   203,   384,   323,   441,   166,   167,
+     168,   169,   146,   170,   171,   172,   173,    13,    99,   176,
+     177,   178,   179,   442,   464,   182,   183,   142,     1,   -99,
+    -223,   444,  -223,   393,   227,   228,    14,  -222,   186,  -222,
+     465,   217,   383,    79,    79,    82,    79,    89,    66,    66,
+     239,    66,    90,   448,   232,   146,    15,   209,   210,   452,
+     349,   394,    79,   218,   426,   211,   143,    66,   395,   303,
+     445,    79,   373,   143,    89,  -273,    66,   221,   -99,    90,
+     440,    62,   233,   427,    64,   446,   219,   229,   467,   234,
+     447,   470,   449,   396,   212,   397,   213,   270,   453,   386,
+     473,   435,   214,   204,   220,   215,   400,   450,   308,   309,
+     173,   143,   451,   454,   207,   266,   235,   428,   455,   468,
+     216,    76,   471,   429,   271,   387,   316,   388,   272,   197,
+     389,   474,   186,   459,   240,   273,   274,   168,   169,   475,
+     275,   171,   433,   173,   201,    16,   481,   198,    77,   387,
+     276,   430,   322,    17,   389,   476,   162,   262,   163,   265,
+     479,   229,   482,    18,    66,   186,   166,   167,   168,   169,
+     434,   170,   171,   172,   173,    20,    21,   176,   177,   178,
+     179,   287,   291,   182,   183,    22,   296,   292,    71,   164,
+      74,   165,   166,   167,   168,   169,   186,    72,   171,   332,
+     173,    75,   166,   167,   168,   169,    73,   170,   171,   172,
+     173,   320,   364,   176,   177,   178,   179,    94,   372,   182,
+     183,   200,   186,   201,   103,   225,    96,   165,   166,   167,
+     168,   169,   186,   170,   171,   172,   173,    99,    98,   176,
+     177,   178,   179,   331,   151,   182,   183,   326,    66,   284,
+     159,   285,   366,   161,  -193,     7,     8,   317,   186,   165,
+       9,   223,   414,    10,   324,   282,   325,   358,   362,   165,
+     165,   279,   374,   327,   375,   401,   408,   201,   165,   283,
+     412,    79,   165,   421,   286,   422,    66,   294,   432,   359,
+     422,   438,   295,   165,   138,   299,   365,   437,   461,   300,
+     165,    66,   416,   153,   154,   155,   158,   480,   297,   165,
+      69,    70,   160,   301,    89,   302,   304,   143,    89,    90,
+     311,   312,   313,    90,   315,   314,   318,   463,   343,   186,
+     166,   167,   168,   169,   345,   170,   171,   172,   173,   347,
+     348,   176,   177,   178,   179,   355,   415,   182,   183,   363,
+     356,    66,   226,   357,   380,   231,   404,   405,   424,   406,
+     186,   241,   242,   243,   244,   245,   246,   247,   248,   249,
+     250,   251,   252,   253,   254,   255,   256,   257,   258,   259,
+     260,   261,   407,   263,   409,   267,   413,   268,   269,   420,
+     423,   277,   278,    89,   425,   443,   439,   138,    90,   456,
+     166,   167,   168,   169,   457,   170,   171,   172,   173,   460,
+     477,   458,   466,   469,   472,   290,   293,   182,   183,   354,
+     338,   342,   399,   306,   230,   307,   281,   208,   483,   478,
+     186,   147,   431,   166,   167,   168,   169,   484,   170,   171,
+     172,   173,   174,   175,   176,   177,   178,   179,   180,   181,
+     182,   183,     0,     0,   184,     0,     0,     0,   185,     0,
+       0,     0,     0,   186,     0,     0,   328,   329,     0,   333,
+     334,     0,   335,     0,     0,   337,     0,     0,     0,     0,
+       0,     0,   339,     0,   340,   187,     0,     0,     0,   188,
+       0,     0,     0,   189,   190,   346,   191,   192,   138,   193,
+     194,   350,     0,   195,   353,     0,     0,     0,     0,     0,
+       0,   196,     0,     0,     0,   360,   361,     0,     0,     0,
+       0,     0,   367,   368,     0,     0,     0,     0,     0,   156,
+       0,     0,   379,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,   138,     0,     0,     0,   402,     0,
+       0,   105,   236,     0,     0,     0,   107,   108,   237,     0,
+     109,     0,     0,     0,     0,   410,   411,     0,     0,     0,
+       0,     0,   417,   418,   419,    23,    24,     0,     0,    25,
+       0,     0,    26,   110,   111,     0,     0,    28,     0,     0,
+     112,   113,   114,     0,     0,    32,     0,    33,   238,     0,
+      34,     0,     0,    35,   115,    36,    37,     0,    38,     0,
+      39,    40,     0,     0,    41,     0,     0,     0,    42,    43,
+      44,    45,   116,     0,   117,     0,     0,    46,    47,    48,
+       0,   118,    50,     0,    51,    52,    53,    54,    55,    56,
+       0,     0,     0,    78,    58,     0,   119,    59,     0,     0,
+       0,    60,     0,     0,    61,    62,   120,   121,    64,   122,
+     123,   105,   321,     0,     0,     0,   107,   108,     0,     0,
+     109,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    23,    24,     0,     0,    25,
+       0,     0,    26,   110,   111,     0,     0,    28,     0,     0,
+     112,   113,   114,     0,     0,    32,     0,    33,     0,     0,
+      34,     0,     0,    35,   115,    36,    37,     0,    38,     0,
+      39,    40,     0,     0,    41,     0,     0,     0,    42,    43,
+      44,    45,   116,     0,   117,     0,     0,    46,    47,    48,
+       0,   118,    50,     0,    51,    52,    53,    54,    55,    56,
+      94,     0,     0,    78,    58,     0,   119,    59,     0,     0,
+       0,    60,     0,     0,    61,    62,   120,   121,    64,   122,
+     123,   105,   371,     0,     0,     0,   107,   108,     0,     0,
+     109,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    23,    24,     0,     0,    25,
+       0,     0,    26,   110,   111,     0,     0,    28,     0,     0,
+     112,   113,   114,     0,     0,    32,     0,    33,     0,     0,
+      34,     0,     0,    35,   115,    36,    37,     0,    38,     0,
+      39,    40,     0,     0,    41,     0,     0,     0,    42,    43,
+      44,    45,   116,     0,   117,     0,     0,    46,    47,    48,
+       0,   118,    50,     0,    51,    52,    53,    54,    55,    56,
+      94,     0,     0,    78,    58,     0,   119,    59,     0,     0,
+       0,    60,     0,     0,    61,    62,   120,   121,    64,   122,
+     123,   105,   106,     0,     0,     0,   107,   108,     0,     0,
+     109,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    23,    24,     0,     0,    25,
+       0,     0,    26,   110,   111,     0,     0,    28,     0,     0,
+     112,   113,   114,     0,     0,    32,     0,    33,     0,     0,
+      34,     0,     0,    35,   115,    36,    37,     0,    38,     0,
+      39,    40,     0,     0,    41,     0,     0,     0,    42,    43,
+      44,    45,   116,     0,   117,     0,     0,    46,    47,    48,
+       0,   118,    50,     0,    51,    52,    53,    54,    55,    56,
+       0,     0,     0,    78,    58,     0,   119,    59,     0,     0,
+       0,    60,     0,     0,    61,    62,   120,   121,    64,   122,
+     123,   105,     0,     0,     0,     0,   107,   108,     0,     0,
+     109,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    23,    24,     0,     0,    25,
+       0,     0,    26,   110,   111,     0,     0,    28,     0,     0,
+     112,   113,   114,     0,     0,    32,     0,    33,     0,     0,
+      34,     0,     0,    35,   115,    36,    37,     0,    38,     0,
+      39,    40,     0,     0,    41,     0,     0,     0,    42,    43,
+      44,    45,   116,     0,   117,     0,     0,    46,    47,    48,
+       0,   118,    50,     0,    51,    52,    53,    54,    55,    56,
+       0,     0,     0,    78,    58,     0,   119,    59,     0,     0,
+       0,    60,   156,     0,    61,    62,   120,   121,    64,   122,
+     123,   105,   436,     0,     0,     0,   107,   108,     0,     0,
+     109,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    23,    24,     0,     0,    25,
+       0,     0,    26,   110,   111,     0,     0,    28,     0,     0,
+     112,   113,   114,     0,     0,    32,     0,    33,     0,     0,
+      34,     0,     0,    35,   115,    36,    37,     0,    38,     0,
+      39,    40,     0,     0,    41,     0,     0,     0,    42,    43,
+      44,    45,   116,     0,   117,     0,     0,    46,    47,    48,
+       0,   118,    50,     0,    51,    52,    53,    54,    55,    56,
+       0,     0,     0,    78,    58,     0,   119,    59,     0,     0,
+       0,    60,     0,     0,    61,    62,   120,   121,    64,   122,
+     123,   105,   462,     0,     0,     0,   107,   108,     0,     0,
+     109,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    23,    24,     0,     0,    25,
+       0,     0,    26,   110,   111,     0,     0,    28,     0,     0,
+     112,   113,   114,     0,     0,    32,     0,    33,     0,     0,
+      34,     0,     0,    35,   115,    36,    37,     0,    38,     0,
+      39,    40,     0,     0,    41,     0,     0,     0,    42,    43,
+      44,    45,   116,     0,   117,     0,     0,    46,    47,    48,
+       0,   118,    50,     0,    51,    52,    53,    54,    55,    56,
+       0,     0,     0,    78,    58,     0,   119,    59,     0,     0,
+       0,    60,     0,     0,    61,    62,   120,   121,    64,   122,
+     123,   105,     0,     0,     0,     0,   107,   108,     0,     0,
+     109,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    23,    24,     0,     0,    25,
+       0,     0,    26,   110,   111,     0,     0,    28,     0,     0,
+     112,   113,   114,     0,     0,    32,     0,    33,     0,     0,
+      34,     0,     0,    35,   115,    36,    37,     0,    38,     0,
+      39,    40,     0,     0,    41,     0,     0,     0,    42,    43,
+      44,    45,   116,     0,   117,     0,     0,    46,    47,    48,
+       0,   118,    50,     0,    51,    52,    53,    54,    55,    56,
+       0,     0,     0,    78,    58,     0,   119,    59,     0,     0,
+       0,    60,     0,     0,    61,    62,   120,   121,    64,   122,
+     123,   288,     0,     0,     0,     0,   202,   203,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,   285
+       0,     0,     0,     0,     0,    23,    24,     0,     0,    25,
+       0,     0,    26,     0,    27,     0,     0,    28,     0,     0,
+     112,   113,   114,     0,     0,    32,     0,    33,     0,     0,
+      34,     0,     0,    35,   115,    36,    37,     0,    38,   289,
+      39,    40,     0,     0,    41,     0,     0,     0,    42,    43,
+      44,    45,     0,     0,   117,     0,     0,    46,    47,    48,
+       0,    49,    50,     0,    51,    52,    53,    54,    55,    56,
+     141,     0,     0,    78,    58,     0,   119,    59,     0,     0,
+       0,    60,     0,     0,    61,    62,   120,   121,    64,   122,
+       0,     0,     0,     0,    23,    24,     0,     0,    25,     0,
+       0,    26,     0,    27,     0,     0,    28,     0,     0,    29,
+      30,    31,     0,     0,    32,     0,    33,     0,     0,    34,
+       0,     0,    35,     0,    36,    37,     0,    38,     0,    39,
+      40,     0,     0,    41,     0,     0,     0,    42,    43,    44,
+      45,     0,     0,     0,     0,     0,    46,    47,    48,     0,
+      49,    50,     0,    51,    52,    53,    54,    55,    56,   264,
+       0,     0,    78,    58,     0,     0,    59,     0,     0,     0,
+      60,     0,     0,    61,    62,     0,    63,    64,     0,     0,
+       0,     0,     0,    23,    24,     0,     0,    25,     0,     0,
+      26,     0,    27,     0,     0,    28,     0,     0,    29,    30,
+      31,     0,     0,    32,     0,    33,     0,     0,    34,     0,
+       0,    35,     0,    36,    37,     0,    38,     0,    39,    40,
+       0,     0,    41,     0,     0,     0,    42,    43,    44,    45,
+       0,     0,     0,     0,     0,    46,    47,    48,     0,    49,
+      50,     0,    51,    52,    53,    54,    55,    56,   330,     0,
+       0,    78,    58,     0,     0,    59,     0,     0,     0,    60,
+       0,     0,    61,    62,     0,    63,    64,     0,     0,     0,
+       0,     0,    23,    24,     0,     0,    25,     0,     0,    26,
+       0,    27,     0,     0,    28,     0,     0,    29,    30,    31,
+       0,     0,    32,     0,    33,     0,     0,    34,     0,     0,
+      35,     0,    36,    37,     0,    38,     0,    39,    40,     0,
+       0,    41,     0,     0,     0,    42,    43,    44,    45,     0,
+       0,     0,     0,     0,    46,    47,    48,     0,    49,    50,
+       0,    51,    52,    53,    54,    55,    56,     0,     0,     0,
+      78,    58,     0,     0,    59,     0,     0,     0,    60,     0,
+       0,    61,    62,     0,    63,    64,   166,   167,   168,   169,
+       0,   170,   171,   172,   173,   174,   175,   176,   177,   178,
+     179,   180,   181,   182,   183,     0,     0,   184,     0,     0,
+       0,   185,     0,     0,     0,     0,   186,     0,   166,   167,
+     168,   169,     0,   170,   171,   172,   173,   174,   175,   176,
+     177,   178,   179,   180,   181,   182,   183,     0,   187,   184,
+       0,     0,   188,   185,     0,     0,   189,   190,   186,   191,
+     192,     0,   193,   194,     0,     0,   195,     0,     0,     0,
+       0,     0,     0,     0,   196,     0,     0,     0,     0,     0,
+     187,     0,     0,     0,   188,   305,     0,     0,   189,   190,
+       0,   191,   192,     0,   193,   194,    23,    24,   195,     0,
+      25,     0,     0,    26,     0,    27,   196,     0,    28,   143,
+       0,    84,    85,    86,     0,     0,    32,   352,    33,     0,
+       0,    34,     0,     0,    35,     0,    36,    37,     0,    38,
+      87,    39,    40,     0,     0,    41,     0,     0,     0,    42,
+      43,    44,    45,     0,     0,     0,     0,     0,    46,    47,
+      48,     0,    49,    50,     0,    51,    52,    53,    54,    55,
+      56,     0,     0,     0,    78,    58,     0,     0,    59,     0,
+       0,     0,    60,    23,    24,    61,    62,    25,    88,    64,
+      26,     0,    27,     0,     0,    28,     0,     0,    84,    85,
+      86,     0,     0,    32,     0,    33,     0,     0,    34,     0,
+       0,    35,     0,    36,    37,     0,    38,    87,    39,    40,
+       0,     0,    41,     0,     0,     0,    42,    43,    44,    45,
+       0,     0,     0,     0,     0,    46,    47,    48,     0,    49,
+      50,     0,    51,    52,    53,    54,    55,    56,     0,     0,
+       0,    78,    58,     0,     0,    59,     0,     0,     0,    60,
+      23,    24,    61,    62,    25,    88,    64,    26,     0,    27,
+       0,     0,    28,     0,     0,    29,    30,    31,     0,     0,
+      32,     0,    33,     0,     0,    34,     0,     0,    35,     0,
+      36,    37,     0,    38,     0,    39,    40,     0,     0,    41,
+       0,     0,     0,    42,    43,    44,    45,     0,     0,     0,
+       0,     0,    46,    47,    48,     0,    49,    50,     0,    51,
+      52,    53,    54,    55,    56,     0,     0,     0,    57,    58,
+       0,     0,    59,     0,     0,     0,    60,    23,    24,    61,
+      62,    25,    63,    64,    26,     0,    27,     0,     0,    28,
+       0,     0,    29,    30,    31,     0,     0,    32,     0,    33,
+       0,     0,    34,     0,     0,    35,     0,    36,    37,     0,
+      38,     0,    39,    40,     0,     0,    41,     0,     0,     0,
+      42,    43,    44,    45,     0,     0,     0,     0,     0,    46,
+      47,    48,     0,    49,    50,     0,    51,    52,    53,    54,
+      55,    56,     0,     0,     0,    78,    58,     0,     0,    59,
+       0,     0,     0,    60,     0,     0,    61,    62,   381,    63,
+      64,     0,   166,   167,   168,   169,     0,   170,   171,   172,
+     173,   174,   175,   176,   177,   178,   179,   180,   181,   182,
+     183,     0,     0,   184,     0,     0,     0,   185,     0,     0,
+     382,     0,   186,     0,   166,   167,   168,   169,     0,   170,
+     171,   172,   173,   174,   175,   176,   177,   178,   179,   180,
+     181,   182,   183,     0,   187,   184,     0,     0,   188,   185,
+       0,     0,   189,   190,   186,   191,   192,     0,   193,   194,
+       0,     0,   195,     0,     0,     0,     0,     0,     0,     0,
+     196,     0,     0,     0,     0,     0,   187,     0,     0,     0,
+     188,     0,     0,     0,   189,   190,     0,   191,   192,     0,
+     193,   194,     0,     0,   195,     0,     0,     0,     0,   398,
+       0,     0,   196,   166,   167,   168,   169,     0,   170,   171,
+     172,   173,   174,   175,   176,   177,   178,   179,   180,   181,
+     182,   183,     0,     0,   184,     0,     0,     0,   185,     0,
+       0,     0,     0,   186,     0,   166,   167,   168,   169,     0,
+     170,   171,   172,   173,   174,   175,   176,   177,   178,   179,
+     180,   181,   182,   183,     0,   187,   184,     0,   197,   188,
+     185,     0,     0,   189,   190,   186,   191,   192,     0,   193,
+     194,     0,     0,   195,     0,     0,   198,     0,     0,     0,
+       0,   196,     0,     0,     0,     0,     0,   187,     0,     0,
+       0,   188,     0,     0,     0,   189,   190,     0,   191,   192,
+       0,   193,   194,     0,     0,   195,     0,     0,     0,   166,
+     167,   168,   169,   196,   170,   171,   172,   173,   174,   175,
+     176,   177,   178,   179,   180,   181,   182,   183,     0,     0,
+     184,   310,     0,     0,   185,     0,     0,     0,     0,   186,
+       0,   166,   167,   168,   169,     0,   170,   171,   172,   173,
+     174,   175,   176,   177,   178,   179,   180,   181,   182,   183,
+       0,   187,   184,     0,     0,   188,   185,     0,     0,   189,
+     190,   186,   191,   192,     0,   193,   194,     0,     0,   195,
+       0,     0,     0,     0,     0,   351,     0,   196,     0,     0,
+       0,     0,     0,   187,     0,     0,     0,   188,     0,     0,
+       0,   189,   190,     0,   191,   192,     0,   193,   194,     0,
+       0,   195,     0,     0,     0,   166,   167,   168,   169,   196,
+     170,   171,   172,   173,   174,   175,   176,   177,   178,   179,
+     180,   181,   182,   183,     0,     0,   184,     0,     0,     0,
+     185,     0,     0,     0,     0,   186,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,   403,
+       0,     0,     0,     0,     0,     0,     0,   187,     0,     0,
+       0,   188,     0,     0,     0,   189,   190,     0,   191,   192,
+       0,   193,   194,     0,     0,   195,     0,     0,     0,   166,
+     167,   168,   169,   196,   170,   171,   172,   173,   174,   175,
+     176,   177,   178,   179,   180,   181,   182,   183,     0,     0,
+     184,     0,     0,     0,   185,     0,     0,     0,     0,   186,
+       0,   166,   167,   168,   169,     0,   170,   171,   172,   173,
+     174,   175,   176,   177,   178,   179,   180,   181,   182,   183,
+       0,   187,   319,     0,     0,   188,   185,     0,     0,   189,
+     190,   186,   191,   192,     0,   193,   194,     0,     0,   195,
+       0,     0,     0,     0,     0,     0,     0,   196,     0,     0,
+       0,     0,     0,   187,     0,     0,     0,   188,     0,     0,
+       0,   189,   190,     0,   191,   192,     0,   193,   194,     0,
+       0,   195,     0,     0,     0,   166,   167,   168,   169,   196,
+     170,   171,   172,   173,   174,   175,   176,   177,   178,   179,
+     180,   181,   182,   183,     0,     0,   369,     0,     0,     0,
+     185,     0,     0,     0,     0,   186,     0,   166,   167,   168,
+     169,     0,   170,   171,   172,   173,   174,   175,   176,   177,
+     178,   179,   180,   181,   182,   183,     0,   187,   184,     0,
+       0,   188,   185,     0,     0,   189,   190,   186,   191,   192,
+       0,   193,   194,     0,     0,   195,     0,     0,     0,     0,
+       0,     0,     0,   196,     0,     0,     0,     0,     0,   187,
+       0,     0,     0,   188,     0,     0,     0,   189,   190,     0,
+     191,   192,     0,   193,   194,     0,     0,     0,     0,     0,
+       0,   166,   167,   168,   169,   196,   170,   171,   172,   173,
+     174,   175,   176,   177,   178,   179,   180,   181,   182,   183,
+       0,     0,     0,     0,     0,     0,   185,     0,     0,     0,
+       0,   186,     0,   166,   167,   168,   169,     0,   170,   171,
+     172,   173,     0,     0,   176,   177,   178,   179,     0,     0,
+     182,   183,     0,   187,     0,     0,     0,   188,     0,     0,
+       0,   189,   190,   186,   191,   192,     0,   193,   194,   166,
+     167,   168,   169,     0,   170,   171,   172,   173,   336,   196,
+     176,   177,   178,   179,     0,     0,   182,   183,     0,   166,
+     167,   168,   169,     0,   170,   171,   172,   173,     0,   186,
+     176,   177,   178,   179,     0,     0,   182,   183,     0,     0,
+     166,   167,   168,   169,   370,   170,   171,   172,   173,   186,
+       0,   176,   177,   178,   179,     0,     0,   182,   183,     0,
+     166,   167,   168,   169,   376,   170,   171,   172,   173,     0,
+     186,   176,   177,   178,   179,     0,     0,   182,   183,     0,
+       0,     0,     0,     0,     0,   377,     0,     0,     0,     0,
+     186,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,   378
   };
 
   const short
   parser::yycheck_[] =
   {
-      14,    15,    41,    78,    14,    15,     0,    65,    66,    27,
-      68,   100,     8,     9,   103,    51,    52,     8,     9,    10,
-      11,    16,    13,    14,    15,    16,    17,    18,    19,    20,
-      21,    22,    23,    24,    25,    26,    33,    55,    29,     7,
-      51,    52,    33,    38,    62,   107,    94,    38,   110,   124,
-      65,    65,    66,    67,    68,    65,    66,     3,    68,     5,
-      10,    11,    61,    60,    14,    74,    16,    64,   104,    60,
-       4,    89,     6,    64,    71,    72,    54,    68,    69,    76,
-      71,    72,     5,    74,    75,     5,   102,    78,    38,    86,
-      77,     3,   150,   104,     4,    86,     6,     8,     9,    10,
-      11,     3,   177,    14,     4,    16,     6,     4,     3,     6,
-       5,   125,   108,   104,     4,     4,     6,     6,     3,     3,
-       5,     4,     4,     6,     6,     3,   105,    38,   203,     4,
-       4,     6,     6,     4,   148,     6,   150,     4,     6,     6,
-     150,     4,     6,     8,     9,    10,    11,     6,    13,    14,
-      15,    16,     4,   211,    19,    20,    21,    22,    38,     5,
-      25,    26,   109,     4,    29,   109,   241,   109,   226,     4,
-     108,     4,   247,    38,     8,     9,    10,    11,     4,    13,
-      14,    15,    16,     4,   242,    19,    20,    21,    22,     3,
-       3,    25,    26,     4,   108,     4,   319,   211,   120,    15,
-     247,   211,   260,   163,    38,    12,   281,    -1,    -1,    -1,
-      -1,    -1,   226,    78,    -1,    -1,   226,    -1,    -1,    53,
-     234,   296,    -1,    -1,   282,    -1,    -1,    -1,   242,    -1,
-      77,    -1,   242,    80,    81,    82,    83,    -1,    -1,    -1,
-     315,    -1,    89,    -1,    -1,    -1,   260,    -1,    -1,    -1,
-     260,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,   282,    -1,
-      -1,   118,   282,    -1,   121,    -1,    -1,    -1,    -1,    -1,
-     127,   128,   129,   130,   131,   132,   133,   134,   135,   136,
-     137,   138,   139,   140,   141,   142,   143,   144,   145,   146,
-     147,    -1,   149,    -1,   151,    -1,   153,   154,    -1,    -1,
-     157,   158,    -1,    -1,    -1,    -1,   163,    -1,    -1,   166,
-      -1,   168,     8,     9,    10,    11,    -1,    13,    14,    15,
-      16,    -1,    -1,    19,    20,    21,    22,    -1,    -1,    25,
-      26,    -1,     8,     9,    10,    11,    -1,    13,    14,    15,
-      16,    -1,    38,    19,    20,    21,    22,    -1,    -1,    25,
-      26,    -1,   209,   210,    -1,   212,   213,    53,   215,    -1,
-      -1,   218,    38,    -1,   221,    -1,    -1,   224,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    53,   235,   236,
-      -1,    -1,    -1,    -1,    -1,    -1,   243,   244,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,   253,    -1,    -1,    -1,
-     257,    -1,    -1,    -1,    -1,     3,     4,    -1,    -1,    -1,
-       8,     9,    10,    -1,    12,    -1,    -1,    -1,    -1,   276,
-     277,    -1,    -1,    -1,    -1,    -1,   283,   284,   285,    27,
-      28,    -1,    -1,    31,    -1,    -1,    34,    35,    36,    -1,
-      -1,    39,    -1,    -1,    42,    43,    44,    -1,    -1,    47,
-      -1,    49,    50,    -1,    52,    -1,    -1,    55,    56,    57,
-      58,    -1,    60,    -1,    62,    63,    -1,    -1,    66,    -1,
-      -1,    -1,    70,    71,    72,    73,    74,    -1,    76,    -1,
-      -1,    79,    80,    81,    -1,    83,    84,    -1,    86,    87,
-      88,    89,    90,    91,    -1,    -1,    -1,    95,    96,    -1,
-      98,    99,    -1,    -1,    -1,   103,    -1,    -1,   106,   107,
-     108,   109,   110,   111,   112,     3,     4,    -1,    -1,    -1,
-       8,     9,    -1,    -1,    12,    -1,    -1,     8,     9,    10,
-      11,    -1,    13,    14,    15,    16,    -1,    -1,    -1,    27,
-      28,    -1,    -1,    31,    25,    26,    34,    35,    36,    -1,
-      -1,    39,    -1,    -1,    42,    43,    44,    38,    -1,    47,
-      -1,    49,    -1,    -1,    52,    -1,    -1,    55,    56,    57,
-      58,    -1,    60,    -1,    62,    63,    -1,    -1,    66,    -1,
-      -1,    -1,    70,    71,    72,    73,    74,    -1,    76,    -1,
-      -1,    79,    80,    81,    -1,    83,    84,    -1,    86,    87,
-      88,    89,    90,    91,    92,    -1,    -1,    95,    96,    -1,
-      98,    99,    -1,    -1,    -1,   103,    -1,    -1,   106,   107,
-     108,   109,   110,   111,   112,     3,     4,    -1,    -1,    -1,
-       8,     9,    -1,    -1,    12,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    27,
-      28,    -1,    -1,    31,    -1,    -1,    34,    35,    36,    -1,
-      -1,    39,    -1,    -1,    42,    43,    44,    -1,    -1,    47,
-      -1,    49,    -1,    -1,    52,    -1,    -1,    55,    56,    57,
-      58,    -1,    60,    -1,    62,    63,    -1,    -1,    66,    -1,
-      -1,    -1,    70,    71,    72,    73,    74,    -1,    76,    -1,
-      -1,    79,    80,    81,    -1,    83,    84,    -1,    86,    87,
-      88,    89,    90,    91,    92,    -1,    -1,    95,    96,    -1,
-      98,    99,    -1,    -1,    -1,   103,    -1,    -1,   106,   107,
-     108,   109,   110,   111,   112,     3,     4,    -1,    -1,    -1,
-       8,     9,    -1,    -1,    12,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    27,
-      28,    -1,    -1,    31,    -1,    -1,    34,    35,    36,    -1,
-      -1,    39,    -1,    -1,    42,    43,    44,    -1,    -1,    47,
-      -1,    49,    -1,    -1,    52,    -1,    -1,    55,    56,    57,
-      58,    -1,    60,    -1,    62,    63,    -1,    -1,    66,    -1,
-      -1,    -1,    70,    71,    72,    73,    74,    -1,    76,    -1,
-      -1,    79,    80,    81,    -1,    83,    84,    -1,    86,    87,
-      88,    89,    90,    91,    -1,    -1,    -1,    95,    96,    -1,
-      98,    99,    -1,    -1,    -1,   103,    -1,    -1,   106,   107,
-     108,   109,   110,   111,   112,     3,    -1,    -1,    -1,    -1,
-       8,     9,    -1,    -1,    12,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    27,
-      28,    -1,    -1,    31,    -1,    -1,    34,    35,    36,    -1,
-      -1,    39,    -1,    -1,    42,    43,    44,    -1,    -1,    47,
-      -1,    49,    -1,    -1,    52,    -1,    -1,    55,    56,    57,
-      58,    -1,    60,    -1,    62,    63,    -1,    -1,    66,    -1,
-      -1,    -1,    70,    71,    72,    73,    74,    -1,    76,    -1,
-      -1,    79,    80,    81,    -1,    83,    84,    -1,    86,    87,
-      88,    89,    90,    91,    -1,    -1,    -1,    95,    96,    -1,
-      98,    99,    -1,    -1,    -1,   103,   104,    -1,   106,   107,
-     108,   109,   110,   111,   112,     3,     4,    -1,    -1,    -1,
-       8,     9,    -1,    -1,    12,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    27,
-      28,    -1,    -1,    31,    -1,    -1,    34,    35,    36,    -1,
-      -1,    39,    -1,    -1,    42,    43,    44,    -1,    -1,    47,
-      -1,    49,    -1,    -1,    52,    -1,    -1,    55,    56,    57,
-      58,    -1,    60,    -1,    62,    63,    -1,    -1,    66,    -1,
-      -1,    -1,    70,    71,    72,    73,    74,    -1,    76,    -1,
-      -1,    79,    80,    81,    -1,    83,    84,    -1,    86,    87,
-      88,    89,    90,    91,    -1,    -1,    -1,    95,    96,    -1,
-      98,    99,    -1,    -1,    -1,   103,    -1,    -1,   106,   107,
-     108,   109,   110,   111,   112,     3,     4,    -1,    -1,    -1,
-       8,     9,    -1,    -1,    12,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    27,
-      28,    -1,    -1,    31,    -1,    -1,    34,    35,    36,    -1,
-      -1,    39,    -1,    -1,    42,    43,    44,    -1,    -1,    47,
-      -1,    49,    -1,    -1,    52,    -1,    -1,    55,    56,    57,
-      58,    -1,    60,    -1,    62,    63,    -1,    -1,    66,    -1,
-      -1,    -1,    70,    71,    72,    73,    74,    -1,    76,    -1,
-      -1,    79,    80,    81,    -1,    83,    84,    -1,    86,    87,
-      88,    89,    90,    91,    -1,    -1,    -1,    95,    96,    -1,
-      98,    99,    -1,    -1,    -1,   103,    -1,    -1,   106,   107,
-     108,   109,   110,   111,   112,     3,    -1,    -1,    -1,    -1,
-       8,     9,    -1,    -1,    12,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    27,
-      28,    -1,    -1,    31,    -1,    -1,    34,    35,    36,    -1,
-      -1,    39,    -1,    -1,    42,    43,    44,    -1,    -1,    47,
-      -1,    49,    -1,    -1,    52,    -1,    -1,    55,    56,    57,
-      58,    -1,    60,    -1,    62,    63,    -1,    -1,    66,    -1,
-      -1,    -1,    70,    71,    72,    73,    74,    -1,    76,    -1,
-      -1,    79,    80,    81,    -1,    83,    84,    -1,    86,    87,
-      88,    89,    90,    91,     3,    -1,    -1,    95,    96,    -1,
-      98,    99,    -1,    -1,    -1,   103,    -1,    -1,   106,   107,
-     108,   109,   110,   111,   112,    -1,    -1,    -1,    27,    28,
-      -1,    -1,    31,    -1,    -1,    34,    -1,    36,    -1,    -1,
-      39,    -1,    -1,    42,    43,    44,    -1,    -1,    47,    -1,
-      49,    -1,    -1,    52,    -1,    -1,    55,    -1,    57,    58,
-      -1,    60,    -1,    62,    63,    -1,    -1,    66,    -1,    -1,
-      -1,    70,    71,    72,    73,    -1,    -1,    -1,    -1,    -1,
-      79,    80,    81,    -1,    83,    84,    -1,    86,    87,    88,
-      89,    90,    91,     3,    -1,    -1,    95,    96,    -1,    -1,
-      99,    -1,    -1,    -1,   103,    -1,    -1,   106,   107,    -1,
-     109,   110,    -1,    -1,    -1,    -1,    -1,    27,    28,    -1,
-      -1,    31,    -1,    -1,    34,    -1,    36,    -1,    -1,    39,
-      -1,    -1,    42,    43,    44,    -1,    -1,    47,    -1,    49,
-      -1,    -1,    52,    -1,    -1,    55,    -1,    57,    58,    -1,
-      60,    -1,    62,    63,    -1,    -1,    66,    -1,    -1,    -1,
-      70,    71,    72,    73,    -1,    -1,    -1,    -1,    -1,    79,
-      80,    81,    -1,    83,    84,    -1,    86,    87,    88,    89,
-      90,    91,     3,    -1,    -1,    95,    96,    -1,    -1,    99,
-      -1,    -1,    -1,   103,    -1,    -1,   106,   107,    -1,   109,
-     110,    -1,    -1,    -1,    -1,    -1,    27,    28,    -1,    -1,
-      31,    -1,    -1,    34,    -1,    36,    -1,    -1,    39,    -1,
-      -1,    42,    43,    44,    -1,    -1,    47,    -1,    49,    -1,
+      19,    20,    21,   105,   294,    19,    20,    21,   150,    72,
+      73,   343,    75,     8,     9,   347,   264,    47,     8,     9,
+      10,    11,   102,    13,    14,    15,    16,     0,    91,    19,
+      20,    21,    22,    63,    47,    25,    26,   100,    41,    29,
+       4,    34,     6,    27,    51,    52,     7,     4,    38,     6,
+      63,    37,   342,    72,    73,    74,    75,    76,    72,    73,
+     162,    75,    76,    34,    27,   145,    94,    37,    38,    34,
+     302,    55,    91,    59,    48,    45,    40,    91,    62,   221,
+      73,   100,   330,    40,   103,     4,   100,     6,    78,   103,
+     422,   107,    55,    67,   110,    88,    82,   104,    45,    62,
+      93,    45,    73,    87,    74,    89,    76,    33,    73,    46,
+      45,   401,    82,   108,   100,    85,   348,    88,    51,    52,
+      16,    40,    93,    88,   143,   188,    89,   101,    93,    76,
+     100,     3,    76,    46,    60,    72,   238,    74,    64,    31,
+      77,    76,    38,   433,   163,    71,    72,    10,    11,    47,
+      76,    14,     4,    16,     6,    65,    47,    49,    30,    72,
+      86,    74,   264,    94,    77,    63,     3,   186,     5,   188,
+     460,   104,    63,    61,   188,    38,     8,     9,    10,    11,
+      32,    13,    14,    15,    16,    16,    17,    19,    20,    21,
+      22,   210,   211,    25,    26,    74,   215,   211,    54,     4,
+     102,     6,     8,     9,    10,    11,    38,     5,    14,   272,
+      16,    77,     8,     9,    10,    11,     5,    13,    14,    15,
+      16,    53,   324,    19,    20,    21,    22,    92,   330,    25,
+      26,     4,    38,     6,     6,     4,     3,     6,     8,     9,
+      10,    11,    38,    13,    14,    15,    16,   310,     3,    19,
+      20,    21,    22,   272,     4,    25,    26,    53,   272,     4,
+       3,     6,   325,     3,    94,    95,    96,     4,    38,     6,
+     100,   106,   374,   103,     3,   108,     5,     4,     4,     6,
+       6,   105,     3,    53,     5,     4,     4,     6,     6,   108,
+       4,   310,     6,     4,     3,     6,   310,    76,     4,   318,
+       6,     4,    70,     6,    98,     3,   325,   409,     4,    70,
+       6,   325,   375,   107,   108,   109,   110,     4,    77,     6,
+      20,    21,   116,    70,   343,     3,    90,    40,   347,   343,
+       6,     6,     4,   347,     4,     6,     5,   439,     3,    38,
+       8,     9,    10,    11,    39,    13,    14,    15,    16,     3,
+       3,    19,    20,    21,    22,   109,   375,    25,    26,     4,
+     109,   375,   156,   109,     4,   159,     4,     4,   387,     4,
+      38,   165,   166,   167,   168,   169,   170,   171,   172,   173,
+     174,   175,   176,   177,   178,   179,   180,   181,   182,   183,
+     184,   185,     4,   187,     3,   189,     4,   191,   192,    32,
+      66,   195,   196,   422,    46,    66,     3,   201,   422,    66,
+       8,     9,    10,    11,    46,    13,    14,    15,    16,     4,
+      66,    85,    28,    28,    28,   211,   211,    25,    26,   310,
+     285,   295,   347,   227,   158,   229,   201,   145,   478,   458,
+      38,   103,   391,     8,     9,    10,    11,   483,    13,    14,
+      15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
+      25,    26,    -1,    -1,    29,    -1,    -1,    -1,    33,    -1,
+      -1,    -1,    -1,    38,    -1,    -1,   270,   271,    -1,   273,
+     274,    -1,   276,    -1,    -1,   279,    -1,    -1,    -1,    -1,
+      -1,    -1,   286,    -1,   288,    60,    -1,    -1,    -1,    64,
+      -1,    -1,    -1,    68,    69,   299,    71,    72,   302,    74,
+      75,   305,    -1,    78,   308,    -1,    -1,    -1,    -1,    -1,
+      -1,    86,    -1,    -1,    -1,   319,   320,    -1,    -1,    -1,
+      -1,    -1,   326,   327,    -1,    -1,    -1,    -1,    -1,   104,
+      -1,    -1,   336,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,   348,    -1,    -1,    -1,   352,    -1,
+      -1,     3,     4,    -1,    -1,    -1,     8,     9,    10,    -1,
+      12,    -1,    -1,    -1,    -1,   369,   370,    -1,    -1,    -1,
+      -1,    -1,   376,   377,   378,    27,    28,    -1,    -1,    31,
+      -1,    -1,    34,    35,    36,    -1,    -1,    39,    -1,    -1,
+      42,    43,    44,    -1,    -1,    47,    -1,    49,    50,    -1,
+      52,    -1,    -1,    55,    56,    57,    58,    -1,    60,    -1,
+      62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,    71,
+      72,    73,    74,    -1,    76,    -1,    -1,    79,    80,    81,
+      -1,    83,    84,    -1,    86,    87,    88,    89,    90,    91,
+      -1,    -1,    -1,    95,    96,    -1,    98,    99,    -1,    -1,
+      -1,   103,    -1,    -1,   106,   107,   108,   109,   110,   111,
+     112,     3,     4,    -1,    -1,    -1,     8,     9,    -1,    -1,
+      12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    27,    28,    -1,    -1,    31,
+      -1,    -1,    34,    35,    36,    -1,    -1,    39,    -1,    -1,
+      42,    43,    44,    -1,    -1,    47,    -1,    49,    -1,    -1,
+      52,    -1,    -1,    55,    56,    57,    58,    -1,    60,    -1,
+      62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,    71,
+      72,    73,    74,    -1,    76,    -1,    -1,    79,    80,    81,
+      -1,    83,    84,    -1,    86,    87,    88,    89,    90,    91,
+      92,    -1,    -1,    95,    96,    -1,    98,    99,    -1,    -1,
+      -1,   103,    -1,    -1,   106,   107,   108,   109,   110,   111,
+     112,     3,     4,    -1,    -1,    -1,     8,     9,    -1,    -1,
+      12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    27,    28,    -1,    -1,    31,
+      -1,    -1,    34,    35,    36,    -1,    -1,    39,    -1,    -1,
+      42,    43,    44,    -1,    -1,    47,    -1,    49,    -1,    -1,
+      52,    -1,    -1,    55,    56,    57,    58,    -1,    60,    -1,
+      62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,    71,
+      72,    73,    74,    -1,    76,    -1,    -1,    79,    80,    81,
+      -1,    83,    84,    -1,    86,    87,    88,    89,    90,    91,
+      92,    -1,    -1,    95,    96,    -1,    98,    99,    -1,    -1,
+      -1,   103,    -1,    -1,   106,   107,   108,   109,   110,   111,
+     112,     3,     4,    -1,    -1,    -1,     8,     9,    -1,    -1,
+      12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    27,    28,    -1,    -1,    31,
+      -1,    -1,    34,    35,    36,    -1,    -1,    39,    -1,    -1,
+      42,    43,    44,    -1,    -1,    47,    -1,    49,    -1,    -1,
+      52,    -1,    -1,    55,    56,    57,    58,    -1,    60,    -1,
+      62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,    71,
+      72,    73,    74,    -1,    76,    -1,    -1,    79,    80,    81,
+      -1,    83,    84,    -1,    86,    87,    88,    89,    90,    91,
+      -1,    -1,    -1,    95,    96,    -1,    98,    99,    -1,    -1,
+      -1,   103,    -1,    -1,   106,   107,   108,   109,   110,   111,
+     112,     3,    -1,    -1,    -1,    -1,     8,     9,    -1,    -1,
+      12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    27,    28,    -1,    -1,    31,
+      -1,    -1,    34,    35,    36,    -1,    -1,    39,    -1,    -1,
+      42,    43,    44,    -1,    -1,    47,    -1,    49,    -1,    -1,
+      52,    -1,    -1,    55,    56,    57,    58,    -1,    60,    -1,
+      62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,    71,
+      72,    73,    74,    -1,    76,    -1,    -1,    79,    80,    81,
+      -1,    83,    84,    -1,    86,    87,    88,    89,    90,    91,
+      -1,    -1,    -1,    95,    96,    -1,    98,    99,    -1,    -1,
+      -1,   103,   104,    -1,   106,   107,   108,   109,   110,   111,
+     112,     3,     4,    -1,    -1,    -1,     8,     9,    -1,    -1,
+      12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    27,    28,    -1,    -1,    31,
+      -1,    -1,    34,    35,    36,    -1,    -1,    39,    -1,    -1,
+      42,    43,    44,    -1,    -1,    47,    -1,    49,    -1,    -1,
+      52,    -1,    -1,    55,    56,    57,    58,    -1,    60,    -1,
+      62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,    71,
+      72,    73,    74,    -1,    76,    -1,    -1,    79,    80,    81,
+      -1,    83,    84,    -1,    86,    87,    88,    89,    90,    91,
+      -1,    -1,    -1,    95,    96,    -1,    98,    99,    -1,    -1,
+      -1,   103,    -1,    -1,   106,   107,   108,   109,   110,   111,
+     112,     3,     4,    -1,    -1,    -1,     8,     9,    -1,    -1,
+      12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    27,    28,    -1,    -1,    31,
+      -1,    -1,    34,    35,    36,    -1,    -1,    39,    -1,    -1,
+      42,    43,    44,    -1,    -1,    47,    -1,    49,    -1,    -1,
+      52,    -1,    -1,    55,    56,    57,    58,    -1,    60,    -1,
+      62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,    71,
+      72,    73,    74,    -1,    76,    -1,    -1,    79,    80,    81,
+      -1,    83,    84,    -1,    86,    87,    88,    89,    90,    91,
+      -1,    -1,    -1,    95,    96,    -1,    98,    99,    -1,    -1,
+      -1,   103,    -1,    -1,   106,   107,   108,   109,   110,   111,
+     112,     3,    -1,    -1,    -1,    -1,     8,     9,    -1,    -1,
+      12,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    27,    28,    -1,    -1,    31,
+      -1,    -1,    34,    35,    36,    -1,    -1,    39,    -1,    -1,
+      42,    43,    44,    -1,    -1,    47,    -1,    49,    -1,    -1,
+      52,    -1,    -1,    55,    56,    57,    58,    -1,    60,    -1,
+      62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,    71,
+      72,    73,    74,    -1,    76,    -1,    -1,    79,    80,    81,
+      -1,    83,    84,    -1,    86,    87,    88,    89,    90,    91,
+      -1,    -1,    -1,    95,    96,    -1,    98,    99,    -1,    -1,
+      -1,   103,    -1,    -1,   106,   107,   108,   109,   110,   111,
+     112,     3,    -1,    -1,    -1,    -1,     8,     9,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    27,    28,    -1,    -1,    31,
+      -1,    -1,    34,    -1,    36,    -1,    -1,    39,    -1,    -1,
+      42,    43,    44,    -1,    -1,    47,    -1,    49,    -1,    -1,
+      52,    -1,    -1,    55,    56,    57,    58,    -1,    60,    61,
+      62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,    71,
+      72,    73,    -1,    -1,    76,    -1,    -1,    79,    80,    81,
+      -1,    83,    84,    -1,    86,    87,    88,    89,    90,    91,
+       3,    -1,    -1,    95,    96,    -1,    98,    99,    -1,    -1,
+      -1,   103,    -1,    -1,   106,   107,   108,   109,   110,   111,
+      -1,    -1,    -1,    -1,    27,    28,    -1,    -1,    31,    -1,
+      -1,    34,    -1,    36,    -1,    -1,    39,    -1,    -1,    42,
+      43,    44,    -1,    -1,    47,    -1,    49,    -1,    -1,    52,
+      -1,    -1,    55,    -1,    57,    58,    -1,    60,    -1,    62,
+      63,    -1,    -1,    66,    -1,    -1,    -1,    70,    71,    72,
+      73,    -1,    -1,    -1,    -1,    -1,    79,    80,    81,    -1,
+      83,    84,    -1,    86,    87,    88,    89,    90,    91,     3,
+      -1,    -1,    95,    96,    -1,    -1,    99,    -1,    -1,    -1,
+     103,    -1,    -1,   106,   107,    -1,   109,   110,    -1,    -1,
+      -1,    -1,    -1,    27,    28,    -1,    -1,    31,    -1,    -1,
+      34,    -1,    36,    -1,    -1,    39,    -1,    -1,    42,    43,
+      44,    -1,    -1,    47,    -1,    49,    -1,    -1,    52,    -1,
+      -1,    55,    -1,    57,    58,    -1,    60,    -1,    62,    63,
+      -1,    -1,    66,    -1,    -1,    -1,    70,    71,    72,    73,
+      -1,    -1,    -1,    -1,    -1,    79,    80,    81,    -1,    83,
+      84,    -1,    86,    87,    88,    89,    90,    91,     3,    -1,
+      -1,    95,    96,    -1,    -1,    99,    -1,    -1,    -1,   103,
+      -1,    -1,   106,   107,    -1,   109,   110,    -1,    -1,    -1,
+      -1,    -1,    27,    28,    -1,    -1,    31,    -1,    -1,    34,
+      -1,    36,    -1,    -1,    39,    -1,    -1,    42,    43,    44,
+      -1,    -1,    47,    -1,    49,    -1,    -1,    52,    -1,    -1,
+      55,    -1,    57,    58,    -1,    60,    -1,    62,    63,    -1,
+      -1,    66,    -1,    -1,    -1,    70,    71,    72,    73,    -1,
+      -1,    -1,    -1,    -1,    79,    80,    81,    -1,    83,    84,
+      -1,    86,    87,    88,    89,    90,    91,    -1,    -1,    -1,
+      95,    96,    -1,    -1,    99,    -1,    -1,    -1,   103,    -1,
+      -1,   106,   107,    -1,   109,   110,     8,     9,    10,    11,
+      -1,    13,    14,    15,    16,    17,    18,    19,    20,    21,
+      22,    23,    24,    25,    26,    -1,    -1,    29,    -1,    -1,
+      -1,    33,    -1,    -1,    -1,    -1,    38,    -1,     8,     9,
+      10,    11,    -1,    13,    14,    15,    16,    17,    18,    19,
+      20,    21,    22,    23,    24,    25,    26,    -1,    60,    29,
+      -1,    -1,    64,    33,    -1,    -1,    68,    69,    38,    71,
+      72,    -1,    74,    75,    -1,    -1,    78,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    86,    -1,    -1,    -1,    -1,    -1,
+      60,    -1,    -1,    -1,    64,    97,    -1,    -1,    68,    69,
+      -1,    71,    72,    -1,    74,    75,    27,    28,    78,    -1,
+      31,    -1,    -1,    34,    -1,    36,    86,    -1,    39,    40,
+      -1,    42,    43,    44,    -1,    -1,    47,    97,    49,    -1,
       -1,    52,    -1,    -1,    55,    -1,    57,    58,    -1,    60,
-      -1,    62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,
+      61,    62,    63,    -1,    -1,    66,    -1,    -1,    -1,    70,
       71,    72,    73,    -1,    -1,    -1,    -1,    -1,    79,    80,
       81,    -1,    83,    84,    -1,    86,    87,    88,    89,    90,
       91,    -1,    -1,    -1,    95,    96,    -1,    -1,    99,    -1,
-      -1,    -1,   103,    -1,    -1,   106,   107,    -1,   109,   110,
-       8,     9,    10,    11,    -1,    13,    14,    15,    16,    17,
-      18,    19,    20,    21,    22,    23,    24,    25,    26,    -1,
-      -1,    29,    -1,    -1,    -1,    33,    -1,    -1,    -1,    -1,
-      38,    -1,     8,     9,    10,    11,    -1,    13,    14,    15,
-      16,    17,    18,    19,    20,    21,    22,    23,    24,    25,
-      26,    -1,    60,    29,    -1,    -1,    64,    33,    -1,    -1,
-      68,    69,    38,    71,    72,    -1,    74,    75,    -1,    -1,
-      78,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    86,    -1,
-      -1,    -1,    -1,    -1,    60,    -1,    -1,    -1,    64,    97,
-      -1,    -1,    68,    69,    -1,    71,    72,    -1,    74,    75,
-      27,    28,    78,    -1,    31,    -1,    -1,    34,    -1,    36,
-      86,    -1,    39,    -1,    -1,    42,    43,    44,    -1,    -1,
-      47,    97,    49,    -1,    -1,    52,    -1,    -1,    55,    -1,
+      -1,    -1,   103,    27,    28,   106,   107,    31,   109,   110,
+      34,    -1,    36,    -1,    -1,    39,    -1,    -1,    42,    43,
+      44,    -1,    -1,    47,    -1,    49,    -1,    -1,    52,    -1,
+      -1,    55,    -1,    57,    58,    -1,    60,    61,    62,    63,
+      -1,    -1,    66,    -1,    -1,    -1,    70,    71,    72,    73,
+      -1,    -1,    -1,    -1,    -1,    79,    80,    81,    -1,    83,
+      84,    -1,    86,    87,    88,    89,    90,    91,    -1,    -1,
+      -1,    95,    96,    -1,    -1,    99,    -1,    -1,    -1,   103,
+      27,    28,   106,   107,    31,   109,   110,    34,    -1,    36,
+      -1,    -1,    39,    -1,    -1,    42,    43,    44,    -1,    -1,
+      47,    -1,    49,    -1,    -1,    52,    -1,    -1,    55,    -1,
       57,    58,    -1,    60,    -1,    62,    63,    -1,    -1,    66,
       -1,    -1,    -1,    70,    71,    72,    73,    -1,    -1,    -1,
       -1,    -1,    79,    80,    81,    -1,    83,    84,    -1,    86,
@@ -3020,30 +4020,55 @@ namespace  sqlb { namespace parser  {
       70,    71,    72,    73,    -1,    -1,    -1,    -1,    -1,    79,
       80,    81,    -1,    83,    84,    -1,    86,    87,    88,    89,
       90,    91,    -1,    -1,    -1,    95,    96,    -1,    -1,    99,
-      -1,    -1,    -1,   103,    -1,    -1,   106,   107,    -1,   109,
-     110,     8,     9,    10,    11,    -1,    13,    14,    15,    16,
+      -1,    -1,    -1,   103,    -1,    -1,   106,   107,     4,   109,
+     110,    -1,     8,     9,    10,    11,    -1,    13,    14,    15,
+      16,    17,    18,    19,    20,    21,    22,    23,    24,    25,
+      26,    -1,    -1,    29,    -1,    -1,    -1,    33,    -1,    -1,
+       4,    -1,    38,    -1,     8,     9,    10,    11,    -1,    13,
+      14,    15,    16,    17,    18,    19,    20,    21,    22,    23,
+      24,    25,    26,    -1,    60,    29,    -1,    -1,    64,    33,
+      -1,    -1,    68,    69,    38,    71,    72,    -1,    74,    75,
+      -1,    -1,    78,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      86,    -1,    -1,    -1,    -1,    -1,    60,    -1,    -1,    -1,
+      64,    -1,    -1,    -1,    68,    69,    -1,    71,    72,    -1,
+      74,    75,    -1,    -1,    78,    -1,    -1,    -1,    -1,     4,
+      -1,    -1,    86,     8,     9,    10,    11,    -1,    13,    14,
+      15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
+      25,    26,    -1,    -1,    29,    -1,    -1,    -1,    33,    -1,
+      -1,    -1,    -1,    38,    -1,     8,     9,    10,    11,    -1,
+      13,    14,    15,    16,    17,    18,    19,    20,    21,    22,
+      23,    24,    25,    26,    -1,    60,    29,    -1,    31,    64,
+      33,    -1,    -1,    68,    69,    38,    71,    72,    -1,    74,
+      75,    -1,    -1,    78,    -1,    -1,    49,    -1,    -1,    -1,
+      -1,    86,    -1,    -1,    -1,    -1,    -1,    60,    -1,    -1,
+      -1,    64,    -1,    -1,    -1,    68,    69,    -1,    71,    72,
+      -1,    74,    75,    -1,    -1,    78,    -1,    -1,    -1,     8,
+       9,    10,    11,    86,    13,    14,    15,    16,    17,    18,
+      19,    20,    21,    22,    23,    24,    25,    26,    -1,    -1,
+      29,    30,    -1,    -1,    33,    -1,    -1,    -1,    -1,    38,
+      -1,     8,     9,    10,    11,    -1,    13,    14,    15,    16,
       17,    18,    19,    20,    21,    22,    23,    24,    25,    26,
-      -1,    -1,    29,    -1,    31,    -1,    33,    -1,    -1,    -1,
-      -1,    38,    -1,     8,     9,    10,    11,    -1,    13,    14,
-      15,    16,    49,    -1,    19,    20,    21,    22,    -1,    -1,
-      25,    26,    -1,    60,    -1,    -1,    -1,    64,    -1,    -1,
-      -1,    68,    69,    38,    71,    72,    -1,    74,    75,    -1,
+      -1,    60,    29,    -1,    -1,    64,    33,    -1,    -1,    68,
+      69,    38,    71,    72,    -1,    74,    75,    -1,    -1,    78,
+      -1,    -1,    -1,    -1,    -1,    52,    -1,    86,    -1,    -1,
+      -1,    -1,    -1,    60,    -1,    -1,    -1,    64,    -1,    -1,
+      -1,    68,    69,    -1,    71,    72,    -1,    74,    75,    -1,
       -1,    78,    -1,    -1,    -1,     8,     9,    10,    11,    86,
       13,    14,    15,    16,    17,    18,    19,    20,    21,    22,
-      23,    24,    25,    26,    -1,    -1,    29,    30,    -1,    -1,
-      33,    -1,    -1,    -1,    -1,    38,    -1,     8,     9,    10,
-      11,    -1,    13,    14,    15,    16,    17,    18,    19,    20,
-      21,    22,    23,    24,    25,    26,    -1,    60,    29,    -1,
-      -1,    64,    33,    -1,    -1,    68,    69,    38,    71,    72,
-      -1,    74,    75,    -1,    -1,    78,    -1,    -1,    -1,    -1,
-      -1,    52,    -1,    86,    -1,    -1,    -1,    -1,    -1,    60,
-      -1,    -1,    -1,    64,    -1,    -1,    -1,    68,    69,    -1,
-      71,    72,    -1,    74,    75,    -1,    -1,    78,    -1,    -1,
-      -1,     8,     9,    10,    11,    86,    13,    14,    15,    16,
+      23,    24,    25,    26,    -1,    -1,    29,    -1,    -1,    -1,
+      33,    -1,    -1,    -1,    -1,    38,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    52,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    60,    -1,    -1,
+      -1,    64,    -1,    -1,    -1,    68,    69,    -1,    71,    72,
+      -1,    74,    75,    -1,    -1,    78,    -1,    -1,    -1,     8,
+       9,    10,    11,    86,    13,    14,    15,    16,    17,    18,
+      19,    20,    21,    22,    23,    24,    25,    26,    -1,    -1,
+      29,    -1,    -1,    -1,    33,    -1,    -1,    -1,    -1,    38,
+      -1,     8,     9,    10,    11,    -1,    13,    14,    15,    16,
       17,    18,    19,    20,    21,    22,    23,    24,    25,    26,
-      -1,    -1,    29,    -1,    -1,    -1,    33,    -1,    -1,    -1,
-      -1,    38,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    52,    -1,    -1,    -1,    -1,
+      -1,    60,    29,    -1,    -1,    64,    33,    -1,    -1,    68,
+      69,    38,    71,    72,    -1,    74,    75,    -1,    -1,    78,
+      -1,    -1,    -1,    -1,    -1,    -1,    -1,    86,    -1,    -1,
       -1,    -1,    -1,    60,    -1,    -1,    -1,    64,    -1,    -1,
       -1,    68,    69,    -1,    71,    72,    -1,    74,    75,    -1,
       -1,    78,    -1,    -1,    -1,     8,     9,    10,    11,    86,
@@ -3056,98 +4081,112 @@ namespace  sqlb { namespace parser  {
       -1,    74,    75,    -1,    -1,    78,    -1,    -1,    -1,    -1,
       -1,    -1,    -1,    86,    -1,    -1,    -1,    -1,    -1,    60,
       -1,    -1,    -1,    64,    -1,    -1,    -1,    68,    69,    -1,
-      71,    72,    -1,    74,    75,    -1,    -1,    78,    -1,    -1,
+      71,    72,    -1,    74,    75,    -1,    -1,    -1,    -1,    -1,
       -1,     8,     9,    10,    11,    86,    13,    14,    15,    16,
       17,    18,    19,    20,    21,    22,    23,    24,    25,    26,
-      -1,    -1,    29,    -1,    -1,    -1,    33,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    33,    -1,    -1,    -1,
       -1,    38,    -1,     8,     9,    10,    11,    -1,    13,    14,
-      15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26,    -1,    60,    29,    -1,    -1,    64,    33,    -1,
-      -1,    68,    69,    38,    71,    72,    -1,    74,    75,    -1,
-      -1,    78,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    86,
-      -1,    -1,    -1,    -1,    -1,    60,    -1,    -1,    -1,    64,
-      -1,    -1,    -1,    68,    69,    -1,    71,    72,    -1,    74,
-      75,    -1,    -1,    -1,    -1,    -1,    -1,     8,     9,    10,
-      11,    86,    13,    14,    15,    16,    17,    18,    19,    20,
-      21,    22,    23,    24,    25,    26,    -1,    -1,    -1,    -1,
-      -1,    -1,    33,    -1,    -1,    -1,    -1,    38,    -1,     8,
-       9,    10,    11,    -1,    13,    14,    15,    16,    -1,    -1,
-      19,    20,    21,    22,    -1,    -1,    25,    26,    -1,    60,
-      -1,    -1,    -1,    64,    -1,    -1,    -1,    68,    69,    38,
-      71,    72,    -1,    74,    75,     8,     9,    10,    11,    -1,
-      13,    14,    15,    16,    53,    86,    19,    20,    21,    22,
-      -1,    -1,    25,    26,    -1,     8,     9,    10,    11,    -1,
-      13,    14,    15,    16,    -1,    38,    19,    20,    21,    22,
-      -1,    -1,    25,    26,    -1,    -1,     8,     9,    10,    11,
-      53,    13,    14,    15,    16,    38,    -1,    19,    20,    21,
-      22,    -1,    -1,    25,    26,    -1,     8,     9,    10,    11,
-      53,    13,    14,    15,    16,    -1,    38,    19,    20,    21,
-      22,    -1,    -1,    25,    26,    -1,    -1,    -1,    -1,    -1,
-      -1,    53,    -1,    -1,    -1,    -1,    38,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    53
+      15,    16,    -1,    -1,    19,    20,    21,    22,    -1,    -1,
+      25,    26,    -1,    60,    -1,    -1,    -1,    64,    -1,    -1,
+      -1,    68,    69,    38,    71,    72,    -1,    74,    75,     8,
+       9,    10,    11,    -1,    13,    14,    15,    16,    53,    86,
+      19,    20,    21,    22,    -1,    -1,    25,    26,    -1,     8,
+       9,    10,    11,    -1,    13,    14,    15,    16,    -1,    38,
+      19,    20,    21,    22,    -1,    -1,    25,    26,    -1,    -1,
+       8,     9,    10,    11,    53,    13,    14,    15,    16,    38,
+      -1,    19,    20,    21,    22,    -1,    -1,    25,    26,    -1,
+       8,     9,    10,    11,    53,    13,    14,    15,    16,    -1,
+      38,    19,    20,    21,    22,    -1,    -1,    25,    26,    -1,
+      -1,    -1,    -1,    -1,    -1,    53,    -1,    -1,    -1,    -1,
+      38,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    53
   };
 
   const unsigned char
   parser::yystos_[] =
   {
-       0,    41,   114,   115,   144,   146,   100,   103,   139,     0,
-       7,    94,    65,    61,   137,   137,    74,    27,    28,    31,
-      34,    36,    39,    42,    43,    44,    47,    49,    52,    55,
-      57,    58,    60,    62,    63,    66,    70,    71,    72,    73,
-      79,    80,    81,    83,    84,    86,    87,    88,    89,    90,
-      91,    95,    96,    99,   103,   106,   107,   109,   110,   117,
-     118,   119,   141,   141,    54,     5,     5,   102,    77,    95,
-     117,   119,   119,   117,   119,     3,   145,     3,     3,     4,
-       8,     9,    12,    35,    36,    42,    43,    44,    56,    74,
-      76,    83,    98,   108,   109,   111,   112,   116,   117,   118,
-     124,   125,   126,   127,   128,   129,   130,   131,   133,   134,
-     135,   135,   142,   143,   127,   135,   135,   135,   104,   132,
-     135,     3,   135,     3,     3,     5,     4,     6,     8,     9,
-      10,    11,    13,    14,    15,    16,    17,    18,    19,    20,
-      21,    22,    23,    24,    25,    26,    29,    33,    38,    60,
-      64,    68,    69,    71,    72,    74,    75,    78,    86,    31,
-      49,   138,     4,     6,     4,   135,    51,    52,   104,   132,
-     135,    27,    55,    62,    89,     4,    10,    50,   127,   117,
-     135,   135,   135,   135,   135,   135,   135,   135,   135,   135,
-     135,   135,   135,   135,   135,   135,   135,   135,   135,   135,
-     135,   117,   135,     3,   117,   119,   135,   135,   135,    33,
-      60,    64,    71,    72,    76,    86,   135,   135,   105,   140,
-     142,    97,   135,   135,    51,    52,    30,     6,     6,     4,
-       6,     4,   127,     4,     5,    29,    53,     4,    92,   127,
-     136,     3,     5,    53,    53,   135,   135,     3,   117,   119,
-     135,   135,   135,    53,   135,   135,    52,    97,   135,   119,
-     122,   123,   109,   109,   109,     4,   117,   135,   135,     4,
-       4,   127,   117,   119,   135,   135,    29,    53,     4,   127,
-     136,     3,     5,    53,    53,    53,   135,   135,    52,     3,
-     119,     4,     4,     4,     4,     4,     3,   135,   135,     4,
-       4,   127,   117,   119,   135,   135,   135,     8,     9,   108,
-     120,   121,     4,   127,     4,     3,   108,   108,     4,     6,
-       4,     4,   127,   121,     4,     4
+       0,    41,   114,   115,   145,   147,   165,    95,    96,   100,
+     103,   140,   148,     0,     7,    94,    65,    94,    61,   138,
+     138,   138,    74,    27,    28,    31,    34,    36,    39,    42,
+      43,    44,    47,    49,    52,    55,    57,    58,    60,    62,
+      63,    66,    70,    71,    72,    73,    79,    80,    81,    83,
+      84,    86,    87,    88,    89,    90,    91,    95,    96,    99,
+     103,   106,   107,   109,   110,   117,   118,   119,   142,   142,
+     142,    54,     5,     5,   102,    77,     3,    30,    95,   117,
+     119,   119,   117,   119,    42,    43,    44,    61,   109,   117,
+     118,   120,   154,   155,    92,   137,     3,   146,     3,   119,
+     123,   124,   151,     6,   164,     3,     4,     8,     9,    12,
+      35,    36,    42,    43,    44,    56,    74,    76,    83,    98,
+     108,   109,   111,   112,   116,   117,   118,   125,   126,   127,
+     128,   129,   130,   131,   132,   134,   135,   136,   136,   143,
+     144,     3,   119,    40,   152,   153,   156,   154,   156,   162,
+     163,     4,   128,   136,   136,   136,   104,   133,   136,     3,
+     136,     3,     3,     5,     4,     6,     8,     9,    10,    11,
+      13,    14,    15,    16,    17,    18,    19,    20,    21,    22,
+      23,    24,    25,    26,    29,    33,    38,    60,    64,    68,
+      69,    71,    72,    74,    75,    78,    86,    31,    49,   139,
+       4,     6,     8,     9,   108,   121,   122,   117,   152,    37,
+      38,    45,    74,    76,    82,    85,   100,    37,    59,    82,
+     100,     6,   162,   106,   149,     4,   136,    51,    52,   104,
+     133,   136,    27,    55,    62,    89,     4,    10,    50,   128,
+     117,   136,   136,   136,   136,   136,   136,   136,   136,   136,
+     136,   136,   136,   136,   136,   136,   136,   136,   136,   136,
+     136,   136,   117,   136,     3,   117,   119,   136,   136,   136,
+      33,    60,    64,    71,    72,    76,    86,   136,   136,   105,
+     141,   143,   108,   108,     4,     6,     3,   117,     3,    61,
+     116,   117,   118,   121,    76,    70,   117,    77,   150,     3,
+      70,    70,     3,   162,    90,    97,   136,   136,    51,    52,
+      30,     6,     6,     4,     6,     4,   128,     4,     5,    29,
+      53,     4,   128,   137,     3,     5,    53,    53,   136,   136,
+       3,   117,   119,   136,   136,   136,    53,   136,   122,   136,
+     136,   150,   139,     3,   158,    39,   136,     3,     3,   144,
+     136,    52,    97,   136,   124,   109,   109,   109,     4,   117,
+     136,   136,     4,     4,   128,   117,   119,   136,   136,    29,
+      53,     4,   128,   137,     3,     5,    53,    53,    53,   136,
+       4,     4,     4,   150,   120,   157,    46,    72,    74,    77,
+     159,   160,   161,    27,    55,    62,    87,    89,     4,   157,
+     144,     4,   136,    52,     4,     4,     4,     4,     4,     3,
+     136,   136,     4,     4,   128,   117,   119,   136,   136,   136,
+      32,     4,     6,    66,   117,    46,    48,    67,   101,    46,
+      74,   159,     4,     4,    32,   150,     4,   128,     4,     3,
+     120,    47,    63,    66,    34,    73,    88,    93,    34,    73,
+      88,    93,    34,    73,    88,    93,    66,    46,    85,   150,
+       4,     4,     4,   128,    47,    63,    28,    45,    76,    28,
+      45,    76,    28,    45,    76,    47,    63,    66,   117,   150,
+       4,    47,    63,   158,   161
   };
 
   const unsigned char
   parser::yyr1_[] =
   {
-       0,   113,   114,   114,   115,   115,   116,   116,   116,   116,
-     116,   116,   116,   116,   116,   117,   117,   118,   118,   118,
+       0,   113,   114,   114,   115,   115,   115,   116,   116,   116,
+     116,   116,   116,   116,   116,   116,   117,   117,   118,   118,
      118,   118,   118,   118,   118,   118,   118,   118,   118,   118,
      118,   118,   118,   118,   118,   118,   118,   118,   118,   118,
      118,   118,   118,   118,   118,   118,   118,   118,   118,   118,
-     118,   118,   118,   119,   119,   119,   119,   119,   119,   120,
-     120,   121,   121,   122,   122,   123,   123,   123,   124,   124,
-     124,   124,   125,   125,   125,   125,   125,   125,   125,   125,
-     125,   125,   125,   125,   125,   125,   125,   125,   125,   125,
-     125,   125,   125,   126,   126,   126,   126,   126,   126,   126,
-     126,   126,   126,   126,   126,   126,   126,   126,   126,   127,
-     127,   128,   128,   128,   128,   129,   129,   129,   130,   130,
-     131,   131,   131,   131,   131,   131,   131,   131,   131,   131,
-     131,   131,   131,   131,   131,   131,   132,   132,   133,   133,
-     133,   133,   134,   134,   134,   134,   135,   135,   135,   135,
-     135,   135,   135,   135,   135,   135,   135,   135,   135,   135,
-     135,   135,   135,   135,   136,   137,   137,   138,   138,   138,
-     139,   139,   140,   140,   141,   141,   141,   142,   143,   143,
-     144,   145,   145,   145,   146
+     118,   118,   118,   118,   119,   119,   119,   119,   119,   119,
+     120,   120,   120,   120,   120,   120,   120,   121,   121,   122,
+     122,   123,   123,   124,   124,   124,   125,   125,   125,   125,
+     126,   126,   126,   126,   126,   126,   126,   126,   126,   126,
+     126,   126,   126,   126,   126,   126,   126,   126,   126,   126,
+     126,   127,   127,   127,   127,   127,   127,   127,   127,   127,
+     127,   127,   127,   127,   127,   127,   127,   128,   128,   129,
+     129,   129,   129,   130,   130,   130,   131,   131,   132,   132,
+     132,   132,   132,   132,   132,   132,   132,   132,   132,   132,
+     132,   132,   132,   132,   133,   133,   134,   134,   134,   134,
+     135,   135,   135,   135,   136,   136,   136,   136,   136,   136,
+     136,   136,   136,   136,   136,   136,   136,   136,   136,   136,
+     136,   136,   137,   138,   138,   139,   139,   139,   140,   140,
+     141,   141,   142,   142,   142,   143,   144,   144,   145,   146,
+     146,   146,   147,   148,   148,   148,   149,   149,   150,   150,
+     150,   150,   150,   150,   151,   151,   152,   152,   152,   152,
+     152,   152,   152,   152,   152,   152,   152,   152,   152,   152,
+     153,   153,   154,   154,   155,   155,   156,   156,   157,   157,
+     158,   158,   159,   159,   159,   159,   159,   159,   159,   159,
+     159,   159,   159,   159,   159,   159,   159,   159,   160,   160,
+     161,   161,   161,   161,   161,   161,   161,   161,   161,   161,
+     161,   161,   161,   161,   162,   162,   162,   162,   162,   163,
+     163,   163,   164,   164,   165,   165
   };
 
   const unsigned char
@@ -3158,20 +4197,29 @@ namespace  sqlb { namespace parser  {
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     2,
-       2,     1,     1,     1,     2,     1,     4,     6,     2,     2,
-       2,     2,     3,     3,     3,     3,     3,     3,     3,     3,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     2,     2,     1,
+       1,     1,     2,     1,     4,     6,     2,     2,     2,     2,
        3,     3,     3,     3,     3,     3,     3,     3,     3,     3,
-       3,     3,     3,     3,     3,     3,     3,     4,     4,     4,
-       4,     5,     5,     5,     5,     6,     6,     6,     6,     1,
-       3,     4,     5,     3,     4,     2,     2,     3,     5,     6,
-       4,     5,     5,     5,     3,     7,     8,     6,     5,     6,
-       6,     6,     4,     8,     9,     7,     4,     5,     6,     4,
-       5,     3,     4,     6,     6,     6,     1,     1,     1,     5,
-       3,     1,     1,     1,     1,     3,     6,     3,     1,     1,
-       1,     1,     1,     1,     1,     0,     3,     0,     1,     1,
-       0,     1,     0,     2,     3,     3,     1,     2,     1,     3,
-      11,     0,     2,     3,     8
+       3,     3,     3,     3,     3,     3,     3,     3,     3,     3,
+       3,     3,     3,     3,     3,     4,     4,     4,     4,     5,
+       5,     5,     5,     6,     6,     6,     6,     1,     3,     4,
+       5,     3,     4,     2,     2,     3,     5,     6,     4,     5,
+       5,     5,     3,     7,     8,     6,     5,     6,     6,     6,
+       4,     8,     9,     7,     4,     5,     6,     4,     5,     3,
+       4,     6,     6,     6,     1,     1,     1,     5,     3,     1,
+       1,     1,     1,     3,     6,     3,     1,     1,     1,     1,
+       1,     1,     1,     0,     3,     0,     1,     1,     0,     1,
+       0,     2,     3,     3,     1,     2,     1,     3,    11,     0,
+       2,     3,     8,     0,     1,     1,     0,     2,     0,     3,
+       3,     3,     3,     3,     0,     1,     5,     6,     4,     2,
+       3,     5,     3,     3,     3,     3,     3,     5,     3,     5,
+       1,     2,     3,     2,     1,     3,     0,     2,     1,     3,
+       0,     3,     4,     4,     3,     3,     4,     4,     4,     3,
+       3,     4,     4,     4,     3,     3,     4,     2,     1,     2,
+       0,     1,     4,     4,     2,     5,     5,     3,     3,     3,
+       1,     4,     4,     2,     7,     8,     6,     5,    10,     1,
+       3,     2,     0,     2,     7,    10
   };
 
 
@@ -3205,39 +4253,56 @@ namespace  sqlb { namespace parser  {
   "\"numeric\"", "\"string literal\"", "\"quoted literal\"",
   "\"blob literal\"", "\"bind parameter\"", "$accept", "sql", "statement",
   "literalvalue", "id", "allowed_keywords_as_identifier", "tableid",
-  "signednumber", "signednumber_or_numeric", "typename_namelist",
-  "type_name", "unary_expr", "binary_expr", "like_expr", "exprlist_expr",
-  "function_expr", "isnull_expr", "between_expr", "in_expr",
-  "whenthenlist_expr", "case_expr", "raise_expr", "expr", "select_stmt",
-  "optional_if_not_exists", "optional_sort_order", "optional_unique",
-  "optional_where", "tableid_with_uninteresting_schema", "indexed_column",
+  "columnid", "signednumber", "signednumber_or_numeric",
+  "typename_namelist", "type_name", "unary_expr", "binary_expr",
+  "like_expr", "exprlist_expr", "function_expr", "isnull_expr",
+  "between_expr", "in_expr", "whenthenlist_expr", "case_expr",
+  "raise_expr", "expr", "select_stmt", "optional_if_not_exists",
+  "optional_sort_order", "optional_unique", "optional_where",
+  "tableid_with_uninteresting_schema", "indexed_column",
   "indexed_column_list", "createindex_stmt",
-  "optional_exprlist_with_paren", "createvirtualtable_stmt", YY_NULLPTR
+  "optional_exprlist_with_paren", "createvirtualtable_stmt",
+  "optional_temporary", "optional_withoutrowid", "optional_conflictclause",
+  "optional_typename", "columnconstraint", "columnconstraint_list",
+  "columndef", "columndef_list", "optional_constraintname",
+  "columnid_list", "optional_columnid_with_paren_list", "fk_clause_part",
+  "fk_clause_part_list", "optional_fk_clause", "tableconstraint",
+  "tableconstraint_list", "optional_tableconstraint_list",
+  "createtable_stmt", YY_NULLPTR
   };
 
 #if YYDEBUG
   const unsigned short
   parser::yyrline_[] =
   {
-       0,   224,   224,   225,   229,   230,   238,   239,   240,   241,
-     242,   243,   244,   245,   246,   250,   251,   256,   257,   258,
-     259,   260,   261,   262,   263,   264,   265,   266,   267,   268,
-     269,   270,   271,   272,   273,   274,   275,   276,   277,   278,
-     279,   280,   281,   282,   283,   284,   285,   286,   287,   288,
-     289,   290,   291,   295,   296,   297,   298,   299,   300,   314,
-     315,   319,   320,   324,   325,   329,   330,   331,   335,   336,
-     337,   338,   342,   343,   344,   345,   346,   347,   348,   349,
-     350,   351,   352,   353,   354,   355,   356,   357,   358,   359,
-     360,   361,   362,   366,   367,   368,   369,   370,   371,   372,
-     373,   374,   375,   376,   377,   378,   379,   380,   381,   385,
-     386,   390,   391,   392,   393,   397,   398,   399,   403,   404,
-     408,   409,   410,   411,   412,   413,   414,   415,   416,   417,
-     418,   419,   420,   421,   422,   423,   427,   428,   432,   433,
-     434,   435,   439,   440,   441,   442,   446,   447,   448,   449,
-     450,   451,   452,   453,   454,   455,   456,   457,   458,   459,
-     460,   461,   462,   463,   472,   480,   481,   485,   486,   487,
-     495,   496,   500,   501,   505,   506,   507,   511,   525,   526,
-     530,   541,   542,   543,   547
+       0,   300,   300,   301,   305,   306,   307,   315,   316,   317,
+     318,   319,   320,   321,   322,   323,   327,   328,   333,   334,
+     335,   336,   337,   338,   339,   340,   341,   342,   343,   344,
+     345,   346,   347,   348,   349,   350,   351,   352,   353,   354,
+     355,   356,   357,   358,   359,   360,   361,   362,   363,   364,
+     365,   366,   367,   368,   372,   373,   374,   375,   376,   377,
+     381,   382,   383,   384,   385,   386,   387,   391,   392,   396,
+     397,   401,   402,   406,   407,   408,   412,   413,   414,   415,
+     419,   420,   421,   422,   423,   424,   425,   426,   427,   428,
+     429,   430,   431,   432,   433,   434,   435,   436,   437,   438,
+     439,   443,   444,   445,   446,   447,   448,   449,   450,   451,
+     452,   453,   454,   455,   456,   457,   458,   462,   463,   467,
+     468,   469,   470,   474,   475,   476,   480,   481,   485,   486,
+     487,   488,   489,   490,   491,   492,   493,   494,   495,   496,
+     497,   498,   499,   500,   504,   505,   509,   510,   511,   512,
+     516,   517,   518,   519,   523,   524,   525,   526,   527,   528,
+     529,   530,   531,   532,   533,   534,   535,   536,   537,   538,
+     539,   540,   549,   557,   558,   562,   563,   564,   572,   573,
+     577,   578,   582,   583,   584,   588,   602,   603,   607,   622,
+     623,   624,   628,   640,   641,   642,   646,   647,   651,   652,
+     653,   654,   655,   656,   660,   661,   665,   674,   684,   689,
+     694,   699,   705,   711,   717,   723,   730,   736,   742,   748,
+     762,   763,   767,   805,   809,   810,   814,   815,   819,   820,
+     824,   825,   829,   830,   831,   832,   833,   834,   835,   836,
+     837,   838,   839,   840,   841,   842,   843,   844,   848,   849,
+     853,   854,   855,   856,   857,   858,   859,   860,   861,   862,
+     863,   864,   865,   866,   870,   876,   883,   889,   893,   901,
+     902,   903,   907,   908,   912,   916
   };
 
   // Print the state stack on the debug stream.
@@ -3272,9 +4337,9 @@ namespace  sqlb { namespace parser  {
 
 #line 10 "sqlite3_parser.yy"
 } } //  sqlb::parser 
-#line 3276 "sqlite3_parser.cpp"
+#line 4341 "sqlite3_parser.cpp"
 
-#line 554 "sqlite3_parser.yy"
+#line 938 "sqlite3_parser.yy"
 
 
 void sqlb::parser::parser::error(const location_type& l, const std::string& m)
